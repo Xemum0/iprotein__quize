@@ -1,0 +1,1644 @@
+/* == global.css == */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+:root {
+  --typography-family-IBM-plex-sans-arabic-medium-12-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-medium-12-font-weight: 500;
+  --typography-family-IBM-plex-sans-arabic-medium-12-font-size: 12px;
+  --typography-family-IBM-plex-sans-arabic-medium-12-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-medium-12-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-12-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-16-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-medium-16-font-weight: 500;
+  --typography-family-IBM-plex-sans-arabic-medium-16-font-size: 16px;
+  --typography-family-IBM-plex-sans-arabic-medium-16-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-medium-16-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-16-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-bold-12-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-bold-12-font-weight: 700;
+  --typography-family-IBM-plex-sans-arabic-bold-12-font-size: 12px;
+  --typography-family-IBM-plex-sans-arabic-bold-12-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-bold-12-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-bold-12-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-semibold-12-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-semibold-12-font-weight: 600;
+  --typography-family-IBM-plex-sans-arabic-semibold-12-font-size: 12px;
+  --typography-family-IBM-plex-sans-arabic-semibold-12-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-semibold-12-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-semibold-12-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-bold-48-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-bold-48-font-weight: 700;
+  --typography-family-IBM-plex-sans-arabic-bold-48-font-size: 48px;
+  --typography-family-IBM-plex-sans-arabic-bold-48-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-bold-48-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-bold-48-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-22-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-medium-22-font-weight: 500;
+  --typography-family-IBM-plex-sans-arabic-medium-22-font-size: 22px;
+  --typography-family-IBM-plex-sans-arabic-medium-22-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-medium-22-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-22-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-18-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-medium-18-font-weight: 500;
+  --typography-family-IBM-plex-sans-arabic-medium-18-font-size: 18px;
+  --typography-family-IBM-plex-sans-arabic-medium-18-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-medium-18-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-18-font-style: normal;
+  --primitives-colors-white-white-50-w: rgba(255, 255, 255, 1);
+  --primitives-colors-warning-warning-600: rgba(204, 153, 0, 1);
+  --primitives-colors-warning-warning-700: rgba(153, 115, 0, 1);
+  --primitives-colors-secondary-secondary-600: rgba(184, 190, 14, 1);
+  --primitives-colors-secondary-secondary-800: rgba(92, 95, 7, 1);
+  --primitives-colors-error-error-600: rgba(193, 11, 17, 1);
+  --primitives-colors-primary-primary-500-p: rgba(41, 78, 62, 1);
+  --primitives-colors-primary-primary-950: rgba(9, 17, 13, 1);
+  --primitives-colors-natural-natural-500-n: rgba(143, 143, 143, 1);
+  --primitives-colors-natural-natural-200: rgba(209, 209, 209, 1);
+  --primitives-colors-secondary-secondary-500-s: rgba(230, 237, 20, 1);
+  --primitives-colors-warning-warning-100: rgba(255, 242, 204, 1);
+  --primitives-colors-secondary-secondary-100: rgba(250, 251, 208, 1);
+  --primitives-colors-error-error-100: rgba(252, 223, 223, 1);
+  --primitives-colors-primary-primary-100: rgba(222, 237, 231, 1);
+  --variables-border-radius-border-radius-lg: var(
+    --primitives-border-radius-border-radius-lg-duplicate
+  );
+  --primitives-border-radius-border-radius-lg-duplicate: 8px;
+}
+
+@property --progress {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+html,
+body {
+  margin: 0px;
+  height: 100%;
+  font-family: "IBM Plex Sans Arabic", Helvetica, sans-serif;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+
+.AI-coach-quiz {
+  background-color: var(--primitives-colors-white-white-50-w);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 6vw, 72px);
+  padding-bottom: 48px;
+}
+
+.AI-coach-quiz .header {
+  display: flex;
+  width: 100%;
+  min-height: 108px;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px clamp(16px, 6vw, 100px);
+  background-color: var(--primitives-colors-white-white-50-w);
+  box-shadow: 0px 4px 4px #afafaf26;
+}
+
+.AI-coach-quiz .frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz .div {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz .remix-icons-line {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1;
+}
+
+.AI-coach-quiz .logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+}
+
+.AI-coach-quiz .logo {
+  position: relative;
+  width: 281px;
+  height: 44px;
+  aspect-ratio: 6.37;
+}
+
+.AI-coach-quiz .group {
+  position: absolute;
+  width: 93.56%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.AI-coach-quiz .group-2 {
+  position: absolute;
+  width: 4.63%;
+  height: 14.79%;
+  top: 0;
+  left: 95.37%;
+}
+
+.AI-coach-quiz .vector {
+  position: absolute;
+  width: 42.14%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.AI-coach-quiz .img {
+  position: absolute;
+  width: 50.45%;
+  height: 100%;
+  top: 0;
+  left: 49.55%;
+}
+
+.AI-coach-quiz .frame-2 {
+  display: flex;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 6vw, 24px);
+  position: relative;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: clamp(32px, 6vw, 64px);
+  flex-wrap: wrap;
+}
+
+.AI-coach-quiz .frame-3 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 620px;
+  flex: 1 1 520px;
+  align-items: stretch;
+  gap: 24px;
+  position: relative;
+}
+
+.AI-coach-quiz .frame-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(115px, 1fr));
+  width: 100%;
+  position: relative;
+  flex: 0 0 auto;
+  gap: 16px;
+}
+
+.AI-coach-quiz .indicator,
+.AI-coach-quiz .indicator-2,
+.AI-coach-quiz .indicator-3,
+.AI-coach-quiz .indicator-4 {
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 44px 12px 12px;
+  border-radius: 16px;
+}
+
+.AI-coach-quiz .indicator {
+  width: 138px;
+  height: 150px;
+  background-color: var(--primitives-colors-warning-warning-100);
+  order: 1;
+}
+
+.AI-coach-quiz .tear-off-calendar {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+  background-image: url(./img/tear-off-calendar.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.AI-coach-quiz .div-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz .description-text {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1px;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-weight
+  );
+  color: var(--primitives-colors-warning-warning-600);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-12-font-size);
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-line-height
+  );
+  direction: rtl;
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-style
+  );
+}
+
+.AI-coach-quiz .text-wrapper {
+  width: fit-content;
+  color: var(--primitives-colors-warning-warning-700);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-16-font-size);
+  text-align: right;
+  position: relative;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-weight
+  );
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-line-height
+  );
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-style
+  );
+}
+
+.AI-coach-quiz .indicator-2 {
+  background-color: var(--primitives-colors-secondary-secondary-100);
+  width: 138px;
+  height: 150px;
+  order: 2;
+}
+
+.AI-coach-quiz .two-oclock {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+  background-image: url(./img/two-oclock.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.AI-coach-quiz .description-text-2 {
+  align-self: stretch;
+  margin-top: -1px;
+  color: var(--primitives-colors-secondary-secondary-600);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-12-font-size);
+  direction: rtl;
+  position: relative;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-weight
+  );
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-line-height
+  );
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-style
+  );
+}
+
+.AI-coach-quiz .description-text-3 {
+  width: fit-content;
+  color: var(--primitives-colors-secondary-secondary-800);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-16-font-size);
+  direction: rtl;
+  position: relative;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-weight
+  );
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-line-height
+  );
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-style
+  );
+}
+
+.AI-coach-quiz .indicator-3 {
+  background-color: var(--primitives-colors-error-error-100);
+  width: 138px;
+  height: 150px;
+  order: 3;
+}
+
+.AI-coach-quiz .direct-hit {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+  background-image: url(./img/direct-hit.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.AI-coach-quiz .description-text-4 {
+  align-self: stretch;
+  margin-top: -1px;
+  color: var(--primitives-colors-error-error-600);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-12-font-size);
+  direction: rtl;
+  position: relative;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-weight
+  );
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-line-height
+  );
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-style
+  );
+}
+
+.AI-coach-quiz .description-text-5 {
+  width: fit-content;
+  color: var(--primitives-colors-error-error-600);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-16-font-size);
+  direction: rtl;
+  position: relative;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-weight
+  );
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-line-height
+  );
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-style
+  );
+}
+
+.AI-coach-quiz .indicator-4 {
+  background-color: var(--primitives-colors-primary-primary-100);
+  width: 138px;
+  height: 150px;
+  order: 4;
+}
+
+.AI-coach-quiz .indicator-icon {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 24px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.AI-coach-quiz .fire {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+  background-image: url(./img/fire.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.AI-coach-quiz .description-text-6 {
+  align-self: stretch;
+  margin-top: -1px;
+  color: var(--primitives-colors-primary-primary-500-p);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-12-font-size);
+  direction: rtl;
+  position: relative;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-weight
+  );
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-line-height
+  );
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-12-font-style
+  );
+}
+
+.AI-coach-quiz .description-text-7 {
+  width: fit-content;
+  color: var(--primitives-colors-primary-primary-500-p);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-16-font-size);
+  text-align: right;
+  position: relative;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-weight
+  );
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-line-height
+  );
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-16-font-style
+  );
+}
+
+.AI-coach-quiz .frame-wrapper {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  min-height: clamp(280px, 45vw, 437px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: var(--primitives-colors-primary-primary-100);
+}
+
+.AI-coach-quiz .frame-illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.AI-coach-quiz .frame-5 {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  align-items: center;
+  position: absolute;
+  top: clamp(24px, 5vw, 40px);
+  left: clamp(55%, calc(50% + 8vw), 70%);
+  transform: translateX(-50%);
+  opacity: 0.95;
+  --progress: 0;
+  --progress-target: 85;
+  --progress-color: var(--primitives-colors-secondary-secondary-500-s);
+  --gauge-thickness: 6px;
+  --gauge-base: var(--primitives-colors-natural-natural-200);
+  animation: fill-progress 1.6s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.AI-coach-quiz .div-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AI-coach-quiz .div-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--progress-color, var(--primitives-colors-secondary-secondary-500-s))
+      calc(var(--progress, var(--progress-target, 0)) * 1%),
+    var(--gauge-base) calc(var(--progress, var(--progress-target, 0)) * 1%)
+  );
+  mask: radial-gradient(
+    circle,
+    transparent calc(50% - var(--gauge-thickness)),
+    #000 calc(50% - var(--gauge-thickness))
+  );
+}
+
+.AI-coach-quiz .frame-6 {
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  position: relative;
+  z-index: 1;
+  background-color: var(--primitives-colors-secondary-secondary-500-s);
+  border-radius: 24px;
+}
+
+.AI-coach-quiz .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-bold-12-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-bold-12-font-weight
+  );
+  color: var(--primitives-colors-primary-primary-500-p);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-bold-12-font-size);
+  text-align: center;
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-bold-12-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-bold-12-line-height
+  );
+  font-style: var(--typography-family-IBM-plex-sans-arabic-bold-12-font-style);
+}
+
+.AI-coach-quiz .frame-7 {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 12px 20px;
+  width: auto;
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff26;
+  border-radius: 7.5px;
+  backdrop-filter: blur(8.75px) brightness(100%);
+  -webkit-backdrop-filter: blur(8.75px) brightness(100%);
+}
+
+.AI-coach-quiz .text-wrapper-3 {
+  position: relative;
+  width: auto;
+  display: inline-block;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-font-weight
+  );
+  color: var(--primitives-colors-primary-primary-500-p);
+  font-size: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-font-size
+  );
+  text-align: right;
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-line-height
+  );
+  direction: rtl;
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-font-style
+  );
+  white-space: nowrap;
+}
+
+.AI-coach-quiz .text-wrapper-4 {
+  width: auto;
+  display: inline-block;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-font-weight
+  );
+  color: var(--primitives-colors-primary-primary-500-p);
+  font-size: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-font-size
+  );
+  position: relative;
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-line-height
+  );
+  direction: rtl;
+  text-align: right;
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-12-font-style
+  );
+  white-space: nowrap;
+}
+
+@keyframes fill-progress {
+  to {
+    --progress: var(--progress-target, 0);
+  }
+}
+
+.AI-coach-quiz .frame-8 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 570px;
+  flex: 1 1 360px;
+  align-items: flex-end;
+  gap: clamp(32px, 5vw, 60px);
+  position: relative;
+}
+
+.AI-coach-quiz .frame-9 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz .p {
+  align-self: stretch;
+  margin-top: -1px;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-bold-48-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-bold-48-font-weight
+  );
+  color: var(--primitives-colors-primary-primary-950);
+  font-size: clamp(28px, 6vw, 48px);
+  position: relative;
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-bold-48-letter-spacing
+  );
+  line-height: 1.2;
+  direction: rtl;
+  font-style: var(--typography-family-IBM-plex-sans-arabic-bold-48-font-style);
+}
+
+.AI-coach-quiz .text-wrapper-5 {
+  position: relative;
+  align-self: stretch;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-22-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-22-font-weight
+  );
+  color: var(--primitives-colors-natural-natural-500-n);
+  font-size: clamp(16px, 4.2vw, 22px);
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-22-letter-spacing
+  );
+  line-height: 1.6;
+  direction: rtl;
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-22-font-style
+  );
+}
+
+.AI-coach-quiz .button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: min(320px, 100%);
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  position: relative;
+  background-color: var(--primitives-colors-primary-primary-500-p);
+  border-radius: 8px;
+  overflow: hidden;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.AI-coach-quiz .btn-primary-btn-lg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -3.5px;
+  margin-bottom: -3.5px;
+}
+
+.AI-coach-quiz .button-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-font-weight
+  );
+  color: var(--primitives-colors-white-white-50-w);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-size);
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-line-height
+  );
+  direction: rtl;
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-font-style
+  );
+}
+
+@media (max-width: 1024px) {
+  .AI-coach-quiz .frame-2 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .AI-coach-quiz .frame-3,
+  .AI-coach-quiz .frame-8 {
+    max-width: 100%;
+  }
+
+  .AI-coach-quiz .frame-8 {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .AI-coach-quiz .header {
+    padding: 20px 16px;
+  }
+
+  .AI-coach-quiz .frame-2 {
+    padding: 0 16px;
+    gap: 32px;
+  }
+
+  .AI-coach-quiz .frame-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .AI-coach-quiz .frame-wrapper {
+    min-height: clamp(220px, 60vw, 320px);
+  }
+
+  .AI-coach-quiz .button {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 640px) {
+  .AI-coach-quiz .frame-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .AI-coach-quiz .indicator,
+  .AI-coach-quiz .indicator-2,
+  .AI-coach-quiz .indicator-3,
+  .AI-coach-quiz .indicator-4 {
+    width: 100%;
+    min-height: 140px;
+    padding: 40px 16px 16px;
+    margin: 0 auto;
+  }
+
+  .AI-coach-quiz .indicator {
+    order: 3;
+  }
+
+  .AI-coach-quiz .indicator-2 {
+    order: 4;
+  }
+
+  .AI-coach-quiz .indicator-3 {
+    order: 1;
+  }
+
+  .AI-coach-quiz .indicator-4 {
+    order: 2;
+  }
+}
+
+/* == quize2.css == */
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+:root {
+  --typography-family-IBM-plex-sans-arabic-semibold-24-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-semibold-24-font-weight: 600;
+  --typography-family-IBM-plex-sans-arabic-semibold-24-font-size: 24px;
+  --typography-family-IBM-plex-sans-arabic-semibold-24-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-semibold-24-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-semibold-24-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-semibold-18-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-semibold-18-font-weight: 600;
+  --typography-family-IBM-plex-sans-arabic-semibold-18-font-size: 18px;
+  --typography-family-IBM-plex-sans-arabic-semibold-18-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-semibold-18-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-semibold-18-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-semibold-36-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-semibold-36-font-weight: 600;
+  --typography-family-IBM-plex-sans-arabic-semibold-36-font-size: 36px;
+  --typography-family-IBM-plex-sans-arabic-semibold-36-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-semibold-36-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-semibold-36-font-style: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-18-font-family: "IBM Plex Sans Arabic",
+    Helvetica;
+  --typography-family-IBM-plex-sans-arabic-medium-18-font-weight: 500;
+  --typography-family-IBM-plex-sans-arabic-medium-18-font-size: 18px;
+  --typography-family-IBM-plex-sans-arabic-medium-18-letter-spacing: 0px;
+  --typography-family-IBM-plex-sans-arabic-medium-18-line-height: normal;
+  --typography-family-IBM-plex-sans-arabic-medium-18-font-style: normal;
+  --primitives-colors-white-white-50-w: rgba(255, 255, 255, 1);
+  --primitives-colors-primary-primary-950: rgba(9, 17, 13, 1);
+  --primitives-colors-primary-primary-500-p: rgba(41, 78, 62, 1);
+  --variables-border-radius-border-radius-lg: var(
+    --primitives-border-radius-border-radius-lg-duplicate
+  );
+  --primitives-border-radius-border-radius-lg-duplicate: 8px;
+}
+
+html,
+body {
+  margin: 0px;
+  height: 100%;
+  font-family: "IBM Plex Sans Arabic", Helvetica, sans-serif;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+
+.AI-coach-quiz-2 {
+  background-color: var(--primitives-colors-white-white-50-w);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(32px, 6vw, 72px);
+  padding-bottom: clamp(32px, 6vw, 80px);
+}
+
+.AI-coach-quiz-2 .header {
+  display: flex;
+  width: 100%;
+  min-height: 108px;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: clamp(16px, 4vw, 32px) 0;
+  background-color: var(--primitives-colors-white-white-50-w);
+  box-shadow: 0px 4px 4px #afafaf26;
+}
+
+.AI-coach-quiz-2 .frame {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 6vw, 32px);
+  flex-wrap: wrap;
+  gap: clamp(8px, 3vw, 24px);
+}
+
+.AI-coach-quiz-2 .remix-icons-line-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz-2 .remix-icons-line {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1;
+}
+
+.AI-coach-quiz-2 .logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+}
+
+.AI-coach-quiz-2 .logo {
+  position: relative;
+  width: 281px;
+  height: 44px;
+  aspect-ratio: 6.37;
+}
+
+.AI-coach-quiz-2 .group {
+  position: absolute;
+  width: 93.56%;
+  height: 100.00%;
+  top: 0;
+  left: 0;
+}
+
+.AI-coach-quiz-2 .div {
+  position: absolute;
+  width: 4.63%;
+  height: 14.79%;
+  top: 0;
+  left: 95.37%;
+}
+
+.AI-coach-quiz-2 .vector {
+  position: absolute;
+  width: 42.14%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.AI-coach-quiz-2 .img {
+  position: absolute;
+  width: 50.45%;
+  height: 100%;
+  top: 0;
+  left: 49.55%;
+}
+
+.AI-coach-quiz-2 .frame-2 {
+  display: flex;
+  width: 100%;
+  max-width: 1240px;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(40px, 6vw, 80px);
+  padding: 0 clamp(16px, 6vw, 32px);
+}
+
+.AI-coach-quiz-2 .frame-3 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz-2 .frame-4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz-2 .progress-section {
+  width: 100%;
+  margin-top: clamp(16px, 3vw, 32px);
+}
+
+.AI-coach-quiz-2 .progress-bar {
+  --total-steps: 7;
+  --progress-percent: 0%;
+  --node-size: 32px;
+  --progress-color: var(--primitives-colors-primary-primary-500-p);
+  --node-muted-color: #dfe4e2;
+  position: relative;
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 16px;
+}
+
+.AI-coach-quiz-2 .progress-line {
+  position: absolute;
+  top: calc(var(--node-size) / 2);
+  left: 0;
+  right: 0;
+  height: 10px;
+  border-radius: 999px;
+  background-color: rgba(41, 78, 62, 0.15);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
+.AI-coach-quiz-2 .progress-line-fill {
+  display: block;
+  height: 100%;
+  width: var(--progress-percent);
+  max-width: 100%;
+  background-color: var(--progress-color);
+  transition: width 0.4s ease;
+}
+
+.AI-coach-quiz-2 .progress-step-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--total-steps), minmax(var(--node-size), 1fr));
+  gap: clamp(8px, 1.5vw, 16px);
+  position: relative;
+  z-index: 1;
+  align-items: flex-start;
+}
+
+.AI-coach-quiz-2 .progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.AI-coach-quiz-2 .progress-node {
+  width: var(--node-size);
+  height: var(--node-size);
+  border-radius: 50%;
+  border: 2px solid var(--node-muted-color);
+  background-color: var(--node-muted-color);
+  position: relative;
+  z-index: 1;
+}
+
+.AI-coach-quiz-2 .progress-step:first-child .progress-node {
+  background-color: var(--progress-color);
+  border-color: var(--progress-color);
+}
+
+.AI-coach-quiz-2 .progress-node-label {
+  font-size: clamp(10px, 1.8vw, 12px);
+  line-height: 1.3;
+  direction: rtl;
+}
+
+.AI-coach-quiz-2 .text-wrapper {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-24-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-24-font-weight
+  );
+  color: var(--primitives-colors-primary-primary-950);
+  font-size: clamp(18px, 3vw, 24px);
+  text-align: right;
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-24-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-24-line-height
+  );
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-24-font-style
+  );
+}
+
+.AI-coach-quiz-2 .text-wrapper-2 {
+  font-size: clamp(16px, 2.6vw, 18px);
+  position: relative;
+  width: fit-content;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-18-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-18-font-weight
+  );
+  color: var(--primitives-colors-primary-primary-950);
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-18-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-18-line-height
+  );
+  direction: rtl;
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-18-font-style
+  );
+}
+
+.AI-coach-quiz-2 .frame-5 {
+  position: relative;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz-2 .frame-6 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(32px, 5vw, 60px);
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  flex: 0 0 auto;
+}
+
+.AI-coach-quiz-2 .text-wrapper-3 {
+  margin-top: -1.00px;
+  font-size: clamp(24px, 5vw, 36px);
+  text-align: center;
+  position: relative;
+  width: fit-content;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-36-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-36-font-weight
+  );
+  color: var(--primitives-colors-primary-primary-950);
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-36-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-36-line-height
+  );
+  direction: rtl;
+  font-style: var(
+    --typography-family-IBM-plex-sans-arabic-semibold-36-font-style
+  );
+}
+
+.AI-coach-quiz-2 .frame-7 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: clamp(16px, 3vw, 32px);
+  position: relative;
+}
+
+.AI-coach-quiz-2 .component {
+  background-image: url("../images/female.svg");
+  display: flex;
+  flex-direction: column;
+  width: min(400px, 100%);
+  min-height: 220px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: clamp(16px, 3vw, 24px);
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: contain;
+  background-position: right 16px center;
+  background-color: rgba(41, 78, 62, 0.05);
+  background-repeat: no-repeat;
+}
+
+.AI-coach-quiz-2 .button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 52px;
+  width: 100%;
+  max-width: clamp(220px, 70%, 300px);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 24px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--primitives-colors-primary-primary-500-p);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.AI-coach-quiz-2 .component .button,
+.AI-coach-quiz-2 .button-wrapper .button {
+  margin-top: auto;
+}
+
+.AI-coach-quiz-2 .btn-primary-btn-lg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -3.50px;
+  margin-bottom: -3.50px;
+}
+
+.AI-coach-quiz-2 .masked-icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 2px 0px;
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.AI-coach-quiz-2 .remix-icons-line-2 {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin-top: -2.00px;
+  margin-bottom: -2.00px;
+  aspect-ratio: 1;
+}
+
+.AI-coach-quiz-2 .button-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-font-family
+  );
+  font-weight: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-font-weight
+  );
+  color: var(--primitives-colors-white-white-50-w);
+  font-size: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-size);
+  letter-spacing: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-letter-spacing
+  );
+  line-height: var(
+    --typography-family-IBM-plex-sans-arabic-medium-18-line-height
+  );
+  direction: rtl;
+  font-style: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-style);
+}
+
+.AI-coach-quiz-2 .button-wrapper {
+  background-image: url("../images/male.svg");
+  display: flex;
+  flex-direction: column;
+  width: min(400px, 100%);
+  min-height: 220px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: clamp(16px, 3vw, 24px);
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: contain;
+  background-position: right 16px center;
+  background-color: rgba(41, 78, 62, 0.05);
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .AI-coach-quiz-2 .frame-4 {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .AI-coach-quiz-2 .progress-bar {
+    padding-top: 24px;
+  }
+
+  .AI-coach-quiz-2 .progress-node-label {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .AI-coach-quiz-2 .progress-bar {
+    --node-size: 28px;
+  }
+
+  .AI-coach-quiz-2 .component,
+  .AI-coach-quiz-2 .button-wrapper {
+    min-height: 180px;
+  }
+
+  .AI-coach-quiz-2 .button {
+    padding: 8px 16px;
+  }
+
+}
+
+/* == quiz3 (name step) == */
+.quiz-name-screen {
+  width: 100%;
+}
+
+.quiz-name-screen .frame-2 {
+  gap: clamp(40px, 6vw, 80px);
+}
+
+.quiz-name-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(32px, 5vw, 60px);
+}
+
+.quiz-name-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: clamp(32px, 5vw, 80px);
+  flex-wrap: wrap;
+}
+
+.quiz-name-form {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.quiz-name-form .input-outlined {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-name-form .form-control {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid var(--primitives-colors-natural-natural-200);
+  background-color: var(--primitives-colors-white-white-50-w);
+}
+
+.quiz-name-form .text-field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px;
+  position: relative;
+}
+
+.quiz-name-form .form-label {
+  position: absolute;
+  top: -11px;
+  inset-inline-end: 16px;
+  padding: 0 8px;
+  background-color: var(--primitives-colors-white-white-50-w);
+  border-radius: 4px;
+  display: inline-flex;
+}
+
+.quiz-name-form .label-text {
+  font-size: 12px;
+  color: var(--primitives-colors-primary-primary-950);
+}
+
+.quiz-name-form .content {
+  flex: 1;
+}
+
+.quiz-name-form .input-text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.quiz-name-form .input-text-2 {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: "IBM Plex Sans Arabic", Helvetica, sans-serif;
+  font-size: 16px;
+  color: var(--primitives-colors-primary-primary-950);
+  text-align: right;
+  direction: rtl;
+}
+
+.quiz-name-form .remix-icons-line {
+  width: 20px;
+  height: 20px;
+}
+
+.quiz-name-form .button {
+  width: 100%;
+  max-width: none;
+}
+
+.quiz-name-figure {
+  width: clamp(160px, 18vw, 240px);
+  height: auto;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  order: -1;
+}
+
+@media (max-width: 1024px) {
+  .quiz-name-content {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  .quiz-name-content {
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(24px, 6vw, 48px);
+  }
+
+  .quiz-name-figure {
+    width: min(220px, 60vw);
+  }
+}
+
+/* == quiz-app.css == */
+@media (prefers-reduced-motion: reduce) {
+  .quiz-step,
+  [data-animate="pulse"] {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.quiz-app {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: #f7fcf9;
+  position: relative;
+  width: 100%;
+}
+
+.quiz-step {
+  width: 100%;
+  opacity: 0;
+  transform: translateX(48px);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  transition: opacity 320ms ease, transform 320ms ease;
+}
+
+.quiz-step.is-active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+.quiz-step.is-exiting {
+  opacity: 0;
+  transform: translateX(-48px);
+}
+
+.quiz-step:focus-visible {
+  outline: none;
+}
+
+.quiz-app > .quiz-step:not(.is-active) {
+  visibility: hidden;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  padding: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+
+.icon-button:hover {
+  background-color: rgba(41, 78, 62, 0.08);
+}
+
+.icon-button:active {
+  transform: scale(0.95);
+}
+
+[data-animate="pulse"] {
+  transition: transform 260ms ease, box-shadow 260ms ease;
+  will-change: transform;
+}
+
+[data-animate="pulse"].is-animating {
+  animation: button-pulse 420ms ease;
+}
+
+@keyframes button-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(41, 78, 62, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(41, 78, 62, 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(41, 78, 62, 0);
+  }
+}
