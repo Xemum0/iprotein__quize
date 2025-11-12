@@ -1,147 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Body Fat Percentage Gradient</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>زر الأداء</title>
 <style>
-body {
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: "Poppins", sans-serif;
-}
+  body{
+    background:#ecf5f1;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Poppins","Tajawal",sans-serif;
+  }
 
-/* === Outer container === */
-.container {
-  width: 560px;
-  padding: 40px 20px;
-  background: #DEEDE7;
-  border: 3px solid #deede7;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(222, 237, 231, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  /* Button shell */
+  .select-btn{
+    width:577px; height:80px;
+    border:2px solid #294E3E; border-radius:8px;
+    background:#fff; color:#294E3E;
+    display:flex; align-items:center;
+    padding:0 30px;
+    cursor:pointer;
+    font-size:20px; font-weight:600;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+        flex-direction: row-reverse;
+  }
 
-/* === Inner content === */
-.wrapper {
-  position: relative;
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
+  /* Active (clicked) state */
+  .select-btn.active{
+    background:#BCDCCE;
+    color:#294E3E;
+  }
 
-/* Gradient bar */
-.gradient-bar {
-  position: relative;
-  width: 480px;
-  height: 20px;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #4caf4f 0%, #e6ed14 50%, #f43e44 100%);
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
-}
+  /* Right pack: icon at the VERY right, then text to its left */
+  .right-pack{
+    display:flex; align-items:center;
+    gap:12px;
+    /* row-reverse puts the icon at the extreme right, then the label */
+    flex-direction:row-reverse;
+  }
 
-/* min and max labels */
-.scale-labels {
-  display: flex;
-  justify-content: space-between;
-  width: 480px;
-  font-size: 16px;
-  color: #294e3e;
-  font-weight: 600;
-}
+  .label{
+    line-height:1;
+    /* make sure Arabic flows RTL without affecting overall layout */
+    direction:rtl;
+  }
 
-/* Movable rectangle indicator */
-.indicator {
-  position: absolute;
-  top: -45px;
-  width: 90px;
-  height: 35px;
-  background: #294e3e;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: 700;
-  font-size: 18px;
-  transition: left 0.3s ease;
-}
+  .icon{
+    width:40px; height:40px;
+    background:#fff;             /* default circle bg */
+    border-radius:50%;
+    padding:8px;                 /* inner padding for the svg */
+    transition:background .25s ease;
+  }
 
-/* Triangle pointer */
-.indicator::after {
-  content: "";
-  position: absolute;
-  bottom: -9px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 10px solid #294e3e;
-}
+  /* When active, icon circle goes lighter mint */
+  .select-btn.active .icon{
+    background:#DEEDE7;
+  }
 
-/* Range slider (transparent, just for control) */
-input[type="range"] {
-  width: 480px;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 8px;
-  border-radius: 5px;
-  background: transparent;
-  position: absolute;
-  top: 0;
-  cursor: pointer;
-}
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  cursor: pointer;
-}
+  /* Flexible spacer to push checkbox to the far left */
+  .spacer{ flex:1; }
+
+  /* Left-end small checkbox */
+  .checkbox{
+    width:22px; height:22px;
+    border:2px solid #294E3E; border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .25s ease, border-color .25s ease;
+  }
+  .tick{
+    width:10px; height:6px;
+    border-left:2px solid #294E3E;
+    border-bottom:2px solid #294E3E;
+    transform:rotate(-45deg);
+    opacity:0; transition:opacity .25s ease, border-color .25s ease;
+  }
+  .select-btn.active .checkbox{
+    background:#294E3E; border-color:#294E3E;
+  }
+  .select-btn.active .tick{
+    opacity:1; border-color:#fff; /* white tick */
+  }
+
+  /* Remove default button styling on focus for consistency */
+  .select-btn:focus{ outline:none; }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="wrapper">
-    <div class="gradient-bar">
-      <div class="indicator" id="indicator">20%</div>
-      <input type="range" id="slider" min="5" max="50" value="20" step="1">
-    </div>
-    <div class="scale-labels">
-      <span>5%</span>
-      <span>50%</span>
-    </div>
+<button class="select-btn" id="performanceBtn" type="button">
+  <!-- RIGHT SIDE: icon then text (visually) -->
+  <div class="right-pack">
+    <img src="spike.svg" alt="أيقونة الأداء" class="icon">
+    <span class="label">الأداء</span>
   </div>
-</div>
+
+  <!-- BIG FLEX SPACE -->
+  <div class="spacer"></div>
+
+  <!-- FAR LEFT: checkbox -->
+  <div class="checkbox" aria-hidden="true">
+    <div class="tick"></div>
+  </div>
+</button>
 
 <script>
-const slider = document.getElementById("slider");
-const indicator = document.getElementById("indicator");
-const barWidth = 480;
-const indicatorWidth = 90;
-
-function updateIndicator(value) {
-  const percent = (value - 5) / (50 - 5);
-  const position = percent * (barWidth - indicatorWidth);
-  indicator.style.left = `${position}px`;
-  indicator.textContent = `${value}%`;
-}
-
-slider.addEventListener("input", e => updateIndicator(e.target.value));
-
-// Initialize
-updateIndicator(slider.value);
+  const btn = document.getElementById('performanceBtn');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+  });
 </script>
 
 </body>
