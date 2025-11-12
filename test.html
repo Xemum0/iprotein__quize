@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVG to HTML/CSS/JS</title>
+<style>
+body {
+  background: #f5faf7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.svg-wrapper {
+  position: relative;
+  width: 528px;
+  height: 483px;
+}
+
+/* bottom rounded rectangle */
+.base {
+  position: absolute;
+  bottom: 0;
+  width: 528px;
+  height: 134px;
+  background: #deede7;
+  border-radius: 16px;
+}
+
+/* gradient bar container */
+.bars {
+  position: absolute;
+  bottom: 94px;
+  left: 24px;
+  display: flex;
+  gap: 0;
+}
+
+/* individual bars */
+.bar {
+  width: 120px;
+  height: 16px;
+  border-radius: 8px 0 0 8px;
+}
+.bar1 {
+  background: linear-gradient(90deg, #4caf4f 57%, #e6ed14 100%);
+}
+.bar2 {
+  background: linear-gradient(90deg, #e6ed14 68%, #ffc107 100%);
+}
+.bar3 {
+  background: linear-gradient(90deg, #ffc107 68%, #f43e44 100%);
+}
+.bar4 {
+  background: #f43e44;
+}
+
+/* dark green box */
+.green-box {
+  position: absolute;
+  left: 69.7px;
+  bottom: 157px;
+  width: 90px;
+  height: 35px;
+  background: #294e3e;
+  border-radius: 8px;
+}
+
+/* green triangle */
+.triangle {
+  position: absolute;
+  bottom: 125px;
+  left: 104px;
+  width: 0;
+  height: 0;
+  border-left: 10.5px solid transparent;
+  border-right: 10.5px solid transparent;
+  border-top: 18px solid #294e3e;
+}
+
+/* circle */
+.circle {
+  position: absolute;
+  bottom: 70px;
+  left: 98.7px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #294e3e;
+}
+
+/* Example of optional text overlay */
+.text {
+  position: absolute;
+  bottom: 200px;
+  left: 80px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+  <div class="svg-wrapper">
+    <div class="base"></div>
+
+    <div class="bars">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+      <div class="bar bar3"></div>
+      <div class="bar bar4"></div>
+    </div>
+
+    <div class="green-box"></div>
+    <div class="triangle"></div>
+    <div class="circle"></div>
+    <div class="text">5-20%</div>
+  </div>
+
+<script>
+// Optional small JS demo: animate gradient bars
+const bars = document.querySelectorAll(".bar");
+let pos = 0;
+setInterval(() => {
+  pos = (pos + 1) % 100;
+  bars[0].style.background = `linear-gradient(90deg, #4caf4f ${pos}%, #e6ed14 100%)`;
+  bars[1].style.background = `linear-gradient(90deg, #e6ed14 ${pos}%, #ffc107 100%)`;
+  bars[2].style.background = `linear-gradient(90deg, #ffc107 ${pos}%, #f43e44 100%)`;
+}, 80);
+</script>
+</body>
+</html>

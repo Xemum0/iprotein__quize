@@ -13,7 +13,12 @@
     <title>iProtein Quiz - Step 3</title>
   </head>
   <body>
-    <div class="AI-coach-quiz-2 quiz-name-screen" data-gender-context data-default-gender="male">
+    <div
+      class="AI-coach-quiz-2 quiz-name-screen"
+      data-gender-context
+      data-default-gender="male"
+      data-question-number="2"
+    >
       <header class="header">
         <div class="frame">
           <div class="remix-icons-line-wrapper">
@@ -38,9 +43,9 @@
       <div class="frame-2">
         <div class="frame-3">
           <div class="frame-4">
-            <div class="text-wrapper">4%</div>
-            <div class="text-wrapper-2">المعلومات الشخصية</div>
             <div class="text-wrapper">2/47</div>
+            <div class="text-wrapper-2">المعلومات الشخصية</div>
+            <div class="text-wrapper">4%</div>
           </div>
           <div class="progress-section">
             <div
@@ -85,7 +90,7 @@
             أدخل اسمك لنخصص لك التجربة بما يناسبك
           </div>
           <div class="quiz-name-content">
-            <div class="quiz-name-form">
+            <form class="quiz-name-form" data-prevent-submit data-name-step>
               <div class="input-outlined">
                 <div class="form-control">
                   <div class="text-field">
@@ -101,6 +106,7 @@
                           placeholder="الاسم"
                           data-gender-input
                           aria-label="ما اسمك الكامل؟"
+                          required
                         />
                       </div>
                     </div>
@@ -108,7 +114,13 @@
                   </div>
                 </div>
               </div>
-              <button class="button" type="button" data-animate="pulse">
+              <button
+                class="button"
+                type="submit"
+                data-animate="pulse"
+                data-name-submit
+                data-next-url="./quize4.html"
+              >
                 <div class="btn-primary-btn-lg">
                   <div class="masked-icon">
                     <img
@@ -120,7 +132,7 @@
                   <div class="button-2">التالي</div>
                 </div>
               </button>
-            </div>
+            </form>
             <img
               class="quiz-name-figure"
               src="../assets/images/male1.svg"

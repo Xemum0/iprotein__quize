@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/quiz.css" />
+    <title>iProtein Quiz - Question 5</title>
+    <style>
+      .height-question {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        width: 100%;
+      }
+
+      .height-question-header {
+        text-align: center;
+      }
+
+      .height-question-description {
+        color: #6b7280;
+        font-size: 1rem;
+        margin-top: 8px;
+      }
+
+      .height-selector {
+        background: #ecf5f1;
+        border-radius: 24px;
+        padding: 32px 40px;
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .height-selector .height-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        position: relative;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+      }
+
+      .height-selector .scale-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      .height-selector .scale {
+        position: relative;
+        width: 160px;
+        height: 360px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        border-right: 5px solid #294e3e;
+        padding-right: 24px;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        scrollbar-width: none;
+        background: transparent;
+      }
+
+      .height-selector .scale::-webkit-scrollbar {
+        display: none;
+      }
+
+      .height-selector .mark {
+        position: relative;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        scroll-snap-align: center;
+        transition: all 0.25s ease;
+      }
+
+      .height-selector .mark span {
+        font-size: 20px;
+        color: #7a7a7a;
+        font-weight: 600;
+        margin-left: 10px;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+      }
+
+      .height-selector .mark.active span {
+        font-size: 36px;
+        color: #000;
+        font-weight: 800;
+        transform: scale(1.1);
+      }
+
+      .height-selector .tick {
+        position: absolute;
+        right: -24px;
+        background: #294e3e;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .height-selector .tick.small {
+        width: 24px;
+        height: 2px;
+        opacity: 0.8;
+      }
+
+      .height-selector .tick.medium {
+        width: 32px;
+        height: 2px;
+        opacity: 0.9;
+      }
+
+      .height-selector .tick.large {
+        width: 45px;
+        height: 3px;
+        opacity: 1;
+      }
+
+      .height-selector .scale::before,
+      .height-selector .scale::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 80px;
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      .height-selector .scale::before {
+        top: 0;
+        background: linear-gradient(#ecf5f1 0%, rgba(236, 245, 241, 0));
+      }
+
+      .height-selector .scale::after {
+        bottom: 0;
+        background: linear-gradient(rgba(236, 245, 241, 0), #ecf5f1 100%);
+      }
+
+      .height-selector .scale-pad {
+        width: 100%;
+      }
+
+      .height-selector .btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #294e3e;
+        color: #fff;
+        font-size: 38px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .height-selector .btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 12px rgba(41, 78, 62, 0.3);
+      }
+
+      .height-selector .btn:active {
+        transform: scale(0.94);
+      }
+
+      .height-selector .side-guide {
+        position: absolute;
+        left: -60px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 260px;
+        border-left: 2px dashed #9bcab6;
+      }
+
+      .height-selector .triangle {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 14px solid #9bcab6;
+        position: absolute;
+        bottom: -8px;
+        left: -10px;
+      }
+
+      .height-selector .person-box {
+        width: 180px;
+        height: 360px;
+        border: 3px solid #9bcab6;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 10px;
+        box-sizing: border-box;
+        position: relative;
+        transition: all 0.3s ease;
+        background: #fff;
+      }
+
+      .height-selector .person-box img {
+        width: 90%;
+        height: auto;
+      }
+
+      .height-selector .head-line {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #294e3e;
+        top: 0;
+        left: 0;
+      }
+
+      .height-selector .height-label {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -140%);
+        font-size: 20px;
+        font-weight: 700;
+        color: #294e3e;
+      }
+
+      .height-question-actions {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      @media (max-width: 768px) {
+        .height-selector {
+          padding: 24px 16px;
+        }
+
+        .height-selector .height-wrapper {
+          flex-direction: column;
+        }
+
+        .height-selector .person-box {
+          width: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="AI-coach-quiz-2 quiz-placeholder-screen">
+      <header class="header">
+        <div class="frame">
+          <div class="remix-icons-line-wrapper">
+            <a class="icon-button" href="./quize5.html" aria-label="عودة إلى السؤال السابق">
+              <img class="remix-icons-line" src="../assets/images/arrow-right-s-line.svg" alt="" />
+            </a>
+          </div>
+          <div class="logo-wrapper">
+            <div class="logo">
+              <img class="group" src="../assets/images/logo.svg" alt="iProtein" />
+            </div>
+          </div>
+          <div class="remix-icons-line-wrapper">
+            <img class="remix-icons-line" src="../assets/images/close.svg" alt="إغلاق" />
+          </div>
+        </div>
+      </header>
+      <div class="frame-2">
+        <div class="frame-3">
+          <div class="frame-4">
+            <div class="text-wrapper">5/47</div>
+            <div class="text-wrapper-2">المعلومات الشخصية</div>
+            <div class="text-wrapper">11%</div>
+          </div>
+          <div class="progress-section">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="11"
+              style="--progress-percent: 11%; --total-steps: 7"
+            >
+              <div class="progress-line">
+                <span class="progress-line-fill" aria-hidden="true"></span>
+              </div>
+              <ol class="progress-step-list" aria-label="مراحل الاختبار">
+                  <li class="progress-step completed">
+                    <span class="progress-node" aria-hidden="true"></span>
+                  </li>
+                  <li class="progress-step">
+                    <span class="progress-node" aria-hidden="true"></span>
+                  </li>
+                  <li class="progress-step">
+                    <span class="progress-node" aria-hidden="true"></span>
+                  </li>
+                  <li class="progress-step">
+                    <span class="progress-node" aria-hidden="true"></span>
+                  </li>
+                  <li class="progress-step">
+                    <span class="progress-node" aria-hidden="true"></span>
+                  </li>
+                  <li class="progress-step">
+                    <span class="progress-node" aria-hidden="true"></span>
+                  </li>
+                  <li class="progress-step">
+                    <span class="progress-node" aria-hidden="true"></span>
+                  </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="frame-6 height-question" data-height-question>
+          <div class="height-question-header">
+            <p class="text-wrapper-3" data-height-title>ما طولك؟</p>
+            <p class="height-question-description" data-height-description>
+              يساعدنا تحديد طولك على ضبط خطة التمارين والتغذية بالشكل الأنسب لك.
+            </p>
+          </div>
+          <div class="height-selector" data-height-widget>
+            <div class="height-wrapper">
+              <div class="person-box" data-person-box>
+                <div class="head-line" data-head-line></div>
+                <div class="height-label" aria-live="polite" data-height-label>170 سم</div>
+                <img
+                  src="../assets/images/question5/male.svg"
+                  alt="شخص يقف بجوار مقياس الطول"
+                  data-height-figure
+                />
+              </div>
+              <div class="scale-column">
+                <button class="btn" type="button" aria-label="زيادة الطول" data-height-plus>+</button>
+                <div
+                  class="scale"
+                  data-height-scale
+                  role="listbox"
+                  aria-label="اختر طولك بالسنتيمتر"
+                  tabindex="0"
+                >
+                  <div class="side-guide"><div class="triangle"></div></div>
+                </div>
+                <button class="btn" type="button" aria-label="تقليل الطول" data-height-minus>−</button>
+              </div>
+            </div>
+          </div>
+          <div class="quiz-placeholder-actions height-question-actions">
+            <a class="button" data-animate="pulse" href="./quize7.html" aria-label="الانتقال إلى السؤال التالي">
+              <div class="btn-primary-btn-lg">
+                <div class="masked-icon">
+                  <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
+                </div>
+                <div class="button-2">التالي</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const widget = document.querySelector("[data-height-widget]");
+        if (!widget) {
+          return;
+        }
+
+        const genderContent = {
+          male: {
+            figure: "../assets/images/question5/male.svg",
+            alt: "متدرب يقف بجوار مقياس الطول",
+            title: "ما طولك؟",
+            description: "يساعدنا تحديد طولك على ضبط خطة التمارين والتغذية بالشكل الأنسب لك.",
+          },
+          female: {
+            figure: "../assets/images/question5/female.svg",
+            alt: "متدربة تقف بجوار مقياس الطول",
+            title: "ما طولكِ؟",
+            description: "يساعدنا تحديد طولكِ على ضبط خطة التمارين والتغذية بالشكل الأنسب لكِ.",
+          },
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const requestedGender = (params.get("gender") || "").toLowerCase();
+        const activeGender = requestedGender === "female" ? "female" : "male";
+        const activeGenderContent = genderContent[activeGender] || genderContent.male;
+
+        const titleEl = widget.querySelector("[data-height-title]");
+        if (titleEl) {
+          titleEl.textContent = activeGenderContent.title;
+        }
+
+        const descriptionEl = widget.querySelector("[data-height-description]");
+        if (descriptionEl) {
+          descriptionEl.textContent = activeGenderContent.description;
+        }
+
+        const figureEl = widget.querySelector("[data-height-figure]");
+        const personBox = widget.querySelector("[data-person-box]");
+        const headLine = widget.querySelector("[data-head-line]");
+
+        const alignHeadLine = () => {
+          if (!personBox || !headLine || !figureEl) return;
+          const boxRect = personBox.getBoundingClientRect();
+          const figureRect = figureEl.getBoundingClientRect();
+          const offset = Math.max(figureRect.top - boxRect.top, 0);
+          headLine.style.top = `${offset}px`;
+        };
+
+        const requestHeadAlign = () => window.requestAnimationFrame(alignHeadLine);
+
+        if (figureEl) {
+          figureEl.setAttribute("src", activeGenderContent.figure);
+          figureEl.setAttribute("alt", activeGenderContent.alt);
+          if (figureEl.complete) {
+            requestHeadAlign();
+          } else {
+            figureEl.addEventListener("load", requestHeadAlign, { once: true });
+          }
+        }
+        window.addEventListener("resize", requestHeadAlign, { passive: true });
+        requestHeadAlign();
+
+        const scale = widget.querySelector("[data-height-scale]");
+        const heightLabel = widget.querySelector("[data-height-label]");
+        const plusBtn = widget.querySelector("[data-height-plus]");
+        const minusBtn = widget.querySelector("[data-height-minus]");
+
+        if (!scale || !heightLabel) {
+          return;
+        }
+
+        let current = 170;
+        const minHeight = 130;
+        const maxHeight = 200;
+        const topPadHeight = 180;
+
+        const renderScale = () => {
+          scale.querySelectorAll(".mark").forEach(mark => mark.remove());
+          scale.querySelectorAll(".scale-pad").forEach(pad => pad.remove());
+
+          const topPad = document.createElement("div");
+          topPad.className = "scale-pad";
+          topPad.style.height = `${topPadHeight}px`;
+
+          const bottomPad = document.createElement("div");
+          bottomPad.className = "scale-pad";
+          bottomPad.style.height = `${topPadHeight}px`;
+
+          scale.appendChild(topPad);
+
+          for (let i = maxHeight; i >= minHeight; i -= 1) {
+            const mark = document.createElement("div");
+            mark.className = "mark";
+
+            const tick = document.createElement("div");
+            tick.className = "tick";
+
+            if (i % 10 === 0) {
+              tick.classList.add("large");
+            } else if (i % 5 === 0) {
+              tick.classList.add("medium");
+            } else {
+              tick.classList.add("small");
+            }
+
+            const span = document.createElement("span");
+            if (i % 5 === 0) {
+              span.textContent = i;
+            }
+
+            mark.appendChild(tick);
+            mark.appendChild(span);
+            scale.appendChild(mark);
+          }
+
+          scale.appendChild(bottomPad);
+        };
+
+        const updateActive = () => {
+          scale.querySelectorAll(".mark").forEach(mark => {
+            const value = mark.querySelector("span")?.textContent;
+            const numericValue = value ? parseInt(value, 10) : null;
+            mark.classList.toggle("active", numericValue === current);
+          });
+
+          heightLabel.textContent = `${current} سم`;
+        };
+
+        const scrollToHeight = (height, smooth = true) => {
+          const marks = Array.from(scale.querySelectorAll(".mark"));
+          const index = maxHeight - height;
+          const mark = marks[index];
+
+          if (mark) {
+            const scrollPos = index * 20 - scale.clientHeight / 2 + 10 + topPadHeight;
+            scale.scrollTo({
+              top: scrollPos,
+              behavior: smooth ? "smooth" : "auto",
+            });
+          }
+
+          updateActive();
+        };
+
+        const updateCurrentFromScroll = () => {
+          const marks = Array.from(scale.querySelectorAll(".mark"));
+          if (!marks.length) {
+            return;
+          }
+
+          let closestIndex = null;
+          let minDistance = Infinity;
+          const rect = scale.getBoundingClientRect();
+          const centerY = rect.top + rect.height / 2;
+
+          marks.forEach((mark, index) => {
+            const markRect = mark.getBoundingClientRect();
+            const distance = Math.abs((markRect.top + markRect.bottom) / 2 - centerY);
+
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestIndex = index;
+            }
+          });
+
+          if (closestIndex !== null) {
+            current = maxHeight - closestIndex;
+            updateActive();
+          }
+        };
+
+        scale.addEventListener("scroll", () => {
+          updateCurrentFromScroll();
+        });
+
+        plusBtn?.addEventListener("click", () => {
+          if (current < maxHeight) {
+            current += 1;
+            scrollToHeight(current);
+          }
+        });
+
+        minusBtn?.addEventListener("click", () => {
+          if (current > minHeight) {
+            current -= 1;
+            scrollToHeight(current);
+          }
+        });
+
+        renderScale();
+        scrollToHeight(current, false);
+      })();
+    </script>
+    <script src="../assets/js/quiz.js"></script>
+  </body>
+</html>
