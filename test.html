@@ -3,133 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SVG to HTML/CSS/JS</title>
+<title>Body Fat Percentage Gradient</title>
 <style>
 body {
-  background: #f5faf7;
+  background: white;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: "Poppins", sans-serif;
 }
 
-.svg-wrapper {
-  position: relative;
-  width: 528px;
-  height: 483px;
-}
-
-/* bottom rounded rectangle */
-.base {
-  position: absolute;
-  bottom: 0;
-  width: 528px;
-  height: 134px;
-  background: #deede7;
-  border-radius: 16px;
-}
-
-/* gradient bar container */
-.bars {
-  position: absolute;
-  bottom: 94px;
-  left: 24px;
+/* === Outer container === */
+.container {
+  width: 560px;
+  padding: 40px 20px;
+  background: #DEEDE7;
+  border: 3px solid #deede7;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(222, 237, 231, 0.5);
   display: flex;
-  gap: 0;
+  justify-content: center;
+  align-items: center;
 }
 
-/* individual bars */
-.bar {
-  width: 120px;
-  height: 16px;
-  border-radius: 8px 0 0 8px;
-}
-.bar1 {
-  background: linear-gradient(90deg, #4caf4f 57%, #e6ed14 100%);
-}
-.bar2 {
-  background: linear-gradient(90deg, #e6ed14 68%, #ffc107 100%);
-}
-.bar3 {
-  background: linear-gradient(90deg, #ffc107 68%, #f43e44 100%);
-}
-.bar4 {
-  background: #f43e44;
+/* === Inner content === */
+.wrapper {
+  position: relative;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-/* dark green box */
-.green-box {
+/* Gradient bar */
+.gradient-bar {
+  position: relative;
+  width: 480px;
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #4caf4f 0%, #e6ed14 50%, #f43e44 100%);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* min and max labels */
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 480px;
+  font-size: 16px;
+  color: #294e3e;
+  font-weight: 600;
+}
+
+/* Movable rectangle indicator */
+.indicator {
   position: absolute;
-  left: 69.7px;
-  bottom: 157px;
+  top: -45px;
   width: 90px;
   height: 35px;
   background: #294e3e;
   border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  transition: left 0.3s ease;
 }
 
-/* green triangle */
-.triangle {
+/* Triangle pointer */
+.indicator::after {
+  content: "";
   position: absolute;
-  bottom: 125px;
-  left: 104px;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 10.5px solid transparent;
-  border-right: 10.5px solid transparent;
-  border-top: 18px solid #294e3e;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #294e3e;
 }
 
-/* circle */
-.circle {
+/* Range slider (transparent, just for control) */
+input[type="range"] {
+  width: 480px;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 5px;
+  background: transparent;
   position: absolute;
-  bottom: 70px;
-  left: 98.7px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #294e3e;
+  top: 0;
+  cursor: pointer;
 }
-
-/* Example of optional text overlay */
-.text {
-  position: absolute;
-  bottom: 200px;
-  left: 80px;
-  color: white;
-  font-family: "Poppins", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
 }
 </style>
 </head>
 <body>
-  <div class="svg-wrapper">
-    <div class="base"></div>
 
-    <div class="bars">
-      <div class="bar bar1"></div>
-      <div class="bar bar2"></div>
-      <div class="bar bar3"></div>
-      <div class="bar bar4"></div>
+<div class="container">
+  <div class="wrapper">
+    <div class="gradient-bar">
+      <div class="indicator" id="indicator">20%</div>
+      <input type="range" id="slider" min="5" max="50" value="20" step="1">
     </div>
-
-    <div class="green-box"></div>
-    <div class="triangle"></div>
-    <div class="circle"></div>
-    <div class="text">5-20%</div>
+    <div class="scale-labels">
+      <span>5%</span>
+      <span>50%</span>
+    </div>
   </div>
+</div>
 
 <script>
-// Optional small JS demo: animate gradient bars
-const bars = document.querySelectorAll(".bar");
-let pos = 0;
-setInterval(() => {
-  pos = (pos + 1) % 100;
-  bars[0].style.background = `linear-gradient(90deg, #4caf4f ${pos}%, #e6ed14 100%)`;
-  bars[1].style.background = `linear-gradient(90deg, #e6ed14 ${pos}%, #ffc107 100%)`;
-  bars[2].style.background = `linear-gradient(90deg, #ffc107 ${pos}%, #f43e44 100%)`;
-}, 80);
+const slider = document.getElementById("slider");
+const indicator = document.getElementById("indicator");
+const barWidth = 480;
+const indicatorWidth = 90;
+
+function updateIndicator(value) {
+  const percent = (value - 5) / (50 - 5);
+  const position = percent * (barWidth - indicatorWidth);
+  indicator.style.left = `${position}px`;
+  indicator.textContent = `${value}%`;
+}
+
+slider.addEventListener("input", e => updateIndicator(e.target.value));
+
+// Initialize
+updateIndicator(slider.value);
 </script>
+
 </body>
 </html>

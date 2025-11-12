@@ -11,6 +11,186 @@
     />
     <link rel="stylesheet" href="../assets/css/quiz.css" />
     <title>iProtein Quiz - Question 6</title>
+    <style>
+      .body-fat-question {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        width: 100%;
+      }
+
+      .body-fat-header {
+        text-align: center;
+      }
+
+      .body-fat-description {
+        color: #6b7280;
+        font-size: 1rem;
+        margin-top: 8px;
+      }
+
+      .body-fat-content {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+
+      .body-fat-figure-box {
+        width: 220px;
+        height: 420px;
+        border: 3px solid #9bcab6;
+        border-radius: 12px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 16px 12px 12px;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .body-fat-figure-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom;
+        display: block;
+      }
+
+      .body-fat-figure-label {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #294e3e;
+        color: #fff;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .body-fat-selector {
+        width: min(560px, 100%);
+        padding: 32px 24px;
+        background: #deede7;
+        border: 3px solid #deede7;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(222, 237, 231, 0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        position: relative;
+      }
+
+      .body-fat-gradient {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        border-radius: 12px;
+        background: linear-gradient(90deg, #4caf4f 0%, #e6ed14 50%, #f43e44 100%);
+        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .body-fat-indicator {
+        position: absolute;
+        top: -50px;
+        width: 96px;
+        height: 38px;
+        background: #294e3e;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 18px;
+        transition: left 0.25s ease;
+        pointer-events: none;
+      }
+
+      .body-fat-indicator::after {
+        content: "";
+        position: absolute;
+        bottom: -9px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 10px solid #294e3e;
+      }
+
+      .body-fat-slider {
+        position: absolute;
+        top: -8px;
+        left: 0;
+        width: 100%;
+        height: 36px;
+        display: flex;
+        align-items: center;
+      }
+
+      .body-fat-slider input[type="range"] {
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        height: 6px;
+        pointer-events: auto;
+      }
+
+      .body-fat-slider input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .body-fat-slider input[type="range"]::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .body-fat-scale-labels {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 600;
+        color: #294e3e;
+      }
+
+      .body-fat-actions {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      @media (max-width: 768px) {
+        .body-fat-figure-box {
+          height: 360px;
+        }
+
+        .body-fat-selector {
+          padding: 24px 16px;
+        }
+
+        .body-fat-indicator {
+          width: 88px;
+          font-size: 16px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="AI-coach-quiz-2 quiz-placeholder-screen">
@@ -76,12 +256,44 @@
             </div>
           </div>
         </div>
-        <div class="frame-6 quiz-placeholder">
-          <div class="quiz-placeholder-card" aria-live="polite">
-            <p class="text-wrapper-3">قسم المعلومات الشخصية</p>
-            <p class="quiz-placeholder-text">سيتم إضافة محتوى السؤال رقم 6 لاحقًا.</p>
+        <div class="frame-6 body-fat-question" data-bodyfat-widget>
+          <div class="body-fat-header">
+            <p class="text-wrapper-3" data-bodyfat-title>ما هي نسبة الدهون في جسمك تقريبًا؟</p>
+            <p class="body-fat-description" data-bodyfat-description>
+              يساعدنا تحديد نسبة الدهون على تصميم برنامج يناسب حالتك البدنية الحالية ومستوى أهدافك.
+            </p>
           </div>
-          <div class="quiz-placeholder-actions">
+          <div class="body-fat-content">
+            <div class="body-fat-figure-box" data-bodyfat-figure-box>
+              <div class="body-fat-figure-label" data-bodyfat-range>رياضي (5-12%)</div>
+              <img
+                src="../assets/images/question6/man1.svg"
+                alt="متدرب يوضح نسبة الدهون الحالية"
+                data-bodyfat-figure
+              />
+            </div>
+            <div class="body-fat-selector">
+              <div class="body-fat-gradient" data-bodyfat-bar>
+                <div class="body-fat-indicator" data-bodyfat-indicator>20%</div>
+                <div class="body-fat-slider">
+                  <input
+                    type="range"
+                    min="5"
+                    max="50"
+                    step="1"
+                    value="20"
+                    aria-label="اختر نسبة الدهون في جسمك"
+                    data-bodyfat-slider
+                  />
+                </div>
+              </div>
+              <div class="body-fat-scale-labels">
+                <span>5%</span>
+                <span>50%</span>
+              </div>
+            </div>
+          </div>
+          <div class="body-fat-actions">
             <a class="button" href="./quize6.html" aria-label="العودة إلى السؤال السابق">
               <div class="btn-primary-btn-lg">
                 <div class="masked-icon">
@@ -91,17 +303,142 @@
               </div>
             </a>
             <a class="button" data-animate="pulse" href="./quize8.html" aria-label="الانتقال إلى السؤال التالي">
-                <div class="btn-primary-btn-lg">
-                  <div class="masked-icon">
-                    <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
-                  </div>
-                  <div class="button-2">التالي</div>
+              <div class="btn-primary-btn-lg">
+                <div class="masked-icon">
+                  <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
                 </div>
-              </a>
+                <div class="button-2">التالي</div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      (() => {
+        const widget = document.querySelector("[data-bodyfat-widget]");
+        if (!widget) return;
+
+        const slider = widget.querySelector("[data-bodyfat-slider]");
+        const indicator = widget.querySelector("[data-bodyfat-indicator]");
+        const bar = widget.querySelector("[data-bodyfat-bar]");
+        const figure = widget.querySelector("[data-bodyfat-figure]");
+        const figureLabel = widget.querySelector("[data-bodyfat-range]");
+        const titleEl = widget.querySelector("[data-bodyfat-title]");
+        const descriptionEl = widget.querySelector("[data-bodyfat-description]");
+
+        if (!slider || !indicator || !bar || !figure || !figureLabel) {
+          return;
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const genderParam = (params.get("gender") || "").toLowerCase();
+        const gender = genderParam === "female" ? "female" : "male";
+
+        const genderCopy = {
+          male: {
+            title: "ما هي نسبة الدهون في جسمك تقريبًا؟",
+            description:
+              "يساعدنا تحديد نسبة الدهون على تصميم برنامج يناسب حالتك البدنية الحالية ومستوى أهدافك.",
+            figureAlt: "متدرب يوضح نسبة الدهون الحالية",
+          },
+          female: {
+            title: "ما هي نسبة الدهون في جسمكِ تقريبًا؟",
+            description:
+              "يساعدنا تحديد نسبة الدهون على تصميم برنامج يناسب حالتكِ البدنية الحالية ومستوى أهدافك.",
+            figureAlt: "متدربة توضّح نسبة الدهون الحالية",
+          },
+        };
+
+        const ranges = [
+          {
+            min: 5,
+            max: 12,
+            label: "رياضي (5-12%)",
+            male: "../assets/images/question6/man1.svg",
+            female: "../assets/images/question6/female1.svg",
+          },
+          {
+            min: 13,
+            max: 20,
+            label: "متوازن (13-20%)",
+            male: "../assets/images/question6/man2.svg",
+            female: "../assets/images/question6/female2.svg",
+          },
+          {
+            min: 21,
+            max: 30,
+            label: "متوسط (21-30%)",
+            male: "../assets/images/question6/man3.svg",
+            female: "../assets/images/question6/female3.svg",
+          },
+          {
+            min: 31,
+            max: 50,
+            label: "مرتفع (31-50%)",
+            male: "../assets/images/question6/man4.svg",
+            female: "../assets/images/question6/female4.svg",
+          },
+        ];
+
+        const clampValue = (value) => {
+          const min = Number(slider.min) || 5;
+          const max = Number(slider.max) || 50;
+          const numeric = Number(value);
+          if (Number.isNaN(numeric)) return min;
+          return Math.min(max, Math.max(min, numeric));
+        };
+
+        const resolveRange = (value) =>
+          ranges.find((range) => value >= range.min && value <= range.max) ||
+          ranges[ranges.length - 1];
+
+        const alignIndicator = () => {
+          const min = Number(slider.min) || 5;
+          const max = Number(slider.max) || 50;
+          const value = Number(slider.value) || min;
+          const indicatorWidth = indicator.offsetWidth || 96;
+          const barWidth = bar.clientWidth || 1;
+          const ratio = (value - min) / (max - min);
+          const maxPosition = Math.max(barWidth - indicatorWidth, 0);
+          indicator.style.left = `${ratio * maxPosition}px`;
+        };
+
+        const updateUI = (rawValue) => {
+          const value = clampValue(rawValue);
+          slider.value = value;
+          indicator.textContent = `${value}%`;
+          alignIndicator();
+
+          const currentRange = resolveRange(value);
+          figureLabel.textContent = currentRange.label;
+          const nextSrc = currentRange[gender];
+          figure.setAttribute("src", nextSrc);
+          figure.setAttribute("alt", genderCopy[gender].figureAlt);
+
+        };
+
+        const applyGenderCopy = () => {
+          const copy = genderCopy[gender];
+          if (copy) {
+            if (titleEl) titleEl.textContent = copy.title;
+            if (descriptionEl) descriptionEl.textContent = copy.description;
+            figure.setAttribute("alt", copy.figureAlt);
+          }
+        };
+
+        slider.addEventListener("input", (event) => {
+          updateUI(event.target.value);
+        });
+
+        window.addEventListener("resize", () => {
+          alignIndicator();
+        });
+
+        applyGenderCopy();
+        updateUI(slider.value);
+      })();
+    </script>
     <script src="../assets/js/quiz.js"></script>
   </body>
 </html>
