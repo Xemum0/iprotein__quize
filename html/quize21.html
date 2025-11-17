@@ -11,6 +11,188 @@
     />
     <link rel="stylesheet" href="../assets/css/quiz.css" />
     <title>iProtein Quiz - Question 20</title>
+    <style>
+      .sugar-question {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .sugar-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+      }
+
+      @media (min-width: 900px) {
+        .sugar-layout {
+          flex-direction: row;
+          align-items: stretch;
+        }
+      }
+
+      .sugar-card {
+        flex: 1 1 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        background: #fff;
+        border-radius: 24px;
+        padding: clamp(20px, 3vw, 32px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+      }
+
+      .sugar-header {
+        text-align: right;
+      }
+
+      .sugar-description {
+        color: #6b7280;
+        font-size: 1rem;
+        margin-top: 8px;
+      }
+
+      .sugar-options {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+      }
+
+      .sugar-option {
+        width: 100%;
+        min-height: 92px;
+        border: 2px solid #294e3e;
+        border-radius: 12px;
+        background: transparent;
+        color: #294e3e;
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 600;
+        transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        gap: 16px;
+      }
+
+      .sugar-option:focus-visible {
+        outline: 3px solid #7cc5a7;
+      }
+
+      .sugar-option .option-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sugar-option .option-label {
+        direction: rtl;
+      }
+
+      .sugar-option .option-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        padding: 8px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sugar-option .option-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .sugar-option .option-spacer {
+        flex: 1;
+      }
+
+      .sugar-option .option-checkbox {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #294e3e;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.25s ease, border-color 0.25s ease;
+      }
+
+      .sugar-option .option-tick {
+        width: 12px;
+        height: 7px;
+        border-left: 2px solid #294e3e;
+        border-bottom: 2px solid #294e3e;
+        transform: rotate(-45deg);
+        opacity: 0;
+        transition: opacity 0.25s ease, border-color 0.25s ease;
+      }
+
+      .sugar-option.is-active {
+        background: #bcdcce;
+        border-color: #294e3e;
+      }
+
+      .sugar-option.is-active .option-icon {
+        background: #deede7;
+      }
+
+      .sugar-option.is-active .option-checkbox {
+        background: #294e3e;
+      }
+
+      .sugar-option.is-active .option-tick {
+        opacity: 1;
+        border-color: #fff;
+      }
+
+      .sugar-actions {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .sugar-actions .button {
+        width: min(320px, 100%);
+      }
+
+      .sugar-actions .btn-primary-btn-lg {
+        width: 100%;
+      }
+
+      .sugar-figure {
+        flex: 1 1 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sugar-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      @media (max-width: 899px) {
+        .sugar-card {
+          flex: 1 1 auto;
+        }
+
+        .sugar-figure {
+          align-self: center;
+          width: min(360px, 100%);
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="AI-coach-quiz-2 quiz-placeholder-screen">
@@ -76,32 +258,130 @@
             </div>
           </div>
         </div>
-        <div class="frame-6 quiz-placeholder">
-          <div class="quiz-placeholder-card" aria-live="polite">
-            <p class="text-wrapper-3">قسم العادات الغذائية</p>
-            <p class="quiz-placeholder-text">سيتم إضافة محتوى السؤال رقم 20 لاحقًا.</p>
-          </div>
-          <div class="quiz-placeholder-actions">
-            <a class="button" href="./quize20.html" aria-label="العودة إلى السؤال السابق">
-              <div class="btn-primary-btn-lg">
-                <div class="masked-icon">
-                  <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
-                </div>
-                <div class="button-2">السابق</div>
+        <div class="frame-6 sugar-question">
+          <div class="sugar-layout">
+            <div class="sugar-card" data-sugar-widget>
+              <div class="sugar-header">
+                <p class="text-wrapper-3" data-sugar-title>هل تضيفين السكر للمشروبات؟</p>
+                <p class="sugar-description" data-sugar-description>
+                  أخبرينا عن عاداتكِ مع إضافة السكر لنساعدكِ في ضبط توازن غذائكِ اليومي.
+                </p>
               </div>
-            </a>
-            <a class="button" data-animate="pulse" href="./quize22.html" aria-label="الانتقال إلى السؤال التالي">
-                <div class="btn-primary-btn-lg">
-                  <div class="masked-icon">
-                    <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
+              <div class="sugar-options">
+                <button class="sugar-option" type="button" data-sugar-option="yes" aria-pressed="false">
+                  <div class="option-right">
+                    <div class="option-icon" aria-hidden="true">
+                      <img src="../assets/images/right.svg" alt="" />
+                    </div>
+                    <span class="option-label">نعم</span>
                   </div>
-                  <div class="button-2">التالي</div>
-                </div>
-              </a>
+                  <div class="option-spacer" aria-hidden="true"></div>
+                  <div class="option-checkbox" aria-hidden="true">
+                    <div class="option-tick"></div>
+                  </div>
+                </button>
+                <button class="sugar-option" type="button" data-sugar-option="no" aria-pressed="false">
+                  <div class="option-right">
+                    <div class="option-icon" aria-hidden="true">
+                      <img src="../assets/images/false.svg" alt="" />
+                    </div>
+                    <span class="option-label">لا</span>
+                  </div>
+                  <div class="option-spacer" aria-hidden="true"></div>
+                  <div class="option-checkbox" aria-hidden="true">
+                    <div class="option-tick"></div>
+                  </div>
+                </button>
+              </div>
+              <div class="sugar-actions">
+                <a
+                  class="button"
+                  data-animate="pulse"
+                  href="./quize22.html"
+                  aria-label="الانتقال إلى السؤال التالي"
+                  data-sugar-next
+                >
+                  <div class="btn-primary-btn-lg">
+                    <div class="masked-icon">
+                      <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
+                    </div>
+                    <div class="button-2">التالي</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="sugar-figure" aria-hidden="true">
+              <img src="../assets/images/salt.svg" alt="" />
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      (() => {
+        const widget = document.querySelector("[data-sugar-widget]");
+        if (!widget) return;
+
+        const options = widget.querySelectorAll("[data-sugar-option]");
+        const titleEl = widget.querySelector("[data-sugar-title]");
+        const descriptionEl = widget.querySelector("[data-sugar-description]");
+        const nextButton = widget.querySelector("[data-sugar-next]");
+
+        const params = new URLSearchParams(window.location.search);
+        const gender = (params.get("gender") || "").toLowerCase() === "female" ? "female" : "male";
+
+        const copy = {
+          male: {
+            title: "هل تضيف السكر للمشروبات؟",
+            description: "أخبرنا عن عاداتك مع إضافة السكر لنساعدك في ضبط توازن غذائك اليومي.",
+          },
+          female: {
+            title: "هل تضيفين السكر للمشروبات؟",
+            description: "أخبرينا عن عاداتكِ مع إضافة السكر لنساعدكِ في ضبط توازن غذائكِ اليومي.",
+          },
+        };
+
+        const applyCopy = () => {
+          const currentCopy = copy[gender];
+          if (!currentCopy) return;
+          if (titleEl) titleEl.textContent = currentCopy.title;
+          if (descriptionEl) descriptionEl.textContent = currentCopy.description;
+        };
+
+        let selectedOption = null;
+
+        const setActiveOption = (button) => {
+          if (!button) return;
+          if (selectedOption === button) {
+            button.classList.remove("is-active");
+            button.setAttribute("aria-pressed", "false");
+            selectedOption = null;
+            widget.dataset.selectedSugar = "";
+            return;
+          }
+
+          options.forEach((option) => {
+            option.classList.toggle("is-active", option === button);
+            option.setAttribute("aria-pressed", option === button ? "true" : "false");
+          });
+          selectedOption = button;
+          widget.dataset.selectedSugar = button.dataset.sugarOption || "";
+        };
+
+        options.forEach((button) => {
+          button.addEventListener("click", () => setActiveOption(button));
+        });
+
+        nextButton?.addEventListener("click", (event) => {
+          if (!selectedOption) {
+            event.preventDefault();
+            setActiveOption(options[0] || null);
+          }
+        });
+
+        applyCopy();
+      })();
+    </script>
     <script src="../assets/js/quiz.js"></script>
   </body>
 </html>
