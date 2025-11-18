@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <style>
+      .frame {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 60px 40px;
+        position: relative;
+        background-color: var(--primitives-colors-tertiary-tertiary-100);
+        border-radius: 24px;
+      }
+
+      .frame .div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0px;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+        background-color: var(--primitives-colors-white-white-50-w);
+        border-radius: 16px;
+        border: 1px solid;
+        border-color: var(--primitives-colors-primary-primary-500-p);
+      }
+
+      .frame .text-wrapper {
+        color: var(--primitives-colors-secondary-secondary-600);
+        position: relative;
+        width: 528px;
+        margin-top: -1px;
+        font-family: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-font-family
+        );
+        font-weight: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-font-weight
+        );
+        font-size: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-font-size
+        );
+        text-align: center;
+        letter-spacing: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-letter-spacing
+        );
+        line-height: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-line-height
+        );
+        direction: rtl;
+        font-style: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-font-style
+        );
+      }
+
+      .frame .line {
+        position: relative;
+        align-self: stretch;
+        width: 1px;
+      }
+
+      .frame .text-wrapper-2 {
+        color: var(--primitives-colors-primary-primary-950);
+        position: relative;
+        width: 528px;
+        margin-top: -1px;
+        font-family: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-font-family
+        );
+        font-weight: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-font-weight
+        );
+        font-size: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-font-size
+        );
+        text-align: center;
+        letter-spacing: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-letter-spacing
+        );
+        line-height: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-line-height
+        );
+        direction: rtl;
+        font-style: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-26-font-style
+        );
+      }
+
+      .frame .div-2 {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+      }
+
+      .frame .body-fat-range {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .frame .image {
+        position: relative;
+        width: 260px;
+        height: 349px;
+      }
+
+      .frame .div-3 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 40px 24px 24px;
+        position: relative;
+        flex: 0 0 auto;
+        background-color: var(--primitives-colors-primary-primary-100);
+        border-radius: 16px;
+      }
+
+      .frame .div-4 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .frame .div-5 {
+        display: flex;
+        align-items: center;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .frame .div-6 {
+        position: relative;
+        width: 120px;
+        height: 16px;
+        background: linear-gradient(
+          90deg,
+          rgba(76, 175, 79, 1) 57%,
+          rgba(230, 237, 20, 1) 100%
+        );
+      }
+
+      .frame .div-7 {
+        position: relative;
+        width: 120px;
+        height: 16px;
+        background: linear-gradient(
+          90deg,
+          rgba(230, 237, 20, 1) 68%,
+          rgba(255, 193, 7, 1) 100%
+        );
+      }
+
+      .frame .div-8 {
+        position: relative;
+        width: 120px;
+        height: 16px;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 193, 7, 1) 68%,
+          rgba(244, 62, 68, 1) 100%
+        );
+      }
+
+      .frame .div-9 {
+        position: relative;
+        width: 120px;
+        height: 16px;
+        background-color: var(--primitives-colors-error-error-500-e);
+      }
+
+      .frame .div-10 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        position: absolute;
+        top: -63px;
+        left: 46px;
+      }
+
+      .frame .div-11 {
+        display: flex;
+        flex-direction: column;
+        width: 90px;
+        height: 35px;
+        align-items: center;
+        position: relative;
+      }
+
+      .frame .div-wrapper {
+        display: flex;
+        width: 90px;
+        height: 35px;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 16px;
+        position: relative;
+        background-color: var(--primitives-colors-primary-primary-500-p);
+        border-radius: 8px;
+      }
+
+      .frame .text-wrapper-3 {
+        position: relative;
+        width: fit-content;
+        margin-top: -0.62px;
+        font-family: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-font-family
+        );
+        font-weight: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-font-weight
+        );
+        color: var(--primitives-colors-white-white-50-w);
+        font-size: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-font-size
+        );
+        letter-spacing: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-letter-spacing
+        );
+        line-height: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-line-height
+        );
+        font-style: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-font-style
+        );
+      }
+
+      .frame .polygon {
+        position: absolute;
+        width: calc(100% - 65px);
+        top: 31px;
+        left: 34px;
+        height: 19px;
+        aspect-ratio: 1;
+        object-fit: cover;
+      }
+
+      .frame .ellipse {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        background-color: var(--primitives-colors-primary-primary-500-p);
+        border-radius: 16px;
+        aspect-ratio: 1;
+      }
+
+      .frame .div-12 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+      }
+
+      .frame .text-wrapper-4 {
+        position: relative;
+        width: fit-content;
+        margin-top: -1px;
+        font-family: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-20-font-family
+        );
+        font-weight: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-20-font-weight
+        );
+        color: var(--primitives-colors-primary-primary-950);
+        font-size: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-20-font-size
+        );
+        letter-spacing: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-20-letter-spacing
+        );
+        line-height: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-20-line-height
+        );
+        font-style: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-20-font-style
+        );
+      }
+
+      .frame .div-13 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        position: absolute;
+        top: -63px;
+        left: 174px;
+      }
+
+      .frame .text-wrapper-5 {
+        margin-left: -5px;
+        margin-right: -5px;
+        position: relative;
+        width: fit-content;
+        margin-top: -0.62px;
+        font-family: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-font-family
+        );
+        font-weight: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-font-weight
+        );
+        color: var(--primitives-colors-white-white-50-w);
+        font-size: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-font-size
+        );
+        letter-spacing: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-letter-spacing
+        );
+        line-height: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-line-height
+        );
+        font-style: var(
+          --typography-family-IBM-plex-sans-arabic-semibold-18-font-style
+        );
+      }
+
+      .frame .remix-icons-line {
+        position: absolute;
+        top: 192px;
+        left: 530px;
+        width: 100px;
+        height: 100px;
+        aspect-ratio: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="div">
+        <div class="text-wrapper">بعد 6 اشهر</div>
+        <img class="line" src="img/line-38.svg" />
+        <div class="text-wrapper-2">الان</div>
+      </div>
+      <div class="div-2">
+        <div class="body-fat-range">
+          <img class="image" src="img/image.png" />
+          <div class="div-3">
+            <div class="div-4">
+              <div class="div-5">
+                <div class="div-6"></div>
+                <div class="div-7"></div>
+                <div class="div-8"></div>
+                <div class="div-9"></div>
+              </div>
+              <div class="div-10">
+                <div class="div-11">
+                  <div class="div-wrapper">
+                    <div class="text-wrapper-3">5-20%</div>
+                  </div>
+                  <img class="polygon" src="img/image.svg" />
+                </div>
+                <div class="ellipse"></div>
+              </div>
+            </div>
+            <div class="div-12">
+              <div class="text-wrapper-4">5-20%</div>
+              <div class="text-wrapper-4">40-50%</div>
+            </div>
+          </div>
+        </div>
+        <div class="body-fat-range">
+          <img class="image" src="img/image-65.png" />
+          <div class="div-3">
+            <div class="div-4">
+              <div class="div-5">
+                <div class="div-6"></div>
+                <div class="div-7"></div>
+                <div class="div-8"></div>
+                <div class="div-9"></div>
+              </div>
+              <div class="div-13">
+                <div class="div-11">
+                  <div class="div-wrapper">
+                    <div class="text-wrapper-5">20-30%</div>
+                  </div>
+                  <img class="polygon" src="img/polygon-1.svg" />
+                </div>
+                <div class="ellipse"></div>
+              </div>
+            </div>
+            <div class="div-12">
+              <div class="text-wrapper-4">5-20%</div>
+              <div class="text-wrapper-4">40-50%</div>
+            </div>
+          </div>
+        </div>
+        <img class="remix-icons-line" src="img/2arrow-left-s-line.svg" />
+      </div>
+    </div>
+  </body>
+</html>

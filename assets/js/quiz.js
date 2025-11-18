@@ -129,6 +129,45 @@
   };
 
   const pageSearchParams = new URLSearchParams(window.location.search);
+  const queryGenderParam = normalizeGender(pageSearchParams.get("gender"));
+
+  const syncGenderQueryForLinks = () => {
+    if (queryGenderParam !== "female") return;
+
+    const shouldSkip = (href) => {
+      if (!href) return true;
+      const trimmed = href.trim();
+      if (!trimmed || trimmed === "#" || trimmed.startsWith("#")) return true;
+      if (/^(?:mailto:|tel:|javascript:)/i.test(trimmed)) return true;
+      try {
+        const url = new URL(trimmed, window.location.href);
+        if (url.origin !== window.location.origin) return true;
+        return !url.pathname.toLowerCase().includes("quize");
+      } catch {
+        return true;
+      }
+    };
+
+    const toRelativeHref = (url) => `${url.pathname}${url.search}${url.hash}`;
+
+    document.querySelectorAll("a[href]").forEach((link) => {
+      if (link.dataset.skipGenderSync != null) return;
+      const href = link.getAttribute("href");
+      if (shouldSkip(href)) return;
+
+      let url;
+      try {
+        url = new URL(href, window.location.href);
+      } catch {
+        return;
+      }
+
+      url.searchParams.set("gender", "female");
+      link.setAttribute("href", toRelativeHref(url));
+    });
+  };
+
+  syncGenderQueryForLinks();
 
   const getActiveGender = (fallbackGender) =>
     normalizeGender(pageSearchParams.get("gender")) ||

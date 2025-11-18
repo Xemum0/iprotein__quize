@@ -11,13 +11,187 @@
     />
     <link rel="stylesheet" href="../assets/css/quiz.css" />
     <title>iProtein Quiz - Question 28</title>
+    <style>
+      .training-question {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .training-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+      }
+
+      @media (min-width: 900px) {
+        .training-layout {
+          flex-direction: row;
+          align-items: stretch;
+        }
+      }
+
+      .training-card {
+        flex: 1 1 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        background: #fff;
+        border-radius: 24px;
+        padding: clamp(20px, 3vw, 32px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+      }
+
+      .training-header {
+        text-align: right;
+      }
+
+      .training-description {
+        color: #6b7280;
+        font-size: 1rem;
+        margin-top: 8px;
+      }
+
+      .training-options {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+      }
+
+      .training-option {
+        width: 100%;
+        min-height: 92px;
+        border: 2px solid #294e3e;
+        border-radius: 12px;
+        background: transparent;
+        color: #294e3e;
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 600;
+        transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        gap: 16px;
+      }
+
+      .training-option:focus-visible {
+        outline: 3px solid #7cc5a7;
+      }
+
+      .option-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .option-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        padding: 8px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .option-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .option-spacer {
+        flex: 1;
+      }
+
+      .option-checkbox {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #294e3e;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.25s ease, border-color 0.25s ease;
+      }
+
+      .option-tick {
+        width: 12px;
+        height: 7px;
+        border-left: 2px solid #294e3e;
+        border-bottom: 2px solid #294e3e;
+        transform: rotate(-45deg);
+        opacity: 0;
+        transition: opacity 0.25s ease, border-color 0.25s ease;
+      }
+
+      .training-option.is-active {
+        background: #bcdcce;
+        border-color: #294e3e;
+      }
+
+      .training-option.is-active .option-icon {
+        background: #deede7;
+      }
+
+      .training-option.is-active .option-checkbox {
+        background: #294e3e;
+      }
+
+      .training-option.is-active .option-tick {
+        opacity: 1;
+        border-color: #fff;
+      }
+
+      .training-actions {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .training-actions .button {
+        width: min(320px, 100%);
+      }
+
+      .training-figure {
+        flex: 1 1 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .training-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      @media (max-width: 899px) {
+        .training-card {
+          flex: 1 1 auto;
+        }
+
+        .training-figure {
+          align-self: center;
+          width: min(360px, 100%);
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="AI-coach-quiz-2 quiz-placeholder-screen">
       <header class="header">
         <div class="frame">
           <div class="remix-icons-line-wrapper">
-            <a class="icon-button" href="./quize28.html" aria-label="عودة إلى السؤال السابق">
+            <a class="icon-button" href="./quize28.html" aria-label="عودة إلى السؤال السابق" data-training-gender-link>
               <img class="remix-icons-line" src="../assets/images/arrow-right-s-line.svg" alt="" />
             </a>
           </div>
@@ -76,32 +250,192 @@
             </div>
           </div>
         </div>
-        <div class="frame-6 quiz-placeholder">
-          <div class="quiz-placeholder-card" aria-live="polite">
-            <p class="text-wrapper-3">قسم عادات التمرين</p>
-            <p class="quiz-placeholder-text">سيتم إضافة محتوى السؤال رقم 28 لاحقًا.</p>
-          </div>
-          <div class="quiz-placeholder-actions">
-            <a class="button" href="./quize28.html" aria-label="العودة إلى السؤال السابق">
-              <div class="btn-primary-btn-lg">
-                <div class="masked-icon">
-                  <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
-                </div>
-                <div class="button-2">السابق</div>
+        <div class="frame-6 training-question" data-training-widget>
+          <div class="training-layout">
+            <div class="training-card">
+              <div class="training-header">
+                <p class="text-wrapper-3" data-training-title>ما نوع التمارين التي تمارسينها؟</p>
+                <p class="training-description" data-training-description>
+                  شاركينا التمارين المفضلة لديك حتى نصمم البرنامج الملائم لطموحك.
+                </p>
               </div>
-            </a>
-            <a class="button" data-animate="pulse" href="./quize30.html" aria-label="الانتقال إلى السؤال التالي">
-                <div class="btn-primary-btn-lg">
-                  <div class="masked-icon">
-                    <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
+              <div class="training-options">
+                <button class="training-option" type="button" data-training-option="run" aria-pressed="false">
+                  <div class="option-right">
+                    <div class="option-icon">
+                      <img src="../assets/images/question28/run.svg" alt="تمارين الجري" />
+                    </div>
+                    <span class="option-label">تمارين الجري</span>
                   </div>
-                  <div class="button-2">التالي</div>
-                </div>
-              </a>
+                  <div class="option-spacer"></div>
+                  <div class="option-checkbox" aria-hidden="true">
+                    <div class="option-tick"></div>
+                  </div>
+                </button>
+                <button class="training-option" type="button" data-training-option="power" aria-pressed="false">
+                  <div class="option-right">
+                    <div class="option-icon">
+                      <img src="../assets/images/question28/power.svg" alt="تمارين القوة" />
+                    </div>
+                    <span class="option-label">تمارين القوة</span>
+                  </div>
+                  <div class="option-spacer"></div>
+                  <div class="option-checkbox" aria-hidden="true">
+                    <div class="option-tick"></div>
+                  </div>
+                </button>
+                <button class="training-option" type="button" data-training-option="yoga" aria-pressed="false">
+                  <div class="option-right">
+                    <div class="option-icon">
+                      <img src="../assets/images/question28/yoga.svg" alt="اليوغا" />
+                    </div>
+                    <span class="option-label">اليوغا</span>
+                  </div>
+                  <div class="option-spacer"></div>
+                  <div class="option-checkbox" aria-hidden="true">
+                    <div class="option-tick"></div>
+                  </div>
+                </button>
+                <button class="training-option" type="button" data-training-option="flex" aria-pressed="false">
+                  <div class="option-right">
+                    <div class="option-icon">
+                      <img src="../assets/images/question28/morona.svg" alt="تمارين المرونة" />
+                    </div>
+                    <span class="option-label">تمارين المرونة</span>
+                  </div>
+                  <div class="option-spacer"></div>
+                  <div class="option-checkbox" aria-hidden="true">
+                    <div class="option-tick"></div>
+                  </div>
+                </button>
+                <button class="training-option" type="button" data-training-option="team" aria-pressed="false">
+                  <div class="option-right">
+                    <div class="option-icon">
+                      <img src="../assets/images/question28/collective.svg" alt="رياضات جماعية" />
+                    </div>
+                    <span class="option-label">رياضات جماعية</span>
+                  </div>
+                  <div class="option-spacer"></div>
+                  <div class="option-checkbox" aria-hidden="true">
+                    <div class="option-tick"></div>
+                  </div>
+                </button>
+              </div>
+              <div class="training-actions">
+                <a
+                  class="button"
+                  data-animate="pulse"
+                  href="./quize30.html"
+                  aria-label="الانتقال إلى السؤال التالي"
+                  data-training-next
+                >
+                  <div class="btn-primary-btn-lg">
+                    <div class="masked-icon">
+                      <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
+                    </div>
+                    <div class="button-2">التالي</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="training-figure">
+              <img src="../assets/images/question28/women.svg" alt="متدربة" data-training-figure />
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      (() => {
+        const widget = document.querySelector("[data-training-widget]");
+        if (!widget) return;
+
+        const options = Array.from(widget.querySelectorAll("[data-training-option]"));
+        const nextButton = widget.querySelector("[data-training-next]");
+        const titleEl = widget.querySelector("[data-training-title]");
+        const descriptionEl = widget.querySelector("[data-training-description]");
+        const figureImg = widget.querySelector("[data-training-figure]");
+        const genderLinks = document.querySelectorAll("[data-training-gender-link]");
+
+        const params = new URLSearchParams(window.location.search);
+        const gender = (params.get("gender") || "").toLowerCase() === "female" ? "female" : "male";
+
+        const copy = {
+          female: {
+            title: "ما نوع التمارين التي تمارسينها؟",
+            description: "شاركينا التمارين المفضلة لديك حتى نصمم البرنامج الملائم لطموحك.",
+            figure: "../assets/images/question28/women.svg",
+            figureAlt: "متدربة تمارس التمارين"
+          },
+          male: {
+            title: "ما نوع التمارين التي تمارسها؟",
+            description: "أخبرنا بالتمارين المفضلة لديك حتى نصمم برنامجاً يلائم أهدافك.",
+            figure: "../assets/images/question28/men.svg",
+            figureAlt: "متدرب يمارس التمارين"
+          }
+        };
+
+        const applyGenderToLink = (link) => {
+          if (!link) return;
+          const href = link.getAttribute("href");
+          if (!href) return;
+          const url = new URL(href, window.location.href);
+          url.searchParams.set("gender", gender);
+          link.setAttribute("href", `${url.pathname}${url.search}${url.hash}`);
+        };
+
+        const applyCopy = () => {
+          const currentCopy = copy[gender];
+          if (titleEl) titleEl.textContent = currentCopy.title;
+          if (descriptionEl) descriptionEl.textContent = currentCopy.description;
+          if (figureImg) {
+            figureImg.src = currentCopy.figure;
+            figureImg.alt = currentCopy.figureAlt || "";
+          }
+        };
+
+        const selected = new Set();
+
+        const updateDataset = () => {
+          widget.dataset.selectedTraining = Array.from(selected).join(",");
+        };
+
+        const toggleOption = (option) => {
+          if (!option) return;
+          const key = option.dataset.trainingOption;
+          if (selected.has(key)) {
+            selected.delete(key);
+            option.classList.remove("is-active");
+            option.setAttribute("aria-pressed", "false");
+          } else {
+            selected.clear();
+            widget.querySelectorAll(".training-option.is-active").forEach((active) => {
+              active.classList.remove("is-active");
+              active.setAttribute("aria-pressed", "false");
+            });
+            selected.add(key);
+            option.classList.add("is-active");
+            option.setAttribute("aria-pressed", "true");
+          }
+          updateDataset();
+        };
+
+        options.forEach((option) => {
+          option.addEventListener("click", () => toggleOption(option));
+        });
+
+        nextButton?.addEventListener("click", (event) => {
+          if (!selected.size) {
+            event.preventDefault();
+            const first = options[0];
+            if (first) toggleOption(first);
+          }
+        });
+
+        applyCopy();
+        genderLinks.forEach(applyGenderToLink);
+      })();
+    </script>
     <script src="../assets/js/quiz.js"></script>
   </body>
 </html>

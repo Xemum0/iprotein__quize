@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iProtein Tests 1-6</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans Arabic", "Helvetica Neue", Arial, sans-serif;
+        background: #f3f4f6;
+        color: #111827;
+      }
+
+      .tests-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 16px 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .test-block {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .test-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin: 0;
+      }
+
+      .test-frame {
+        width: 100%;
+        border: none;
+        border-radius: 24px;
+        background: white;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15);
+        overflow: hidden;
+        min-height: 400px;
+      }
+
+      @media (max-width: 600px) {
+        .tests-wrapper {
+          padding: 24px 12px 48px;
+          gap: 28px;
+        }
+
+        .test-title {
+          font-size: 1.1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="tests-wrapper">
+      <section class="test-block">
+        <h2 class="test-title">Test 1</h2>
+        <iframe
+          class="test-frame"
+          src="test1.html"
+          title="Test 1"
+          loading="lazy"
+          data-auto-resize
+        ></iframe>
+      </section>
+      <section class="test-block">
+        <h2 class="test-title">Test 2</h2>
+        <iframe
+          class="test-frame"
+          src="test2.html"
+          title="Test 2"
+          loading="lazy"
+          data-auto-resize
+        ></iframe>
+      </section>
+      <section class="test-block">
+        <h2 class="test-title">Test 3</h2>
+        <iframe
+          class="test-frame"
+          src="test3.html"
+          title="Test 3"
+          loading="lazy"
+          data-auto-resize
+        ></iframe>
+      </section>
+      <section class="test-block">
+        <h2 class="test-title">Test 4</h2>
+        <iframe
+          class="test-frame"
+          src="test4.html"
+          title="Test 4"
+          loading="lazy"
+          data-auto-resize
+        ></iframe>
+      </section>
+      <section class="test-block">
+        <h2 class="test-title">Test 5</h2>
+        <iframe
+          class="test-frame"
+          src="test5.html"
+          title="Test 5"
+          loading="lazy"
+          data-auto-resize
+        ></iframe>
+      </section>
+      <section class="test-block">
+        <h2 class="test-title">Test 6</h2>
+        <iframe
+          class="test-frame"
+          src="test6.html"
+          title="Test 6"
+          loading="lazy"
+          data-auto-resize
+        ></iframe>
+      </section>
+    </main>
+    <script>
+      const resizeIframes = (frame) => {
+        const resize = () => {
+          const doc = frame.contentDocument || frame.contentWindow?.document;
+          if (!doc) return;
+          const height = Math.max(
+            doc.body?.scrollHeight || 0,
+            doc.documentElement?.scrollHeight || 0
+          );
+          if (height) {
+            frame.style.height = `${height}px`;
+          }
+        };
+
+        frame.addEventListener("load", () => {
+          resize();
+
+          const observerTarget =
+            frame.contentDocument?.body || frame.contentDocument?.documentElement;
+          if (!observerTarget) return;
+
+          if ("ResizeObserver" in window) {
+            const resizeObserver = new ResizeObserver(resize);
+            resizeObserver.observe(observerTarget);
+          } else {
+            const mutationObserver = new MutationObserver(resize);
+            mutationObserver.observe(observerTarget, {
+              attributes: true,
+              childList: true,
+              subtree: true,
+            });
+          }
+        });
+      };
+
+      document
+        .querySelectorAll("iframe[data-auto-resize]")
+        .forEach((frame) => resizeIframes(frame));
+    </script>
+  </body>
+</html>

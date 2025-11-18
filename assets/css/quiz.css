@@ -1155,6 +1155,11 @@ a {
   z-index: 1;
 }
 
+.AI-coach-quiz-2 .progress-step.completed .progress-node {
+  background-color: var(--progress-color);
+  border-color: var(--progress-color);
+}
+
 .AI-coach-quiz-2 .progress-step:first-child .progress-node {
   background-color: var(--progress-color);
   border-color: var(--progress-color);
@@ -1740,6 +1745,10 @@ a {
   width: 100%;
 }
 
+.weight-question-screen {
+  overflow-x: hidden;
+}
+
 .weight-question {
   display: flex;
   flex-direction: column;
@@ -1790,6 +1799,8 @@ a {
   justify-content: center;
   gap: 24px;
   direction: ltr;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .weight-scale-btn {
@@ -1822,7 +1833,9 @@ a {
 }
 
 .weight-scale-box {
-  width: min(700px, 100%);
+  width: clamp(240px, calc(100% - 168px), 700px);
+  flex: 1 1 clamp(240px, calc(100% - 168px), 700px);
+  min-width: 0;
   height: 140px;
   background: #deeede;
   border-radius: 16px;
