@@ -1,96 +1,258 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../assets/css/quiz.css" />
-    <title>iProtein Quiz - Question 34</title>
-  </head>
-  <body>
-    <div class="AI-coach-quiz-2 quiz-placeholder-screen">
-      <header class="header">
-        <div class="frame">
-          <div class="remix-icons-line-wrapper">
-            <a class="icon-button" href="./quize34.html" aria-label="عودة إلى السؤال السابق">
-              <img class="remix-icons-line" src="../assets/images/arrow-right-s-line.svg" alt="" />
-            </a>
-          </div>
-          <div class="logo-wrapper">
-            <div class="logo">
-              <img class="group" src="../assets/images/logo.svg" alt="iProtein" />
-            </div>
-          </div>
-          <div class="remix-icons-line-wrapper">
-            <img class="remix-icons-line" src="../assets/images/close.svg" alt="إغلاق" />
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../assets/css/quiz.css" />
+  <title>iProtein Quiz - Question 34</title>
+
+  <style>
+    .energy-question {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .energy-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+    }
+
+    @media (min-width: 900px) {
+      .energy-layout {
+        flex-direction: row;
+        align-items: stretch;
+      }
+    }
+
+    .energy-card {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      background: #fff;
+      border-radius: 24px;
+      padding: clamp(20px, 3vw, 32px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    }
+
+    .energy-header {
+      text-align: right;
+    }
+
+    .energy-description {
+      color: #6b7280;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+    .energy-options {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .energy-option {
+      width: 100%;
+      min-height: 92px;
+      border: 2px solid #294e3e;
+      border-radius: 12px;
+      background: transparent;
+      color: #294e3e;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 600;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      gap: 16px;
+    }
+
+    .energy-option:focus-visible {
+      outline: 3px solid #7cc5a7;
+    }
+
+    .energy-option .option-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .energy-option .option-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      padding: 8px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .energy-option .option-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .energy-option .option-spacer {
+      flex: 1;
+    }
+
+    .energy-option .option-checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #294e3e;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .energy-option .option-tick {
+      width: 12px;
+      height: 7px;
+      border-left: 2px solid #294e3e;
+      border-bottom: 2px solid #294e3e;
+      transform: rotate(-45deg);
+      opacity: 0;
+      transition: opacity 0.25s ease, border-color 0.25s ease;
+    }
+
+    .energy-option.is-active {
+      background: #bcdcce;
+      border-color: #294e3e;
+    }
+
+    .energy-option.is-active .option-icon {
+      background: #deede7;
+    }
+
+    .energy-option.is-active .option-checkbox {
+      background: #294e3e;
+      border-color: #294e3e;
+    }
+
+    .energy-option.is-active .option-tick {
+      opacity: 1;
+      border-color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="AI-coach-quiz-2 quiz-placeholder-screen">
+    <header class="header">
+      <div class="frame">
+        <div class="remix-icons-line-wrapper">
+          <a class="icon-button" href="./quize34.html" aria-label="عودة إلى السؤال السابق" data-energy-gender-link>
+            <img class="remix-icons-line" src="../assets/images/arrow-right-s-line.svg" alt="" />
+          </a>
+        </div>
+
+        <div class="logo-wrapper">
+          <div class="logo">
+            <img class="group" src="../assets/images/logo.svg" alt="iProtein" />
           </div>
         </div>
-      </header>
-      <div class="frame-2">
-        <div class="frame-3">
-          <div class="frame-4">
-            <div class="text-wrapper">34/47</div>
-            <div class="text-wrapper-2">عادات التمرين</div>
-            <div class="text-wrapper">72%</div>
-          </div>
-          <div class="progress-section">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-valuenow="72"
-              style="--progress-percent: 72%; --total-steps: 7"
-            >
-              <div class="progress-line">
-                <span class="progress-line-fill" aria-hidden="true"></span>
-              </div>
-              <ol class="progress-step-list" aria-label="مراحل الاختبار">
-                  <li class="progress-step completed">
-                    <span class="progress-node" aria-hidden="true"></span>
-                  </li>
-                  <li class="progress-step completed">
-                    <span class="progress-node" aria-hidden="true"></span>
-                  </li>
-                  <li class="progress-step completed">
-                    <span class="progress-node" aria-hidden="true"></span>
-                  </li>
-                  <li class="progress-step completed">
-                    <span class="progress-node" aria-hidden="true"></span>
-                  </li>
-                  <li class="progress-step">
-                    <span class="progress-node" aria-hidden="true"></span>
-                  </li>
-                  <li class="progress-step">
-                    <span class="progress-node" aria-hidden="true"></span>
-                  </li>
-                  <li class="progress-step">
-                    <span class="progress-node" aria-hidden="true"></span>
-                  </li>
-              </ol>
+
+        <div class="remix-icons-line-wrapper">
+          <img class="remix-icons-line" src="../assets/images/close.svg" alt="إغلاق" />
+        </div>
+      </div>
+    </header>
+
+    <div class="frame-2">
+      <div class="frame-3">
+        <div class="frame-4">
+          <div class="text-wrapper">34/47</div>
+          <div class="text-wrapper-2">عادات التمرين</div>
+          <div class="text-wrapper">72%</div>
+        </div>
+
+        <div class="progress-section">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="72"
+            style="--progress-percent: 72%; --total-steps: 7"
+          >
+            <div class="progress-line">
+              <span class="progress-line-fill" aria-hidden="true"></span>
             </div>
+
+            <ol class="progress-step-list" aria-label="مراحل الاختبار">
+              <li class="progress-step completed"><span class="progress-node"></span></li>
+              <li class="progress-step completed"><span class="progress-node"></span></li>
+              <li class="progress-step completed"><span class="progress-node"></span></li>
+              <li class="progress-step completed"><span class="progress-node"></span></li>
+              <li class="progress-step"><span class="progress-node"></span></li>
+              <li class="progress-step"><span class="progress-node"></span></li>
+              <li class="progress-step"><span class="progress-node"></span></li>
+            </ol>
           </div>
         </div>
-        <div class="frame-6 quiz-placeholder">
-          <div class="quiz-placeholder-card" aria-live="polite">
-            <p class="text-wrapper-3">قسم عادات التمرين</p>
-            <p class="quiz-placeholder-text">سيتم إضافة محتوى السؤال رقم 34 لاحقًا.</p>
-          </div>
-          <div class="quiz-placeholder-actions">
-            <a class="button" href="./quize34.html" aria-label="العودة إلى السؤال السابق">
-              <div class="btn-primary-btn-lg">
-                <div class="masked-icon">
-                  <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
+      </div>
+
+      <div class="frame-6 energy-question" data-energy-widget>
+        <div class="energy-layout">
+            <div class="energy-card">
+              <div class="energy-header">
+                <p class="text-wrapper-3" data-energy-title>هل تتمرن مع مدرب شخصي؟</p>
+                <p class="energy-description" data-energy-description>
+                  أخبرنا إن كنت تتدرب مع مدرب شخصي لنتمكن من ضبط الخطة التدريبية والدعم الغذائي وفق احتياجك.
+              </p>
+            </div>
+
+            <div class="energy-options">
+              <button class="energy-option" type="button" data-energy-option="yes" aria-pressed="false">
+                <div class="option-right">
+                  <div class="option-icon">
+                    <img src="../assets/images/right.svg" alt="" />
+                  </div>
+                  <span class="option-label">نعم</span>
                 </div>
-                <div class="button-2">السابق</div>
-              </div>
-            </a>
-            <a class="button" data-animate="pulse" href="./quize36.html" aria-label="الانتقال إلى السؤال التالي">
+                <div class="option-spacer"></div>
+                <div class="option-checkbox"><div class="option-tick"></div></div>
+              </button>
+
+              <button class="energy-option" type="button" data-energy-option="no" aria-pressed="false">
+                <div class="option-right">
+                  <div class="option-icon">
+                    <img src="../assets/images/false.svg" alt="" />
+                  </div>
+                  <span class="option-label">لا</span>
+                </div>
+                <div class="option-spacer"></div>
+                <div class="option-checkbox"><div class="option-tick"></div></div>
+              </button>
+            </div>
+
+            <div class="intensity-actions">
+              <a
+                class="button"
+                data-animate="pulse"
+                href="./quize36.html"
+                aria-label="الانتقال إلى السؤال التالي"
+                data-energy-next
+                data-energy-gender-link
+              >
                 <div class="btn-primary-btn-lg">
                   <div class="masked-icon">
                     <img class="remix-icons-line-2" src="../assets/images/arrow-left-line.svg" alt="" />
@@ -98,10 +260,109 @@
                   <div class="button-2">التالي</div>
                 </div>
               </a>
+            </div>
+          </div>
+
+            <div class="energy-figure">
+              <img src="../assets/images/trianer.svg" alt="متدرب مع مدرب شخصي" data-energy-figure />
           </div>
         </div>
       </div>
     </div>
-    <script src="../assets/js/quiz.js"></script>
-  </body>
+  </div>
+
+  <script>
+    (() => {
+      const widget = document.querySelector("[data-energy-widget]");
+      if (!widget) return;
+
+      const options = Array.from(widget.querySelectorAll("[data-energy-option]"));
+      const nextButton = widget.querySelector("[data-energy-next]");
+      const titleEl = widget.querySelector("[data-energy-title]");
+      const descriptionEl = widget.querySelector("[data-energy-description]");
+      const figureImg = widget.querySelector("[data-energy-figure]");
+      const genderLinks = document.querySelectorAll("[data-energy-gender-link]");
+
+      const params = new URLSearchParams(window.location.search);
+      const genderParam = (params.get("gender") || "").toLowerCase();
+      const normalizedGender = genderParam === "female" ? "female" : "male";
+
+      const copy = {
+        male: {
+          title: "هل تتمرن مع مدرب شخصي؟",
+          description: "أخبرنا إن كنت تتدرب مع مدرب شخصي لنضبط الخطة التدريبية والدعم الغذائي وفق احتياجك.",
+          figure: "../assets/images/trianer.svg",
+          figureAlt: "متدرب مع مدرب شخصي"
+        },
+        female: {
+          title: "هل تتمرنين مع مدرب شخصي؟",
+          description: "أخبرينا إن كنت تتمرنين مع مدرب شخصي لنضبط الخطة التدريبية والدعم الغذائي وفق احتياجك.",
+          figure: "../assets/images/trianer.svg",
+          figureAlt: "متدربة مع مدرب شخصي"
+        }
+      };
+
+      const applyGenderToLink = (link) => {
+        if (!link) return;
+        const href = link.getAttribute("href");
+        if (!href) return;
+        const url = new URL(href, window.location.href);
+        url.searchParams.set("gender", normalizedGender);
+        link.setAttribute("href", `${url.pathname}${url.search}${url.hash}`);
+      };
+
+      const applyCopy = () => {
+        const data = copy[normalizedGender];
+        if (titleEl) titleEl.textContent = data.title;
+        if (descriptionEl) descriptionEl.textContent = data.description;
+        if (figureImg) {
+          figureImg.src = data.figure;
+          figureImg.alt = data.figureAlt;
+        }
+      };
+
+      let activeOption = null;
+
+      const updateDataset = () => {
+        widget.dataset.selectedEnergy = activeOption ? activeOption.dataset.energyOption : "";
+      };
+
+      const setActiveOption = (option) => {
+        if (activeOption === option) {
+          option.classList.remove("is-active");
+          option.setAttribute("aria-pressed", "false");
+          activeOption = null;
+          updateDataset();
+          return;
+        }
+
+        if (activeOption) {
+          activeOption.classList.remove("is-active");
+          activeOption.setAttribute("aria-pressed", "false");
+        }
+
+        activeOption = option;
+        activeOption.classList.add("is-active");
+        activeOption.setAttribute("aria-pressed", "true");
+        updateDataset();
+      };
+
+      options.forEach((option) => {
+        option.addEventListener("click", () => setActiveOption(option));
+      });
+
+      nextButton?.addEventListener("click", (e) => {
+        if (!activeOption) {
+          e.preventDefault();
+          setActiveOption(options[0]);
+        }
+      });
+
+      applyCopy();
+      genderLinks.forEach(applyGenderToLink);
+    })();
+  </script>
+
+  <script src="../assets/js/quiz.js"></script>
+</body>
 </html>

@@ -1,117 +1,308 @@
 <!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>زر الأداء</title>
-<style>
-  body{
-    background:#ecf5f1;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:"Poppins","Tajawal",sans-serif;
-  }
+<html lang="ar" dir="rtl">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Meal Selection UI</title>
+    <!-- Importing the font referenced in the variables -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      /* * MOCK VARIABLES 
+       * These variables were referenced in the original CSS but not provided. 
+       * I have defined them here to make the design functional.
+       */
+      :root {
+        --grey-1: #ffffff;
+        --grey-2: #f7f7f7;
+        --primitives-colors-primary-primary-950: #1a1e23;
+        --primitives-colors-primary-primary-50: #eff6ff;
+        --primitives-colors-white-white-50-w: #ffffff;
+        --primitives-colors-primary-primary-500-p: #3b82f6; /* Example Blue */
+        
+        /* Typography Mocks based on variable names */
+        --typography-family-IBM-plex-sans-arabic-semibold-36-font-family: 'IBM Plex Sans Arabic', sans-serif;
+        --typography-family-IBM-plex-sans-arabic-semibold-36-font-weight: 600;
+        --typography-family-IBM-plex-sans-arabic-semibold-36-font-size: 36px;
+        --typography-family-IBM-plex-sans-arabic-semibold-36-letter-spacing: 0px;
+        --typography-family-IBM-plex-sans-arabic-semibold-36-line-height: 1.2;
+        --typography-family-IBM-plex-sans-arabic-semibold-36-font-style: normal;
 
-  /* Button shell */
-  .select-btn{
-    width:577px; height:80px;
-    border:2px solid #294E3E; border-radius:8px;
-    background:#fff; color:#294E3E;
-    display:flex; align-items:center;
-    padding:0 30px;
-    cursor:pointer;
-    font-size:20px; font-weight:600;
-    transition:background .25s ease, color .25s ease, border-color .25s ease;
-        flex-direction: row-reverse;
-  }
+        --typography-family-IBM-plex-sans-arabic-medium-18-font-family: 'IBM Plex Sans Arabic', sans-serif;
+        --typography-family-IBM-plex-sans-arabic-medium-18-font-weight: 500;
+        --typography-family-IBM-plex-sans-arabic-medium-18-font-size: 18px;
+        --typography-family-IBM-plex-sans-arabic-medium-18-letter-spacing: 0px;
+        --typography-family-IBM-plex-sans-arabic-medium-18-line-height: 1.5;
+        --typography-family-IBM-plex-sans-arabic-medium-18-font-style: normal;
+      }
 
-  /* Active (clicked) state */
-  .select-btn.active{
-    background:#BCDCCE;
-    color:#294E3E;
-  }
+      body {
+        margin: 0;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+        font-family: 'IBM Plex Sans Arabic', sans-serif;
+      }
 
-  /* Right pack: icon at the VERY right, then text to its left */
-  .right-pack{
-    display:flex; align-items:center;
-    gap:12px;
-    /* row-reverse puts the icon at the extreme right, then the label */
-    flex-direction:row-reverse;
-  }
+      /* --- ORIGINAL CSS EXTRACTED --- */
 
-  .label{
-    line-height:1;
-    /* make sure Arabic flows RTL without affecting overall layout */
-    direction:rtl;
-  }
+      .frame {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        position: relative;
+        width: 100%; /* Added for responsiveness */
+      }
 
-  .icon{
-    width:40px; height:40px;
-    background:#fff;             /* default circle bg */
-    border-radius:50%;
-    padding:8px;                 /* inner padding for the svg */
-    transition:background .25s ease;
-  }
+      .frame .div-wrapper {
+        width: 577px;
+        gap: 8px;
+        flex: 0 0 auto;
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        max-width: 100%; /* Added for responsiveness */
+        justify-content: center; /* Center text on mobile */
+      }
 
-  /* When active, icon circle goes lighter mint */
-  .select-btn.active .icon{
-    background:#DEEDE7;
-  }
+      .frame .text-wrapper {
+        position: relative;
+        width: 577px;
+        margin-top: -1.00px;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-semibold-36-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-semibold-36-font-weight);
+        color: var(--primitives-colors-primary-primary-950);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-semibold-36-font-size);
+        text-align: center;
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-semibold-36-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-semibold-36-line-height);
+        direction: rtl;
+        font-style: var(--typography-family-IBM-plex-sans-arabic-semibold-36-font-style);
+        max-width: 100%; /* Added for responsiveness */
+      }
 
-  /* Flexible spacer to push checkbox to the far left */
-  .spacer{ flex:1; }
+      .frame .div {
+        width: 1240px;
+        height: 300px;
+        justify-content: center;
+        gap: 24px;
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        
+        /* Responsive adjustments replacing fixed dimensions */
+        max-width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+      }
 
-  /* Left-end small checkbox */
-  .checkbox{
-    width:22px; height:22px;
-    border:2px solid #294E3E; border-radius:4px;
-    display:flex; align-items:center; justify-content:center;
-    transition:background .25s ease, border-color .25s ease;
-  }
-  .tick{
-    width:10px; height:6px;
-    border-left:2px solid #294E3E;
-    border-bottom:2px solid #294E3E;
-    transform:rotate(-45deg);
-    opacity:0; transition:opacity .25s ease, border-color .25s ease;
-  }
-  .select-btn.active .checkbox{
-    background:#294E3E; border-color:#294E3E;
-  }
-  .select-btn.active .tick{
-    opacity:1; border-color:#fff; /* white tick */
-  }
+      .frame .option-card {
+        display: flex;
+        width: 292px;
+        height: 300px;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 16px;
+        padding: 16px 24px;
+        position: relative;
+        background-color: var(--primitives-colors-primary-primary-50);
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        /* Responsive adjustments */
+        max-width: 100%; 
+        flex-shrink: 0;
+      }
 
-  /* Remove default button styling on focus for consistency */
-  .select-btn:focus{ outline:none; }
-</style>
-</head>
-<body>
+      .frame .option-card:hover {
+        transform: translateY(-5px);
+      }
 
-<button class="select-btn" id="performanceBtn" type="button">
-  <!-- RIGHT SIDE: icon then text (visually) -->
-  <div class="right-pack">
-    <img src="spike.svg" alt="أيقونة الأداء" class="icon">
-    <span class="label">الأداء</span>
-  </div>
+      .frame .image {
+        position: absolute;
+        top: 16px;
+        left: 0; /* Adjusted for RTL? Original said left:0 */
+        width: 292px;
+        height: 244px;
+        aspect-ratio: 1.2;
+        object-fit: cover; /* Ensure image fits well */
+        /* Centering fix for the image within the card visually */
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
-  <!-- BIG FLEX SPACE -->
-  <div class="spacer"></div>
+      .frame .div-2 {
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+        flex: 1;
+        flex-grow: 1;
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        z-index: 1; /* Ensure text is above image */
+      }
 
-  <!-- FAR LEFT: checkbox -->
-  <div class="checkbox" aria-hidden="true">
-    <div class="tick"></div>
-  </div>
-</button>
+      .frame .text-wrapper-2 {
+        display: flex;
+        flex-direction: column;
+        height: 52px;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 24px;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        background-color: var(--primitives-colors-white-white-50-w);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid;
+        border-color: var(--primitives-colors-primary-primary-500-p);
+        box-sizing: border-box; /* Fix box model */
+      }
 
-<script>
-  const btn = document.getElementById('performanceBtn');
-  btn.addEventListener('click', () => {
-    btn.classList.toggle('active');
-  });
-</script>
+      .frame .text {
+        position: relative;
+        width: fit-content;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-weight);
+        color: var(--primitives-colors-primary-primary-500-p);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-size);
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-medium-18-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-medium-18-line-height);
+        direction: rtl;
+        font-style: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-style);
+      }
 
-</body>
+      .frame .button {
+        all: unset;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 52px;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 24px;
+        position: relative;
+        background-color: var(--primitives-colors-primary-primary-500-p);
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        max-width: 100%;
+      }
+
+      .frame .btn-primary-btn-lg {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 8px 0px;
+        position: relative;
+        flex: 0 0 auto;
+        margin-top: -3.50px;
+        margin-bottom: -3.50px;
+      }
+
+      .frame .masked-icon {
+        display: flex;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 2px 0px;
+        position: relative;
+        aspect-ratio: 1;
+      }
+
+      .frame .remix-icons-line {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        margin-top: -2.00px;
+        margin-bottom: -2.00px;
+        aspect-ratio: 1;
+      }
+
+      .frame .button-2 {
+        position: relative;
+        width: fit-content;
+        margin-top: -1.00px;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-weight);
+        color: var(--primitives-colors-white-white-50-w);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-size);
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-medium-18-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-medium-18-line-height);
+        direction: rtl;
+        font-style: var(--typography-family-IBM-plex-sans-arabic-medium-18-font-style);
+      }
+
+      /* Icons color fix */
+      .remix-icons-line {
+        filter: brightness(0) invert(1); /* Make arrow white */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="div-wrapper">
+        <p class="text-wrapper">كم وجبة رئيسية تتناولين يوميا؟</p>
+      </div>
+      <div class="div">
+        
+        <!-- Card 1: Dinner -->
+        <div class="div-wrapper-mobile"></div>
+        <div class="option-card">
+          <!-- Placeholder image used because original src was local -->
+          <img class="image" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&q=80&w=400" alt="Dinner" />
+          <div class="div-2">
+            <div class="text-wrapper-2">
+              <div class="text">العشاء</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Lunch -->
+        <div class="option-card">
+           <!-- Placeholder image used because original src was local -->
+          <img class="image" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=400" alt="Lunch" />
+          <div class="div-2">
+            <div class="text-wrapper-2">
+              <div class="text">الغداء</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Breakfast -->
+        <div class="option-card">
+           <!-- Placeholder image used because original src was local -->
+          <img class="image" src="https://images.unsplash.com/photo-1533089862017-541e53bb877d?auto=format&fit=crop&q=80&w=400" alt="Breakfast" />
+          <div class="div-2">
+            <div class="text-wrapper-2">
+              <div class="text">الفطور</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <button class="button">
+        <div class="btn-primary-btn-lg">
+          <div class="masked-icon">
+            <!-- Inline SVG for the arrow since local file is missing -->
+            <svg class="remix-icons-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.82843 11L13.1924 5.63604L11.7782 4.22183L4 12L11.7782 19.7782L13.1924 18.364L7.82843 13H20V11H7.82843Z"></path>
+            </svg>
+          </div>
+          <div class="button-2">التالي</div>
+        </div>
+      </button>
+    </div>
+  </body>
 </html>
