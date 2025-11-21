@@ -11,6 +11,64 @@
     />
     <link rel="stylesheet" href="../assets/css/quiz.css" />
     <title>iProtein Quiz - Step 3</title>
+    <style>
+      .quiz-name-screen {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .quiz-name-floating-figure {
+        position: fixed;
+        right: 0;
+        top: clamp(260px, 32vh, 400px);
+        width: clamp(100px, 15vw, 160px);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .quiz-name-floating-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .quiz-name-section {
+        position: relative;
+        z-index: 1;
+      }
+
+      .quiz-name-content {
+        justify-content: center;
+        align-items: center;
+      }
+
+      .quiz-name-form {
+        margin-inline: auto;
+      }
+
+      @media (max-width: 1024px) {
+        .quiz-name-floating-figure {
+          position: absolute;
+          right: 16px;
+          top: 300px;
+          width: clamp(90px, 22vw, 140px);
+          z-index: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .quiz-name-floating-figure {
+          position: static;
+          width: min(140px, 50vw);
+          margin: 0 auto 24px;
+          z-index: 1;
+        }
+
+        .quiz-name-section {
+          padding-top: 16px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div
@@ -85,6 +143,15 @@
             </div>
           </div>
         </div>
+        <div class="quiz-name-floating-figure" aria-hidden="true">
+          <img
+            class="quiz-name-figure"
+            src="../assets/images/male1.svg"
+            alt="متدرب من iProtein"
+            loading="lazy"
+            data-gender-figure
+          />
+        </div>
         <div class="frame-6 quiz-name-section">
           <div class="text-wrapper-3" data-gender-headline>
             أدخل اسمك لنخصص لك التجربة بما يناسبك
@@ -133,13 +200,6 @@
                 </div>
               </button>
             </form>
-            <img
-              class="quiz-name-figure"
-              src="../assets/images/male1.svg"
-              alt="متدرب من iProtein"
-              loading="lazy"
-              data-gender-figure
-            />
           </div>
         </div>
       </div>

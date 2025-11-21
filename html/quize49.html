@@ -39,7 +39,8 @@
         </div>
       </header>
 
-      <main class="quiz-final-content">
+      <main class="quiz-final-content" data-plan-root>
+        <div class="plan-status" data-plan-status aria-live="polite" style="display: none;"></div>
         <section class="final-overview">
           <div class="final-summary">
             <p class="section-eyebrow">جاهز للانطلاق</p>
@@ -52,28 +53,28 @@
                 <div class="summary-icon" aria-hidden="true">⏳</div>
                 <div>
                   <p class="summary-label">المدة</p>
-                  <p class="summary-value">06 أشهر</p>
+                  <p class="summary-value" data-summary-duration>--</p>
                 </div>
               </article>
               <article class="summary-card summary-card--warning">
                 <div class="summary-icon" aria-hidden="true">📅</div>
                 <div>
                   <p class="summary-label">أيام التمرين</p>
-                  <p class="summary-value">3 أيام/الأسبوع</p>
+                  <p class="summary-value" data-summary-workout-days>--</p>
                 </div>
               </article>
               <article class="summary-card summary-card--danger">
                 <div class="summary-icon" aria-hidden="true">🎯</div>
                 <div>
                   <p class="summary-label">الهدف</p>
-                  <p class="summary-value">إنقاص الوزن</p>
+                  <p class="summary-value" data-summary-goal>--</p>
                 </div>
               </article>
               <article class="summary-card summary-card--primary">
                 <div class="summary-icon" aria-hidden="true">🔥</div>
                 <div>
                   <p class="summary-label">السعرات اليومية</p>
-                  <p class="summary-value">1580 سعرة</p>
+                  <p class="summary-value" data-summary-calories>--</p>
                 </div>
               </article>
             </div>
@@ -81,9 +82,9 @@
               <div class="body-fat-header">
                 <div>
                   <p class="body-fat-eyebrow">نسبة الدهون الحالية</p>
-                  <p class="body-fat-value">20% - 30%</p>
+                  <p class="body-fat-value" data-bodyfat-current>--</p>
                 </div>
-                <p class="body-fat-target">هدفك التالي 18%</p>
+                <p class="body-fat-target" data-bodyfat-target>--</p>
               </div>
               <div class="body-fat-scale">
                 <span>5%</span>
@@ -95,8 +96,8 @@
                 <span class="body-fat-segment" style="--start: 25%; --width: 35%; background: #e6ed14"></span>
                 <span class="body-fat-segment" style="--start: 60%; --width: 20%; background: #ffc107"></span>
                 <span class="body-fat-segment" style="--start: 80%; --width: 20%; background: #f43e44"></span>
-                <span class="body-fat-pointer" style="--position: 38%">
-                  <strong>20-30%</strong>
+                <span class="body-fat-pointer" data-bodyfat-pointer style="--position: 0%">
+                  <strong data-bodyfat-pointer-label>--</strong>
                 </span>
               </div>
             </div>
@@ -107,12 +108,12 @@
               <div class="final-progress">
                 <div>
                   <p class="final-progress-label">جاهزية التنفيذ</p>
-                  <p class="final-progress-value">85%</p>
-                  <p class="final-progress-sub">كل الخطوات مكتملة</p>
+                  <p class="final-progress-value" data-readiness-score>--%</p>
+                  <p class="final-progress-sub" data-readiness-caption>كل الخطوات مكتملة</p>
                 </div>
                 <div class="final-progress-goal">
                   <p>هدف اليوم</p>
-                  <strong>450 سعر حراري</strong>
+                  <strong data-daily-target>--</strong>
                 </div>
               </div>
             </div>
@@ -123,122 +124,15 @@
           <header class="plan-block-header">
             <div>
               <p class="section-eyebrow">خطة التمرين</p>
-              <h2>3 حصص مصممة لشد الجسم</h2>
-              <p class="plan-description">ابدأ بقوة، ركّز على التحكم في السرعة، وتابع الملاحظات تحت كل تمرين.</p>
+              <h2 data-workout-title>حصص مصممة خصيصًا لهدفك</h2>
+              <p class="plan-description" data-workout-description>
+                ابدأ بقوة، ركّز على التحكم في السرعة، وتابع الملاحظات تحت كل تمرين.
+              </p>
             </div>
             <span class="chip chip--primary">جاهز للتنفيذ</span>
           </header>
-          <div class="workout-schedule">
-            <article class="workout-day">
-              <div class="workout-day-header">
-                <div>
-                  <p class="workout-day-meta">اليوم 1 · الإثنين</p>
-                  <h3>تمارين مقاومة</h3>
-                </div>
-                <span class="chip chip--ghost">45 دقيقة</span>
-              </div>
-              <ul class="exercise-list">
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">قفز بالحبل</p>
-                    <p class="exercise-note">إحماء القلب — سرعة معتدلة</p>
-                  </div>
-                  <span class="exercise-meta">3 × 60 ثانية</span>
-                </li>
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">سكوات بوزن الجسم</p>
-                    <p class="exercise-note">انزل ببطء، اصعد خلال 2 ثانية</p>
-                  </div>
-                  <span class="exercise-meta">3 × 15</span>
-                </li>
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">ضغط صدر</p>
-                    <p class="exercise-note">استخدم الركبتين إذا احتجت</p>
-                  </div>
-                  <span class="exercise-meta">3 × 10-15</span>
-                </li>
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">بلانك جانبي</p>
-                    <p class="exercise-note">حافظ على الاستقامة</p>
-                  </div>
-                  <span class="exercise-meta">3 × 30 ثانية/جانب</span>
-                </li>
-              </ul>
-            </article>
-            <article class="workout-day">
-              <div class="workout-day-header">
-                <div>
-                  <p class="workout-day-meta">اليوم 2 · الثلاثاء</p>
-                  <h3>كارديو عالي الشدة</h3>
-                </div>
-                <span class="chip chip--ghost">30 دقيقة</span>
-              </div>
-              <ul class="exercise-list">
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">بلانك</p>
-                    <p class="exercise-note">شد مركز الجسم</p>
-                  </div>
-                  <span class="exercise-meta">3 × 45 ثانية</span>
-                </li>
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">جري سريع</p>
-                    <p class="exercise-note">8 عدّات سبرنت</p>
-                  </div>
-                  <span class="exercise-meta">8 × 30 ثانية</span>
-                </li>
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">ماونتن كلايمبر</p>
-                    <p class="exercise-note">سرعة متوسطة تضمن التحكم</p>
-                  </div>
-                  <span class="exercise-meta">3 × 20</span>
-                </li>
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">جامبنج جاك</p>
-                    <p class="exercise-note">املأ الرئة بالأكسجين</p>
-                  </div>
-                  <span class="exercise-meta">3 × 30</span>
-                </li>
-              </ul>
-            </article>
-            <article class="workout-day">
-              <div class="workout-day-header">
-                <div>
-                  <p class="workout-day-meta">اليوم 3 · الخميس</p>
-                  <h3>راحة نشطة وتمارين إطالة</h3>
-                </div>
-                <span class="chip chip--ghost">25 دقيقة</span>
-              </div>
-              <ul class="exercise-list">
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">يوجا تدفق الشمس</p>
-                    <p class="exercise-note">تنشيط الجسم بالكامل</p>
-                  </div>
-                  <span class="exercise-meta">5 جولات</span>
-                </li>
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">مشية سريعة</p>
-                    <p class="exercise-note">حافظ على 7,000 خطوة</p>
-                  </div>
-                  <span class="exercise-meta">20 دقيقة</span>
-                </li>
-                <li class="exercise-card">
-                  <div>
-                    <p class="exercise-name">تنفس بوكس</p>
-                    <p class="exercise-note">4 ثواني شهيق · 4 زفير</p>
-                  </div>
-                  <span class="exercise-meta">5 دقائق</span>
-                </li>
-              </ul>
-            </article>
+          <div class="workout-schedule" data-workout-list>
+            <p class="plan-description">سنقوم بتحميل جدول التمارين بناءً على إجاباتك...</p>
           </div>
         </section>
 
@@ -246,10 +140,12 @@
           <header class="plan-block-header">
             <div>
               <p class="section-eyebrow">خطة التغذية</p>
-              <h2>توزيع يومي لـ 1580 سعرة حرارية</h2>
-              <p class="plan-description">التزم بترتيب الوجبات لضمان شعور الشبع وتحقيق نسبة البروتين اليومية.</p>
+              <h2 data-nutrition-heading>توزيع يومي للسعرات الخاصة بك</h2>
+              <p class="plan-description" data-macro-label>
+                التزم بترتيب الوجبات لضمان شعور الشبع وتحقيق نسبة البروتين اليومية.
+              </p>
             </div>
-            <span class="chip chip--accent">30٪ بروتين · 40٪ كارب · 30٪ دهون</span>
+            <span class="chip chip--accent" data-macro-chip>--</span>
           </header>
           <div class="nutrition-summary">
             <div class="macro-breakdown">
@@ -258,104 +154,45 @@
                   <span class="macro-dot macro-dot--fat" aria-hidden="true"></span>
                   الدهون
                 </div>
-                <strong>58 جم · 27%</strong>
+                <strong data-macro-fat>--</strong>
               </div>
               <div class="macro-item">
                 <div>
                   <span class="macro-dot macro-dot--carb" aria-hidden="true"></span>
                   الكربوهيدرات
                 </div>
-                <strong>148 جم · 37%</strong>
+                <strong data-macro-carb>--</strong>
               </div>
               <div class="macro-item">
                 <div>
                   <span class="macro-dot macro-dot--protein" aria-hidden="true"></span>
                   البروتين
                 </div>
-                <strong>98 جم · 25%</strong>
+                <strong data-macro-protein>--</strong>
               </div>
               <div class="macro-item">
                 <div>
                   <span class="macro-dot macro-dot--cal" aria-hidden="true"></span>
                   السعرات
                 </div>
-                <strong>1580 سعرة</strong>
+                <strong data-macro-calories>--</strong>
               </div>
               <div class="macro-bar">
-                <span class="macro-bar-fill" style="--size: 27%; --offset: 0%; background: #bcdcce"></span>
-                <span class="macro-bar-fill" style="--size: 37%; --offset: 27%; background: #79b99d"></span>
-                <span class="macro-bar-fill" style="--size: 25%; --offset: 64%; background: #294e3e"></span>
+                <span class="macro-bar-fill" data-macro-bar="fat" style="--size: 0%; --offset: 0%; background: #bcdcce"></span>
+                <span class="macro-bar-fill" data-macro-bar="carbs" style="--size: 0%; --offset: 0%; background: #79b99d"></span>
+                <span class="macro-bar-fill" data-macro-bar="protein" style="--size: 0%; --offset: 0%; background: #294e3e"></span>
               </div>
             </div>
             <div class="calorie-ring">
               <div class="calorie-ring-inner">
                 <p>إجمالي اليوم</p>
-                <strong>1580</strong>
+                <strong data-calorie-total>--</strong>
                 <span>سعرة حرارية</span>
               </div>
             </div>
           </div>
-          <div class="meal-grid">
-            <article class="meal-card">
-              <div>
-                <p class="section-eyebrow">7:00 - 8:00 صباحاً</p>
-                <h3>الفطور</h3>
-              </div>
-              <ul>
-                <li><strong>الدهون:</strong> 10 جم</li>
-                <li><strong>الكربوهيدرات:</strong> 45 جم</li>
-                <li><strong>البروتين:</strong> 12 جم</li>
-                <li><strong>السعرات:</strong> 350</li>
-              </ul>
-            </article>
-            <article class="meal-card">
-              <div>
-                <p class="section-eyebrow">10:00 صباحاً</p>
-                <h3>وجبة خفيفة 1</h3>
-              </div>
-              <ul>
-                <li><strong>الدهون:</strong> 4 جم</li>
-                <li><strong>الكربوهيدرات:</strong> 15 جم</li>
-                <li><strong>البروتين:</strong> 10 جم</li>
-                <li><strong>السعرات:</strong> 150</li>
-              </ul>
-            </article>
-            <article class="meal-card">
-              <div>
-                <p class="section-eyebrow">1:00 - 2:00 ظهراً</p>
-                <h3>الغداء</h3>
-              </div>
-              <ul>
-                <li><strong>الدهون:</strong> 12 جم</li>
-                <li><strong>الكربوهيدرات:</strong> 60 جم</li>
-                <li><strong>البروتين:</strong> 40 جم</li>
-                <li><strong>السعرات:</strong> 550</li>
-              </ul>
-            </article>
-            <article class="meal-card">
-              <div>
-                <p class="section-eyebrow">4:00 عصراً</p>
-                <h3>وجبة خفيفة 2</h3>
-              </div>
-              <ul>
-                <li><strong>الدهون:</strong> 14 جم</li>
-                <li><strong>الكربوهيدرات:</strong> 8 جم</li>
-                <li><strong>البروتين:</strong> 6 جم</li>
-                <li><strong>السعرات:</strong> 180</li>
-              </ul>
-            </article>
-            <article class="meal-card">
-              <div>
-                <p class="section-eyebrow">7:00 - 8:00 مساءً</p>
-                <h3>العشاء</h3>
-              </div>
-              <ul>
-                <li><strong>الدهون:</strong> 8 جم</li>
-                <li><strong>الكربوهيدرات:</strong> 20 جم</li>
-                <li><strong>البروتين:</strong> 30 جم</li>
-                <li><strong>السعرات:</strong> 350</li>
-              </ul>
-            </article>
+          <div class="meal-grid" data-meal-list>
+            <p class="plan-description">سيتم تحميل خطة الوجبات بناءً على بياناتك...</p>
           </div>
         </section>
 
@@ -368,73 +205,8 @@
             </div>
             <span class="chip chip--ghost">اختياري</span>
           </header>
-          <div class="supplement-grid">
-            <article class="supplement-card">
-              <div class="supplement-media" style="background-image: url('https://placehold.co/330x240');">
-                <div class="supplement-badges">
-                  <span class="chip chip--accent">الأكثر مبيعاً</span>
-                  <span class="supplement-discount">-20%</span>
-                </div>
-              </div>
-              <div class="supplement-content">
-                <h3>كويست نيوترشن بروتين شيبس</h3>
-                <ul>
-                  <li><strong>الجرعة:</strong> سكوب واحد (30 غرام)</li>
-                  <li><strong>التكرار:</strong> بعد التمرين أو حسب الحاجة</li>
-                </ul>
-                <div class="supplement-meta">
-                  <span>⭐ 4.8 (200)</span>
-                  <div>
-                    <span class="supplement-old-price">140 د.ع</span>
-                    <span class="supplement-price">120 د.ع</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="supplement-card">
-              <div class="supplement-media" style="background-image: url('https://placehold.co/330x240');">
-                <div class="supplement-badges">
-                  <span class="chip chip--accent">صحة القلب</span>
-                  <span class="supplement-discount">-15%</span>
-                </div>
-              </div>
-              <div class="supplement-content">
-                <h3>ناو سوبر أوميجا 3-6-9</h3>
-                <ul>
-                  <li><strong>الجرعة:</strong> كبسولة مع وجبة دسمة</li>
-                  <li><strong>التكرار:</strong> مرة يومياً</li>
-                </ul>
-                <div class="supplement-meta">
-                  <span>⭐ 4.7 (180)</span>
-                  <div>
-                    <span class="supplement-old-price">110 د.ع</span>
-                    <span class="supplement-price">95 د.ع</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="supplement-card">
-              <div class="supplement-media" style="background-image: url('https://placehold.co/330x240');">
-                <div class="supplement-badges">
-                  <span class="chip chip--accent">بناء عضلي</span>
-                  <span class="supplement-discount">-10%</span>
-                </div>
-              </div>
-              <div class="supplement-content">
-                <h3>أوبتيموم واي بروتين</h3>
-                <ul>
-                  <li><strong>الجرعة:</strong> سكوب واحد في 250مل ماء</li>
-                  <li><strong>التكرار:</strong> بعد التمرين أو كوجبة خفيفة</li>
-                </ul>
-                <div class="supplement-meta">
-                  <span>⭐ 4.9 (320)</span>
-                  <div>
-                    <span class="supplement-old-price">200 د.ع</span>
-                    <span class="supplement-price">180 د.ع</span>
-                  </div>
-                </div>
-              </div>
-            </article>
+          <div class="supplement-grid" data-supplement-list>
+            <p class="plan-description">سنقترح المكملات المناسبة بعد معالجة إجاباتك...</p>
           </div>
         </section>
 
@@ -455,6 +227,380 @@
         </section>
       </main>
     </div>
+    <script>
+      (() => {
+        const API_URL = "https://iprteinquize-production.up.railway.app/api/v1/plan";
+        const STORAGE_KEY = "iproteinQuizState";
+        const root = document.querySelector("[data-plan-root]");
+        if (!root) return;
+
+        const statusEl = root.querySelector("[data-plan-status]");
+        const setStatus = (message, tone = "info") => {
+          if (!statusEl) return;
+          statusEl.textContent = message || "";
+          statusEl.dataset.tone = tone;
+          statusEl.style.display = message ? "block" : "none";
+        };
+
+        const safeParse = (raw) => {
+          if (!raw) return {};
+          try {
+            const parsed = JSON.parse(raw);
+            return parsed && typeof parsed === "object" ? parsed : {};
+          } catch (error) {
+            return {};
+          }
+        };
+
+        const readState = () => {
+          try {
+            return safeParse(window.localStorage.getItem(STORAGE_KEY));
+          } catch (error) {
+            return {};
+          }
+        };
+
+        const writeState = (state) => {
+          try {
+            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state || {}));
+          } catch (error) {
+            /* ignore persistence issues */
+          }
+        };
+
+        const generateSessionId = () => {
+          if (window.crypto && typeof window.crypto.randomUUID === "function") {
+            try {
+              return window.crypto.randomUUID();
+            } catch (error) {
+              /* ignore and fallback */
+            }
+          }
+          return `session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        };
+
+        const ensureSessionId = (state) => {
+          if (state.sessionId) return state.sessionId;
+          const sessionId = generateSessionId();
+          const nextState = { ...state, sessionId };
+          writeState(nextState);
+          return sessionId;
+        };
+
+        const buildAnswersPayload = (answers = {}) => {
+          const payload = {};
+          Object.entries(answers).forEach(([key, value]) => {
+            if (!value || typeof value !== "object") return;
+            payload[key] = {
+              questionText: value.questionText || "",
+              answerText: value.answerText || "",
+              rawValue:
+                value.rawValue != null
+                  ? String(value.rawValue)
+                  : value.answerText || "",
+            };
+          });
+          return payload;
+        };
+
+        const formatCalories = (value, suffix = "سعرة") => {
+          if (value == null || value === "") return "--";
+          return `${value} ${suffix}`;
+        };
+
+        const formatMacro = (macro) => {
+          if (!macro || typeof macro !== "object") return "--";
+          const grams = macro.grams != null ? macro.grams : "--";
+          const percentage = macro.percentage != null ? macro.percentage : "--";
+          return `${grams} جم · ${percentage}%`;
+        };
+
+        const updateText = (selector, value) => {
+          const el = root.querySelector(selector);
+          if (el) {
+            el.textContent = value != null && value !== "" ? value : "--";
+          }
+        };
+
+        const populateWorkout = (schedule = []) => {
+          const container = root.querySelector("[data-workout-list]");
+          if (!container) return;
+          container.innerHTML = "";
+          if (!Array.isArray(schedule) || !schedule.length) {
+            container.innerHTML = '<p class="plan-description">لم تزودنا المنصة بأي تمارين بعد.</p>';
+            return;
+          }
+
+          schedule.forEach((day) => {
+            const article = document.createElement("article");
+            article.className = "workout-day";
+
+            const header = document.createElement("div");
+            header.className = "workout-day-header";
+
+            const metaWrap = document.createElement("div");
+            const meta = document.createElement("p");
+            meta.className = "workout-day-meta";
+            const dayLabel = day.dayName || `اليوم ${day.dayNumber || ""}`.trim();
+            meta.textContent = dayLabel;
+            const title = document.createElement("h3");
+            title.textContent = day.title || "جلسة تدريب";
+            metaWrap.appendChild(meta);
+            metaWrap.appendChild(title);
+
+            const duration = document.createElement("span");
+            duration.className = "chip chip--ghost";
+            duration.textContent = day.duration || "";
+
+            header.appendChild(metaWrap);
+            header.appendChild(duration);
+
+            const exercisesList = document.createElement("ul");
+            exercisesList.className = "exercise-list";
+            (day.exercises || []).forEach((exercise) => {
+              const item = document.createElement("li");
+              item.className = "exercise-card";
+              const info = document.createElement("div");
+              const name = document.createElement("p");
+              name.className = "exercise-name";
+              name.textContent = exercise.name || "";
+              const note = document.createElement("p");
+              note.className = "exercise-note";
+              note.textContent = exercise.note || "";
+              info.appendChild(name);
+              info.appendChild(note);
+              const metaSpan = document.createElement("span");
+              metaSpan.className = "exercise-meta";
+              metaSpan.textContent = exercise.sets || "";
+              item.appendChild(info);
+              item.appendChild(metaSpan);
+              exercisesList.appendChild(item);
+            });
+
+            article.appendChild(header);
+            article.appendChild(exercisesList);
+            container.appendChild(article);
+          });
+        };
+
+        const populateMeals = (meals = []) => {
+          const container = root.querySelector("[data-meal-list]");
+          if (!container) return;
+          container.innerHTML = "";
+          if (!Array.isArray(meals) || !meals.length) {
+            container.innerHTML =
+              '<p class="plan-description">لم نتلق توصيات للوجبات في الوقت الحالي.</p>';
+            return;
+          }
+
+          meals.forEach((meal) => {
+            const card = document.createElement("article");
+            card.className = "meal-card";
+            const header = document.createElement("div");
+            const time = document.createElement("p");
+            time.className = "section-eyebrow";
+            time.textContent = meal.time || "";
+            const title = document.createElement("h3");
+            title.textContent = meal.name || "وجبة";
+            header.appendChild(time);
+            header.appendChild(title);
+
+            const list = document.createElement("ul");
+            const stats = [
+              { label: "الدهون", key: "fat" },
+              { label: "الكربوهيدرات", key: "carbs" },
+              { label: "البروتين", key: "protein" },
+              { label: "السعرات", key: "calories" },
+            ];
+            stats.forEach((stat) => {
+              const li = document.createElement("li");
+              const strong = document.createElement("strong");
+              strong.textContent = `${stat.label}:`;
+              li.appendChild(strong);
+              const value = document.createTextNode(
+                ` ${meal[stat.key] != null ? meal[stat.key] : "--"}${
+                  stat.key === "calories" ? "" : " جم"
+                }`
+              );
+              li.appendChild(value);
+              list.appendChild(li);
+            });
+
+            card.appendChild(header);
+            card.appendChild(list);
+            container.appendChild(card);
+          });
+        };
+
+        const populateSupplements = (supplements = []) => {
+          const container = root.querySelector("[data-supplement-list]");
+          if (!container) return;
+          container.innerHTML = "";
+          if (!Array.isArray(supplements) || !supplements.length) {
+            container.innerHTML =
+              '<p class="plan-description">لا توجد مكملات مقترحة الآن. سنعلمك بمجرد توفر التوصيات.</p>';
+            return;
+          }
+
+          supplements.forEach((supplement) => {
+            const card = document.createElement("article");
+            card.className = "supplement-card";
+            const content = document.createElement("div");
+            content.className = "supplement-content";
+            const title = document.createElement("h3");
+            title.textContent = supplement.name || "مكمل غذائي";
+            const link = document.createElement("a");
+            link.className = "final-action final-action--primary";
+            link.textContent = "عرض المنتج";
+            link.href = supplement.url || "#";
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            const note = document.createElement("p");
+            note.className = "plan-description";
+            note.textContent = "سيتم جلب باقي التفاصيل عند فتح المنتج.";
+
+            content.appendChild(title);
+            content.appendChild(note);
+            content.appendChild(link);
+            card.appendChild(content);
+            container.appendChild(card);
+          });
+        };
+
+        const populatePlan = (data) => {
+          const planSummary = data.planSummary || {};
+          const user = data.user || {};
+          const bodyFat = data.bodyFat || {};
+          const macros = data.macros || {};
+
+          updateText("[data-summary-duration]", planSummary.duration || "--");
+          updateText("[data-summary-workout-days]", planSummary.workoutDays || "--");
+          updateText("[data-summary-goal]", planSummary.goal || "--");
+
+          const dailyCalories =
+            planSummary.dailyCalories ??
+            user.dailyCalorieGoal ??
+            macros.totalCalories;
+          updateText("[data-summary-calories]", formatCalories(dailyCalories));
+          updateText(
+            "[data-daily-target]",
+            dailyCalories != null ? `${dailyCalories} سعر حراري` : "--"
+          );
+
+          updateText("[data-readiness-score]", user.readinessScore != null ? `${user.readinessScore}%` : "--");
+          const readinessCaption =
+            user.readinessScore != null && user.readinessScore >= 80
+              ? "جاهزية عالية للتنفيذ"
+              : "سنواصل دعمك خطوة بخطوة";
+          updateText("[data-readiness-caption]", readinessCaption);
+
+          updateText("[data-bodyfat-current]", bodyFat.current || "--");
+          updateText(
+            "[data-bodyfat-target]",
+            bodyFat.target ? `هدفك التالي ${bodyFat.target}` : "--"
+          );
+          updateText("[data-bodyfat-pointer-label]", bodyFat.current || "--");
+          const pointer = root.querySelector("[data-bodyfat-pointer]");
+          if (pointer && typeof bodyFat.pointerPosition === "number") {
+            pointer.style.setProperty("--position", `${bodyFat.pointerPosition}%`);
+          }
+
+          updateText(
+            "[data-workout-title]",
+            planSummary.workoutDays
+              ? `${planSummary.workoutDays} مخصصة لك`
+              : "خطة التمرين"
+          );
+          updateText("[data-workout-description]", planSummary.goal || "");
+
+          updateText(
+            "[data-nutrition-heading]",
+            dailyCalories != null
+              ? `توزيع يومي لـ ${dailyCalories} سعرة حرارية`
+              : "توزيع يومي للسعرات الخاصة بك"
+          );
+          updateText("[data-macro-label]", macros.macroLabel || "");
+
+          const macroChip = root.querySelector("[data-macro-chip]");
+          if (macroChip) {
+            const fat = macros.fat?.percentage ?? "--";
+            const carbs = macros.carbs?.percentage ?? "--";
+            const protein = macros.protein?.percentage ?? "--";
+            macroChip.textContent = `${protein}% بروتين · ${carbs}% كارب · ${fat}% دهون`;
+          }
+
+          updateText("[data-macro-fat]", formatMacro(macros.fat));
+          updateText("[data-macro-carb]", formatMacro(macros.carbs));
+          updateText("[data-macro-protein]", formatMacro(macros.protein));
+          updateText("[data-macro-calories]", formatCalories(macros.totalCalories));
+          updateText("[data-calorie-total]", macros.totalCalories ?? dailyCalories ?? "--");
+
+          const macroOrder = ["fat", "carbs", "protein"];
+          let offset = 0;
+          macroOrder.forEach((key) => {
+            const el = root.querySelector(`[data-macro-bar="${key}"]`);
+            if (!el) return;
+            const info = macros[key === "carbs" ? "carbs" : key];
+            const percentage =
+              info && typeof info.percentage === "number" ? info.percentage : 0;
+            el.style.setProperty("--size", `${percentage}%`);
+            el.style.setProperty("--offset", `${offset}%`);
+            if (info && info.color) {
+              el.style.setProperty("background", info.color);
+            }
+            offset += percentage;
+          });
+
+          populateWorkout(data.workoutSchedule);
+          populateMeals(data.meals);
+          populateSupplements(data.supplements);
+        };
+
+        const state = readState();
+        const answersPayload = buildAnswersPayload(state.answers || {});
+        if (!Object.keys(answersPayload).length) {
+          setStatus("لم نعثر على إجابات محفوظة. يرجى إعادة الاختبار.", "error");
+          return;
+        }
+
+        const sessionId = ensureSessionId(state);
+        const urlGender = (new URLSearchParams(window.location.search).get("gender") || "").toLowerCase();
+        const gender =
+          (state.gender || urlGender || "male").toLowerCase() === "female"
+            ? "female"
+            : "male";
+
+        const payload = {
+          sessionId,
+          gender,
+          answers: answersPayload,
+        };
+
+        setStatus("نقوم بتحليل إجاباتك وإعداد الخطة...");
+
+        fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`تعذر الحصول على الخطة (الحالة ${response.status})`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            populatePlan(data || {});
+            setStatus("");
+          })
+          .catch((error) => {
+            console.error("Plan request failed:", error);
+            setStatus("حدث خطأ أثناء تحميل خطتك. يرجى المحاولة لاحقاً.", "error");
+          });
+      })();
+    </script>
     <script>
       (() => {
         const params = new URLSearchParams(window.location.search);

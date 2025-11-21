@@ -97,19 +97,41 @@
     },
   };
 
+  const generateSessionId = () => {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      try {
+        return window.crypto.randomUUID();
+      } catch (error) {
+        /* ignore and fallback */
+      }
+    }
+    const random = Math.random().toString(16).slice(2);
+    return `session-${Date.now()}-${random}`;
+  };
+
+  const ensureAnswersObject = (value) =>
+    value && typeof value === "object" ? value : {};
+
+  const ensureQuizStateShape = (value) => {
+    if (!value || typeof value !== "object") {
+      return { answers: {} };
+    }
+    return { ...value, answers: ensureAnswersObject(value.answers) };
+  };
+
   const readQuizState = () => {
     const raw = persistentStorage.get(QUIZ_STATE_KEY);
-    if (!raw) return {};
+    if (!raw) return { answers: {} };
     try {
       const parsed = JSON.parse(raw);
-      return parsed && typeof parsed === "object" ? parsed : {};
+      return ensureQuizStateShape(parsed);
     } catch (error) {
-      return {};
+      return { answers: {} };
     }
   };
 
   const writeQuizState = (state) => {
-    const safeState = state && typeof state === "object" ? state : {};
+    const safeState = ensureQuizStateShape(state);
     persistentStorage.set(QUIZ_STATE_KEY, JSON.stringify(safeState));
   };
 
@@ -128,11 +150,399 @@
     return next;
   };
 
-  const pageSearchParams = new URLSearchParams(window.location.search);
-  const queryGenderParam = normalizeGender(pageSearchParams.get("gender"));
+  const ensureSessionId = () => {
+    const state = readQuizState();
+    if (state.sessionId) return state.sessionId;
+    const sessionId = generateSessionId();
+    writeQuizState({ ...state, sessionId });
+    return sessionId;
+  };
+
+  ensureSessionId();
+
+  const attributeNameToKey = (name) => {
+    const normalized = (name || "").replace(/^data-/, "");
+    return normalized.replace(/-([a-z0-9])/gi, (_, char) =>
+      char ? char.toUpperCase() : ""
+    );
+  };
+
+  const sanitizeText = (value) =>
+    typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "";
+
+  const safeCssEscape = (value) => {
+    const stringValue = String(value);
+    if (window.CSS && typeof window.CSS.escape === "function") {
+      return window.CSS.escape(stringValue);
+    }
+    return stringValue.replace(/"/g, '\\"');
+  };
+
+  const normalizeAnswerPayload = (payload) => {
+    if (!payload) return null;
+    const key = payload.answerKey || "value";
+    const toArray = (value) =>
+      value
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+    let rawValue =
+      payload.rawValue != null
+        ? String(payload.rawValue)
+        : payload.value != null
+        ? Array.isArray(payload.value)
+          ? payload.value.join(",")
+          : String(payload.value)
+        : "";
+    rawValue = rawValue.trim();
+
+    let value = payload.value;
+    if (value == null) {
+      if (!rawValue) {
+        value = null;
+      } else if (rawValue.includes(",")) {
+        value = toArray(rawValue);
+      } else {
+        value = rawValue;
+      }
+    } else if (typeof value === "string") {
+      value = value.trim();
+    } else if (Array.isArray(value)) {
+      value = value
+        .map((item) => (typeof item === "string" ? item.trim() : item))
+        .filter((item) => {
+          if (typeof item === "string") return Boolean(item);
+          return item != null;
+        });
+    }
+
+    const isEmptyString = typeof value === "string" && !value;
+    const isEmptyArray = Array.isArray(value) && value.length === 0;
+    if (value == null || isEmptyString || isEmptyArray) {
+      return null;
+    }
+
+    const normalizedRaw =
+      rawValue || (Array.isArray(value) ? value.join(",") : String(value));
+
+    return {
+      answerKey: key,
+      rawValue: normalizedRaw,
+      value,
+      type: payload.type || (Array.isArray(value) ? "multi-select" : "single"),
+      sourceAttribute: payload.sourceAttribute || null,
+      meta: payload.meta || null,
+      questionText: sanitizeText(payload.questionText || ""),
+      answerText: sanitizeText(
+        payload.answerText ||
+          (Array.isArray(value) ? value.join("، ") : normalizedRaw)
+      ),
+    };
+  };
+
+  const collectElementsWithAttrSuffix = (root, suffixes) => {
+    if (!root || !suffixes || !suffixes.length) return [];
+    const elements = [];
+    const nodes = root.querySelectorAll ? Array.from(root.querySelectorAll("*")) : [];
+    const allNodes = root.nodeType === 1 ? [root, ...nodes] : nodes;
+    allNodes.forEach((node) => {
+      if (!node.attributes) return;
+      Array.from(node.attributes).forEach((attr) => {
+        if (!attr.name.startsWith("data-")) return;
+        if (suffixes.some((suffix) => attr.name.endsWith(suffix))) {
+          elements.push({ element: node, attrName: attr.name });
+        }
+      });
+    });
+    return elements;
+  };
+
+  const findDataAttributeBySuffix = (root, suffixes) => {
+    const matches = collectElementsWithAttrSuffix(root, suffixes);
+    return matches.length ? matches[0].attrName : null;
+  };
+
+  const findTextByAttrSuffix = (root, suffixes) => {
+    const matches = collectElementsWithAttrSuffix(root, suffixes);
+    for (const match of matches) {
+      const text = sanitizeText(match.element.textContent);
+      if (text) return text;
+    }
+    return "";
+  };
+
+  const findTextBySelectors = (root, selectors) => {
+    if (!root || !selectors || !selectors.length) return "";
+    for (const selector of selectors) {
+      if (!selector) continue;
+      let element = null;
+      if (root.matches && root.matches(selector)) {
+        element = root;
+      } else if (root.querySelector) {
+        element = root.querySelector(selector);
+      }
+      if (!element) continue;
+      const text = sanitizeText(element.textContent);
+      if (text) return text;
+    }
+    return "";
+  };
+
+  const QUESTION_ATTR_SUFFIXES = ["-question", "-title", "-headline", "-label"];
+  const QUESTION_SELECTOR_CANDIDATES = [
+    "[data-question-title]",
+    "[data-question-text]",
+    "[data-question-heading]",
+    "[data-question-label]",
+    "[data-question]",
+    "h1",
+    "h2",
+    "h3",
+    ".text-wrapper-3",
+    ".text-wrapper-5",
+  ];
+
+  const resolveQuestionText = (contextElement) => {
+    const scopes = [];
+    if (contextElement) {
+      scopes.push(contextElement);
+      const ancestor =
+        contextElement.closest && contextElement.closest("[data-question-number]");
+      if (ancestor && ancestor !== contextElement) {
+        scopes.push(ancestor);
+      }
+    }
+    const defaultScope =
+      document.querySelector("[data-question-number]") ||
+      document.querySelector("[data-question]") ||
+      document.body;
+    if (defaultScope && !scopes.includes(defaultScope)) {
+      scopes.push(defaultScope);
+    }
+    if (!scopes.includes(document.body) && document.body) {
+      scopes.push(document.body);
+    }
+
+    for (const scope of scopes) {
+      const directText = findTextBySelectors(scope, QUESTION_SELECTOR_CANDIDATES);
+      if (directText) return directText;
+      const attrText = findTextByAttrSuffix(scope, QUESTION_ATTR_SUFFIXES);
+      if (attrText) return attrText;
+    }
+    return "";
+  };
+
+  const widgetMetadata = new WeakMap();
+
+  const deriveOptionLabel = (option) => {
+    if (!option) return "";
+    const LABEL_SELECTORS = [
+      "[data-option-label]",
+      ".option-label",
+      ".button-2",
+      ".text-wrapper-3",
+      "label",
+    ];
+    const directText = sanitizeText(option.textContent);
+    for (const selector of LABEL_SELECTORS) {
+      const target =
+        option.matches && option.matches(selector)
+          ? option
+          : option.querySelector
+          ? option.querySelector(selector)
+          : null;
+      if (!target) continue;
+      const text = sanitizeText(target.textContent);
+      if (text) return text;
+    }
+    return directText;
+  };
+
+  const analyzeWidget = (widget) => {
+    if (!widget) return null;
+    const cached = widgetMetadata.get(widget);
+    if (cached) return cached;
+
+    const metadata = {
+      widgetAttr: findDataAttributeBySuffix(widget, ["-widget"]),
+      optionAttr: findDataAttributeBySuffix(widget, ["-option"]),
+      questionText: resolveQuestionText(widget),
+      valueDisplayAttr: findDataAttributeBySuffix(widget, [
+        "-display",
+        "-value-label",
+        "-label",
+        "-indicator",
+        "-text",
+      ]),
+      inputElement: widget.querySelector
+        ? widget.querySelector("input, textarea, select")
+        : null,
+    };
+
+    if (metadata.valueDisplayAttr && widget.querySelector) {
+      metadata.valueDisplayElement = widget.querySelector(
+        `[${metadata.valueDisplayAttr}]`
+      );
+    } else {
+      metadata.valueDisplayElement = null;
+    }
+
+    widgetMetadata.set(widget, metadata);
+    return metadata;
+  };
+
+  const deriveWidgetAnswerText = (widget, metadata, rawValue) => {
+    if (!widget || !rawValue) return "";
+    metadata = metadata || analyzeWidget(widget);
+    const tokens = String(rawValue)
+      .split(",")
+      .map((token) => token.trim())
+      .filter(Boolean);
+
+    if (metadata && metadata.optionAttr && tokens.length) {
+      const labels = tokens
+        .map((token) => {
+          const selector = `[${metadata.optionAttr}="${safeCssEscape(token)}"]`;
+          const option = widget.querySelector ? widget.querySelector(selector) : null;
+          if (!option) return "";
+          return deriveOptionLabel(option);
+        })
+        .filter(Boolean);
+      if (labels.length) {
+        return labels.join(labels.length > 1 ? "، " : "");
+      }
+    }
+
+    if (metadata && metadata.inputElement) {
+      const value = sanitizeText(metadata.inputElement.value);
+      if (value) return value;
+    }
+
+    if (metadata && metadata.valueDisplayElement) {
+      const value = sanitizeText(metadata.valueDisplayElement.textContent);
+      if (value) return value;
+    }
+
+    if (tokens.length) {
+      return tokens.join(tokens.length > 1 ? "، " : "");
+    }
+
+    return sanitizeText(rawValue);
+  };
+
+  const computeResumePage = (questionNumber) => {
+    if (!Number.isFinite(questionNumber)) return null;
+    const targetPage = questionNumber + 2;
+    if (targetPage < 2) return 2;
+    if (targetPage > 49) return 49;
+    return targetPage;
+  };
+
+  const getPageInfo = (() => {
+    let cache = null;
+    return () => {
+      if (cache) return cache;
+      const filename = (window.location.pathname.split("/").pop() || "").toLowerCase();
+      const match = filename.match(/^(quize)(\d+)\.html$/i);
+      if (!match) {
+        cache = { pageId: null, pageNumber: null, questionNumber: null };
+        return cache;
+      }
+      const pageNumber = Number(match[2]);
+      cache = {
+        pageId: match[1].toLowerCase() + match[2],
+        pageNumber,
+        questionNumber:
+          Number.isFinite(pageNumber) && pageNumber > 1 ? pageNumber - 1 : 0,
+      };
+      return cache;
+    };
+  })();
+
+  const persistAnswer = (questionId, payload) => {
+    if (!questionId) return;
+    const pageInfo = getPageInfo();
+    updateQuizState((state) => {
+      const answers = { ...ensureAnswersObject(state.answers) };
+      const normalized = normalizeAnswerPayload(payload);
+      if (!normalized) {
+        delete answers[questionId];
+        return { ...state, answers };
+      }
+
+      const contextElement =
+        payload && payload.contextElement ? payload.contextElement : null;
+      const questionText =
+        normalized.questionText ||
+        resolveQuestionText(contextElement || null) ||
+        (answers[questionId] && answers[questionId].questionText) ||
+        "";
+      const metadata = contextElement ? analyzeWidget(contextElement) : null;
+      let answerText =
+        normalized.answerText ||
+        (contextElement
+          ? deriveWidgetAnswerText(contextElement, metadata, normalized.rawValue)
+          : null) ||
+        (Array.isArray(normalized.value)
+          ? normalized.value.join("، ")
+          : normalized.rawValue);
+      answerText = sanitizeText(answerText);
+
+      answers[questionId] = {
+        ...(answers[questionId] || {}),
+        ...normalized,
+        questionText,
+        answerText,
+        questionId,
+        questionNumber: pageInfo.questionNumber,
+        pageNumber: pageInfo.pageNumber,
+        updatedAt: new Date().toISOString(),
+      };
+
+      let nextState = {
+        ...state,
+        answers,
+        lastQuestion: Math.max(
+          Number(state.lastQuestion) || 0,
+          Number(pageInfo.questionNumber) || 0
+        ),
+      };
+
+      const resumePage = computeResumePage(pageInfo.questionNumber);
+      if (resumePage) {
+        const currentResume = Number(state.resumePage) || 0;
+        const nextResume = Math.max(currentResume, resumePage);
+        nextState = { ...nextState, resumePage: nextResume };
+        if (nextResume >= 49) {
+          nextState.quizCompleted = true;
+        }
+      }
+
+      return nextState;
+    });
+  };
+
+  const getLocationGender = () =>
+    normalizeGender(new URLSearchParams(window.location.search).get("gender"));
+
+  const ensureFemaleQueryParam = () => {
+    if (getLocationGender() === "female") return;
+    const storedGender = normalizeGender(readQuizState().gender);
+    if (storedGender !== "female") return;
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set("gender", "female");
+      window.history.replaceState({}, "", url.toString());
+    } catch (error) {
+      /* noop */
+    }
+  };
+
+  ensureFemaleQueryParam();
 
   const syncGenderQueryForLinks = () => {
-    if (queryGenderParam !== "female") return;
+    if (getLocationGender() !== "female") return;
 
     const shouldSkip = (href) => {
       if (!href) return true;
@@ -169,12 +579,53 @@
 
   syncGenderQueryForLinks();
 
+  const maybeResumeFromSavedState = () => {
+    const pageInfo = getPageInfo();
+    if (!pageInfo.pageNumber || pageInfo.pageNumber > 2) return;
+    const state = readQuizState();
+    const resumePage = Number(state.resumePage);
+    if (!resumePage || resumePage <= pageInfo.pageNumber) return;
+    if (resumePage < 2 || resumePage > 49) return;
+
+    const destination = new URL(`./quize${resumePage}.html`, window.location.href);
+    const preferredGender = getLocationGender() || normalizeGender(state.gender);
+    if (preferredGender === "female") {
+      destination.searchParams.set("gender", "female");
+    } else {
+      destination.searchParams.delete("gender");
+    }
+    window.location.replace(destination.toString());
+  };
+
+  maybeResumeFromSavedState();
+
+  const currentPageInfo = getPageInfo();
+  const currentQuestionId = currentPageInfo.pageId;
+
   const getActiveGender = (fallbackGender) =>
-    normalizeGender(pageSearchParams.get("gender")) ||
+    getLocationGender() ||
     normalizeGender(readQuizState().gender) ||
     normalizeGender(safeSession.get(GENDER_KEY)) ||
     normalizeGender(fallbackGender) ||
     null;
+
+  const runStepScripts = (stepName) => {
+    if (!stepName) return;
+    document.querySelectorAll(`[data-step-script="${stepName}"]`).forEach((script) => {
+      if (script.dataset.scriptExecuted === "true") return;
+      const code = script.textContent || "";
+      if (!code.trim()) {
+        script.dataset.scriptExecuted = "true";
+        return;
+      }
+      try {
+        new Function(code)();
+      } catch (error) {
+        console.error("Failed to run quiz step script:", stepName, error);
+      }
+      script.dataset.scriptExecuted = "true";
+    });
+  };
 
   const app = document.querySelector(".quiz-app");
   let setActiveStep = null;
@@ -188,6 +639,7 @@
       steps.forEach((step) => {
         step.setAttribute("aria-hidden", step === activeStep ? "false" : "true");
       });
+      runStepScripts(activeStep.dataset.step);
 
       setActiveStep = (name) => {
         if (!name) return;
@@ -213,9 +665,53 @@
         target.setAttribute("aria-hidden", "false");
         activeStep = target;
         app.setAttribute("data-active-step", name);
+        runStepScripts(name);
       };
     }
   }
+
+  const quizStepPattern = /^(quize\d+)\.html$/i;
+
+  const extractQuizStep = (value) => {
+    if (!value) return null;
+    let url;
+    try {
+      url = new URL(value, window.location.href);
+    } catch (error) {
+      return null;
+    }
+
+    const filename = (url.pathname.split("/").pop() || "").toLowerCase();
+    const match = filename.match(quizStepPattern);
+    return match ? match[1] : null;
+  };
+
+  const updateUrlSearchFromValue = (value) => {
+    if (!value) return;
+    let url;
+    try {
+      url = new URL(value, window.location.href);
+    } catch (error) {
+      return;
+    }
+
+    const current = new URL(window.location.href);
+    const nextSearch = url.search || "";
+    if (current.search === nextSearch) return;
+    current.search = nextSearch;
+    window.history.replaceState({}, "", current.toString());
+  };
+
+  const navigateWithinQuiz = (value) => {
+    if (!value || !setActiveStep) return false;
+    const targetStep = extractQuizStep(value);
+    if (!targetStep) return false;
+
+    updateUrlSearchFromValue(value);
+    syncGenderQueryForLinks();
+    setActiveStep(targetStep);
+    return true;
+  };
 
   if (setActiveStep) {
     document.querySelectorAll("[data-step-target]").forEach((trigger) => {
@@ -229,6 +725,17 @@
       });
     });
   }
+
+  document.addEventListener("click", (event) => {
+    if (!setActiveStep) return;
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+    if (link.target && link.target !== "_self") return;
+    const href = link.getAttribute("href");
+    if (navigateWithinQuiz(href)) {
+      event.preventDefault();
+    }
+  });
 
   document.querySelectorAll('[data-animate="pulse"]').forEach((button) => {
     const resetAnimation = () => button.classList.remove("is-animating");
@@ -255,11 +762,27 @@
             lastQuestion: Math.max(last, 1),
           };
         });
+        if (currentQuestionId) {
+          const questionText = resolveQuestionText(
+            button.closest("[data-question-number]") || button.closest(".frame-6")
+          );
+          const answerText = sanitizeText(button.textContent || "");
+          persistAnswer(currentQuestionId, {
+            answerKey: "gender",
+            rawValue: gender,
+            type: "single",
+            questionText,
+            answerText,
+            contextElement: button,
+          });
+        }
       }
 
       const nextUrl = button.dataset.nextUrl;
       if (nextUrl) {
-        window.location.assign(nextUrl);
+        if (!navigateWithinQuiz(nextUrl)) {
+          window.location.assign(nextUrl);
+        }
         return;
       }
 
@@ -349,11 +872,26 @@
       });
       safeSession.set(GENDER_KEY, gender);
 
+      if (currentQuestionId) {
+        const questionText = resolveQuestionText(quizNameForm);
+        persistAnswer(currentQuestionId, {
+          answerKey: "fullName",
+          rawValue: fullName,
+          type: "text",
+          questionText,
+          answerText: fullName,
+          contextElement: quizNameForm,
+        });
+      }
+
       const nextUrl =
         (submitButton && submitButton.dataset.nextUrl) || "./quize4.html";
       const destination = new URL(nextUrl, window.location.href);
       destination.searchParams.set("gender", gender);
-      window.location.assign(destination.toString());
+      const finalUrl = destination.toString();
+      if (!navigateWithinQuiz(finalUrl)) {
+        window.location.assign(finalUrl);
+      }
     };
 
     quizNameForm.addEventListener("submit", (event) => {
@@ -423,10 +961,30 @@
         });
         safeSession.set(GENDER_KEY, gender);
 
+        if (currentQuestionId) {
+          const questionText = resolveQuestionText(
+            button.closest("[data-question-number]") ||
+              button.closest("[data-age-card]") ||
+              document.body
+          );
+          const answerText = sanitizeText(button.textContent || value);
+          persistAnswer(currentQuestionId, {
+            answerKey: "ageRange",
+            rawValue: value,
+            type: "single",
+            questionText,
+            answerText,
+            contextElement: button,
+          });
+        }
+
         const nextUrl = button.dataset.nextUrl || "./quize5.html";
         const destination = new URL(nextUrl, window.location.href);
         destination.searchParams.set("gender", gender);
-        window.location.assign(destination.toString());
+        const finalUrl = destination.toString();
+        if (!navigateWithinQuiz(finalUrl)) {
+          window.location.assign(finalUrl);
+        }
       });
     });
   }
@@ -526,6 +1084,28 @@
         };
       });
       safeSession.set(GENDER_KEY, gender);
+
+      if (currentQuestionId) {
+        const questionText = resolveQuestionText(weightRoot);
+        const labelParts = [category?.label, category?.range]
+          .filter(Boolean)
+          .join(" - ");
+        const answerLabel = labelParts
+          ? `${value} كغ (${labelParts})`
+          : `${value} كغ`;
+        persistAnswer(currentQuestionId, {
+          answerKey: "weight",
+          rawValue: String(value),
+          type: "number",
+          questionText,
+          answerText: answerLabel,
+          contextElement: weightRoot,
+          meta: {
+            label: category?.label,
+            range: category?.range,
+          },
+        });
+      }
     };
 
     const setWeight = (value, { skipScroll = false } = {}) => {
@@ -624,8 +1204,173 @@
         const nextUrl = nextButton.dataset.nextUrl || "./quize6.html";
         const destination = new URL(nextUrl, window.location.href);
         destination.searchParams.set("gender", gender);
-        window.location.assign(destination.toString());
+        const finalUrl = destination.toString();
+        if (!navigateWithinQuiz(finalUrl)) {
+          window.location.assign(finalUrl);
+        }
       });
     }
   }
+  const connectHeightWidget = () => {
+    const widget = document.querySelector("[data-height-widget]");
+    if (!widget) return;
+    const output = widget.querySelector("[data-height-label]");
+    if (!output) return;
+
+    const syncHeight = () => {
+      const text = output.textContent || "";
+      const match = text.match(/(\d+)/);
+      if (!match) return;
+      widget.dataset.heightValue = match[1];
+    };
+
+    syncHeight();
+    const observer = new MutationObserver(syncHeight);
+    observer.observe(output, { childList: true, subtree: true, characterData: true });
+  };
+
+  const connectBodyfatWidget = () => {
+    const widget = document.querySelector("[data-bodyfat-widget]");
+    if (!widget) return;
+    const indicator = widget.querySelector("[data-bodyfat-indicator]");
+    const slider = widget.querySelector("[data-bodyfat-slider]");
+
+    const syncValue = (value) => {
+      if (!value) return;
+      widget.dataset.bodyfatValue = String(value);
+    };
+
+    if (slider) {
+      const handleSlider = () => syncValue(slider.value);
+      slider.addEventListener("input", handleSlider);
+      handleSlider();
+    }
+
+    if (indicator) {
+      const syncFromIndicator = () => {
+        const text = indicator.textContent || "";
+        const match = text.match(/(\d+)/);
+        if (!match) return;
+        syncValue(match[1]);
+      };
+      syncFromIndicator();
+      const observer = new MutationObserver(syncFromIndicator);
+      observer.observe(indicator, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    }
+  };
+
+  const connectContactWidget = () => {
+    const widget = document.querySelector("[data-contact-widget]");
+    if (!widget) return;
+    const input = widget.querySelector("[data-contact-input]");
+    if (!input) return;
+
+    const syncValue = () => {
+      widget.dataset.contactValue = input.value.trim();
+    };
+
+    input.addEventListener("input", syncValue);
+    syncValue();
+  };
+
+  const attachContactValidation = () => {
+    const widget = document.querySelector("[data-contact-widget]");
+    if (!widget) return;
+    const input = widget.querySelector("[data-contact-input]");
+    if (!input) return;
+    const actions = widget.querySelectorAll(".contact-actions .button, [data-contact-next]");
+    if (!actions.length) return;
+
+    const clearError = () => {
+      input.removeAttribute("aria-invalid");
+      input.classList.remove("has-error");
+    };
+
+    input.addEventListener("input", clearError);
+
+    const isEmail = input.type === "email";
+    const isPhone = input.type === "tel";
+
+    const isValidValue = (value) => {
+      if (!value) return false;
+      if (isEmail) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      }
+      if (isPhone) {
+        return /^\+?\d[\d\s]{6,}$/.test(value);
+      }
+      return Boolean(value);
+    };
+
+    const focusError = () => {
+      input.setAttribute("aria-invalid", "true");
+      input.classList.add("has-error");
+      input.focus();
+    };
+
+    actions.forEach((action) => {
+      action.addEventListener("click", (event) => {
+        const value = input.value.trim();
+        if (!isValidValue(value)) {
+          event.preventDefault();
+          focusError();
+        } else {
+          clearError();
+        }
+      });
+    });
+  };
+
+  const widgetObserverRegistry = new WeakSet();
+  const initWidgetAnswerObservers = () => {
+    if (!currentQuestionId) return;
+    const widgets = [];
+    document.querySelectorAll("*").forEach((element) => {
+      const hasWidgetAttribute = Array.from(element.attributes).some(
+        (attr) => attr.name.startsWith("data-") && attr.name.endsWith("-widget")
+      );
+      if (hasWidgetAttribute) {
+        widgets.push(element);
+      }
+    });
+
+    widgets.forEach((widget) => {
+      if (widgetObserverRegistry.has(widget)) return;
+      widgetObserverRegistry.add(widget);
+      const metadata = analyzeWidget(widget);
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          const attr = mutation.attributeName || "";
+          if (!attr.startsWith("data-")) return;
+          if (attr.endsWith("-widget")) return;
+          if (attr === "data-question-number") return;
+          const value = widget.getAttribute(attr) || "";
+          const answerKey = attributeNameToKey(attr);
+          const questionText =
+            (metadata && metadata.questionText) || resolveQuestionText(widget);
+          const answerText = deriveWidgetAnswerText(widget, metadata, value);
+          persistAnswer(currentQuestionId, {
+            answerKey,
+            rawValue: value,
+            type: value.includes(",") ? "multi-select" : "single",
+            sourceAttribute: attr,
+            questionText,
+            answerText,
+            contextElement: widget,
+          });
+        });
+      });
+      observer.observe(widget, { attributes: true });
+    });
+  };
+
+  initWidgetAnswerObservers();
+  connectHeightWidget();
+  connectBodyfatWidget();
+  connectContactWidget();
+  attachContactValidation();
 })();
