@@ -299,6 +299,7 @@
     "h1",
     "h2",
     "h3",
+    ".question-title",
     ".text-wrapper-3",
     ".text-wrapper-5",
   ];

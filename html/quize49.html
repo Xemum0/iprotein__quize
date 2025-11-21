@@ -223,18 +223,29 @@
             <a class="final-action final-action--primary" href="#" aria-label="تحميل الخطة PDF">
               تحميل الخطة PDF
             </a>
+            <button class="final-action final-action--secondary" type="button" data-plan-regenerate>
+              إعادة توليد الخطة
+            </button>
           </div>
         </section>
       </main>
     </div>
     <script>
       (() => {
-        const API_URL = "https://iprteinquize-production.up.railway.app/api/v1/plan";
+        const DEFAULT_PLAN_API = "https://iprteinquize-production.up.railway.app";
+        const API_BASE = (window.IPROTEIN_PLAN_API || DEFAULT_PLAN_API).replace(/\/$/, "");
+        const API_URL = `${API_BASE}/api/v1/plan`;
         const STORAGE_KEY = "iproteinQuizState";
+        const PLAN_CACHE_KEY = "iproteinPlanCache";
+        const CACHE_TTL_MS = 3 * 24 * 60 * 60 * 1000; // 3 days
+
         const root = document.querySelector("[data-plan-root]");
         if (!root) return;
 
         const statusEl = root.querySelector("[data-plan-status]");
+        const regenerateButton = root.querySelector("[data-plan-regenerate]");
+        let isLoading = false;
+
         const setStatus = (message, tone = "info") => {
           if (!statusEl) return;
           statusEl.textContent = message || "";
@@ -247,7 +258,7 @@
           try {
             const parsed = JSON.parse(raw);
             return parsed && typeof parsed === "object" ? parsed : {};
-          } catch (error) {
+          } catch {
             return {};
           }
         };
@@ -255,7 +266,7 @@
         const readState = () => {
           try {
             return safeParse(window.localStorage.getItem(STORAGE_KEY));
-          } catch (error) {
+          } catch {
             return {};
           }
         };
@@ -263,8 +274,8 @@
         const writeState = (state) => {
           try {
             window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state || {}));
-          } catch (error) {
-            /* ignore persistence issues */
+          } catch {
+            /* noop */
           }
         };
 
@@ -272,8 +283,8 @@
           if (window.crypto && typeof window.crypto.randomUUID === "function") {
             try {
               return window.crypto.randomUUID();
-            } catch (error) {
-              /* ignore and fallback */
+            } catch {
+              /* ignore */
             }
           }
           return `session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -282,8 +293,7 @@
         const ensureSessionId = (state) => {
           if (state.sessionId) return state.sessionId;
           const sessionId = generateSessionId();
-          const nextState = { ...state, sessionId };
-          writeState(nextState);
+          writeState({ ...state, sessionId });
           return sessionId;
         };
 
@@ -303,9 +313,83 @@
           return payload;
         };
 
+        const hashAnswers = (answers) => {
+          try {
+            const sorted = Object.keys(answers || {})
+              .sort()
+              .map((key) => {
+                const value = answers[key];
+                return [key, value ? value.rawValue ?? value.answerText ?? "" : ""];
+              });
+            return JSON.stringify(sorted);
+          } catch {
+            return "";
+          }
+        };
+
+        const readPlanCache = (sessionId, gender, answersHash) => {
+          try {
+            const raw = window.localStorage.getItem(PLAN_CACHE_KEY);
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            if (!parsed || typeof parsed !== "object") return null;
+            if (parsed.meta?.sessionId !== sessionId || parsed.meta?.gender !== gender) {
+              return null;
+            }
+             if (parsed.meta?.answersHash && parsed.meta.answersHash !== answersHash) {
+              return null;
+            }
+            if (parsed.meta?.expiresAt) {
+              const expires = new Date(parsed.meta.expiresAt).getTime();
+              if (Number.isFinite(expires) && Date.now() > expires) {
+                window.localStorage.removeItem(PLAN_CACHE_KEY);
+                return null;
+              }
+            }
+            return parsed.data || null;
+          } catch {
+            return null;
+          }
+        };
+
+        const cachePlan = (data, sessionId, gender, answersHash) => {
+          try {
+            const payload = {
+              data,
+              meta: {
+                sessionId,
+                gender,
+                answersHash,
+                expiresAt: new Date(Date.now() + CACHE_TTL_MS).toISOString(),
+              },
+            };
+            window.localStorage.setItem(PLAN_CACHE_KEY, JSON.stringify(payload));
+          } catch {
+            /* ignore */
+          }
+        };
+
+        const clearPlanCache = () => {
+          try {
+            window.localStorage.removeItem(PLAN_CACHE_KEY);
+          } catch {
+            /* noop */
+          }
+        };
+
         const formatCalories = (value, suffix = "سعرة") => {
           if (value == null || value === "") return "--";
           return `${value} ${suffix}`;
+        };
+
+        const escapeHTML = (value) => {
+          if (value == null) return "";
+          return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
         };
 
         const formatMacro = (macro) => {
@@ -322,65 +406,62 @@
           }
         };
 
+        const renderExerciseItem = (exercise) => {
+          const name = escapeHTML(exercise.name || "تمرين");
+          const note = escapeHTML(
+            exercise.note ||
+              "سيتم تحديث تفاصيل التمرين بناءً على الخطة النهائية."
+          );
+          const sets = escapeHTML(exercise.sets || "--");
+          return `
+            <li class="exercise-card">
+              <p class="exercise-name">${name}</p>
+              <span class="exercise-meta">${sets}</span>
+              <p class="exercise-note">${note}</p>
+            </li>
+          `;
+        };
+
+        const renderWorkoutDay = (day, index) => {
+          const label =
+            day.dayName ||
+            (day.dayNumber ? `اليوم ${day.dayNumber}` : `اليوم ${index + 1}`);
+          const safeLabel = escapeHTML(label);
+          const title = escapeHTML(day.title || "جلسة تدريب");
+          const duration = escapeHTML(day.duration || "");
+          const exercises = Array.isArray(day.exercises) ? day.exercises : [];
+          const exercisesMarkup = exercises.length
+            ? exercises.map(renderExerciseItem).join("")
+            : renderExerciseItem({});
+
+          return `
+            <article class="workout-day">
+              <div class="workout-day-header">
+                <div>
+                  <p class="workout-day-meta">${safeLabel}</p>
+                  <h3>${title}</h3>
+                </div>
+                <span class="chip chip--ghost">${duration}</span>
+              </div>
+              <ul class="exercise-list">
+                ${exercisesMarkup}
+              </ul>
+            </article>
+          `;
+        };
+
         const populateWorkout = (schedule = []) => {
           const container = root.querySelector("[data-workout-list]");
           if (!container) return;
-          container.innerHTML = "";
           if (!Array.isArray(schedule) || !schedule.length) {
-            container.innerHTML = '<p class="plan-description">لم تزودنا المنصة بأي تمارين بعد.</p>';
+            container.innerHTML =
+              '<p class="plan-description">لم تزودنا المنصة بأي تمارين بعد.</p>';
             return;
           }
 
-          schedule.forEach((day) => {
-            const article = document.createElement("article");
-            article.className = "workout-day";
-
-            const header = document.createElement("div");
-            header.className = "workout-day-header";
-
-            const metaWrap = document.createElement("div");
-            const meta = document.createElement("p");
-            meta.className = "workout-day-meta";
-            const dayLabel = day.dayName || `اليوم ${day.dayNumber || ""}`.trim();
-            meta.textContent = dayLabel;
-            const title = document.createElement("h3");
-            title.textContent = day.title || "جلسة تدريب";
-            metaWrap.appendChild(meta);
-            metaWrap.appendChild(title);
-
-            const duration = document.createElement("span");
-            duration.className = "chip chip--ghost";
-            duration.textContent = day.duration || "";
-
-            header.appendChild(metaWrap);
-            header.appendChild(duration);
-
-            const exercisesList = document.createElement("ul");
-            exercisesList.className = "exercise-list";
-            (day.exercises || []).forEach((exercise) => {
-              const item = document.createElement("li");
-              item.className = "exercise-card";
-              const info = document.createElement("div");
-              const name = document.createElement("p");
-              name.className = "exercise-name";
-              name.textContent = exercise.name || "";
-              const note = document.createElement("p");
-              note.className = "exercise-note";
-              note.textContent = exercise.note || "";
-              info.appendChild(name);
-              info.appendChild(note);
-              const metaSpan = document.createElement("span");
-              metaSpan.className = "exercise-meta";
-              metaSpan.textContent = exercise.sets || "";
-              item.appendChild(info);
-              item.appendChild(metaSpan);
-              exercisesList.appendChild(item);
-            });
-
-            article.appendChild(header);
-            article.appendChild(exercisesList);
-            container.appendChild(article);
-          });
+          container.innerHTML = schedule
+            .map((day, index) => renderWorkoutDay(day, index))
+            .join("");
         };
 
         const populateMeals = (meals = []) => {
@@ -487,7 +568,10 @@
             dailyCalories != null ? `${dailyCalories} سعر حراري` : "--"
           );
 
-          updateText("[data-readiness-score]", user.readinessScore != null ? `${user.readinessScore}%` : "--");
+          updateText(
+            "[data-readiness-score]",
+            user.readinessScore != null ? `${user.readinessScore}%` : "--"
+          );
           const readinessCaption =
             user.readinessScore != null && user.readinessScore >= 80
               ? "جاهزية عالية للتنفيذ"
@@ -533,7 +617,10 @@
           updateText("[data-macro-carb]", formatMacro(macros.carbs));
           updateText("[data-macro-protein]", formatMacro(macros.protein));
           updateText("[data-macro-calories]", formatCalories(macros.totalCalories));
-          updateText("[data-calorie-total]", macros.totalCalories ?? dailyCalories ?? "--");
+          updateText(
+            "[data-calorie-total]",
+            macros.totalCalories ?? dailyCalories ?? "--"
+          );
 
           const macroOrder = ["fat", "carbs", "protein"];
           let offset = 0;
@@ -570,35 +657,70 @@
             ? "female"
             : "male";
 
+        const answersHash = hashAnswers(answersPayload);
+
         const payload = {
           sessionId,
           gender,
           answers: answersPayload,
         };
 
-        setStatus("نقوم بتحليل إجاباتك وإعداد الخطة...");
-
-        fetch(API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`تعذر الحصول على الخطة (الحالة ${response.status})`);
+        const fetchPlan = ({ forceRefresh = false } = {}) => {
+          if (!forceRefresh) {
+            const cached = readPlanCache(sessionId, gender, answersHash);
+            if (cached) {
+              populatePlan(cached);
+              setStatus("");
+              return Promise.resolve();
             }
-            return response.json();
+          }
+
+          setStatus("نقوم بتحليل إجاباتك وإعداد الخطة...");
+          isLoading = true;
+          if (regenerateButton) {
+            regenerateButton.disabled = true;
+          }
+
+          return fetch(API_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
           })
-          .then((data) => {
-            populatePlan(data || {});
-            setStatus("");
-          })
-          .catch((error) => {
-            console.error("Plan request failed:", error);
-            setStatus("حدث خطأ أثناء تحميل خطتك. يرجى المحاولة لاحقاً.", "error");
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`تعذر الحصول على الخطة (الحالة ${response.status})`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              cachePlan(data || {}, sessionId, gender, answersHash);
+              populatePlan(data || {});
+              setStatus("");
+            })
+            .catch((error) => {
+              console.error("Plan request failed:", error);
+              setStatus("حدث خطأ أثناء تحميل خطتك. يرجى المحاولة لاحقاً.", "error");
+            })
+            .finally(() => {
+              isLoading = false;
+              if (regenerateButton) {
+                regenerateButton.disabled = false;
+              }
+            });
+        };
+
+        if (regenerateButton) {
+          regenerateButton.addEventListener("click", () => {
+            if (isLoading) return;
+            clearPlanCache();
+            setStatus("نعيد توليد خطتك باستخدام أحدث إجاباتك...");
+            fetchPlan({ forceRefresh: true });
           });
+        }
+
+        fetchPlan();
       })();
     </script>
     <script>
