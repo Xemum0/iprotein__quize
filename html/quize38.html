@@ -268,7 +268,7 @@
 
         const params = new URLSearchParams(window.location.search);
         const genderParam = (params.get("gender") || "").toLowerCase();
-        const gender = genderParam === "male" ? "male" : "female";
+        const gender = genderParam === "female" ? "female" : "male";
 
         const questionCopy = {
           female: "أين تفضلين التمرين؟",

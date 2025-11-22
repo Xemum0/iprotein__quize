@@ -323,7 +323,7 @@
 
         const params = new URLSearchParams(window.location.search);
         const genderParam = (params.get("gender") || "").toLowerCase();
-        const normalizedGender = genderParam === "male" ? "male" : "female";
+        const normalizedGender = genderParam === "female" ? "female" : "male";
 
         const copy = {
           female: {

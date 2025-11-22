@@ -274,14 +274,15 @@
         const genderLinks = document.querySelectorAll("[data-fatigue-gender-link]");
 
         const params = new URLSearchParams(window.location.search);
-        const gender = (params.get("gender") || "").toLowerCase();
+        const genderParam = (params.get("gender") || "").toLowerCase();
+        const gender = genderParam === "female" ? "female" : "male";
 
         const applyGenderToLink = (link) => {
           if (!link) return;
           const href = link.getAttribute("href");
           if (!href) return;
           const url = new URL(href, window.location.href);
-          url.searchParams.set("gender", gender || "female");
+          url.searchParams.set("gender", gender);
           link.setAttribute("href", `${url.pathname}${url.search}${url.hash}`);
         };
 
