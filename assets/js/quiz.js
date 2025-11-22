@@ -643,9 +643,9 @@
       runStepScripts(activeStep.dataset.step);
 
       setActiveStep = (name) => {
-        if (!name) return;
+        if (!name) return false;
         const target = steps.find((step) => step.dataset.step === name);
-        if (!target || target === activeStep) return;
+        if (!target || target === activeStep) return false;
 
         const prefersReducedMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
@@ -667,6 +667,7 @@
         activeStep = target;
         app.setAttribute("data-active-step", name);
         runStepScripts(name);
+        return true;
       };
     }
   }
@@ -708,9 +709,11 @@
     const targetStep = extractQuizStep(value);
     if (!targetStep) return false;
 
+    const navigated = setActiveStep(targetStep);
+    if (!navigated) return false;
+
     updateUrlSearchFromValue(value);
     syncGenderQueryForLinks();
-    setActiveStep(targetStep);
     return true;
   };
 
@@ -1286,6 +1289,24 @@
     const actions = widget.querySelectorAll(".contact-actions .button, [data-contact-next]");
     if (!actions.length) return;
 
+    const phoneRegion = (input.dataset.phoneRegion || "").toLowerCase();
+
+    const normalizePhone = (value) =>
+      (value || "").replace(/[\s\-()]/g, "").trim();
+
+    const isIraqPhoneNumber = (value) => {
+      if (!value) return false;
+      let normalized = normalizePhone(value);
+      if (!normalized) return false;
+      if (normalized.startsWith("00")) {
+        normalized = `+${normalized.slice(2)}`;
+      }
+      if (/^\+9647\d{9}$/.test(normalized)) return true;
+      if (/^9647\d{9}$/.test(normalized)) return true;
+      if (/^07\d{9}$/.test(normalized)) return true;
+      return false;
+    };
+
     const clearError = () => {
       input.removeAttribute("aria-invalid");
       input.classList.remove("has-error");
@@ -1302,6 +1323,9 @@
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       }
       if (isPhone) {
+        if (phoneRegion === "iq") {
+          return isIraqPhoneNumber(value);
+        }
         return /^\+?\d[\d\s]{6,}$/.test(value);
       }
       return Boolean(value);
