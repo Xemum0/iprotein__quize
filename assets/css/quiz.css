@@ -839,6 +839,23 @@ a {
 @media (max-width: 768px) {
   .AI-coach-quiz .header {
     padding: 20px 16px;
+    margin-bottom: 20px;
+  }
+
+  .AI-coach-quiz .frame {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .AI-coach-quiz .logo-wrapper {
+    min-width: 0;
+  }
+
+  .AI-coach-quiz .logo {
+    max-width: clamp(160px, 50vw, 220px);
+    height: auto;
   }
 
   .AI-coach-quiz .frame-2 {
@@ -1099,15 +1116,16 @@ a {
   --node-size: 32px;
   --progress-color: var(--primitives-colors-primary-primary-500-p);
   --node-muted-color: #dfe4e2;
+  --progress-padding-top: 0px;
   position: relative;
   width: 100%;
-  padding-top: 0;
+  padding-top: var(--progress-padding-top);
   padding-bottom: 16px;
 }
 
 .AI-coach-quiz-2 .progress-line {
   position: absolute;
-  top: calc(var(--node-size) / 2);
+  top: calc(var(--progress-padding-top) + (var(--node-size) / 2));
   left: 0;
   right: 0;
   height: 10px;
@@ -1390,16 +1408,45 @@ a {
 }
 
 @media (max-width: 768px) {
+  .AI-coach-quiz-2 .header {
+    margin-bottom: 20px;
+  }
+
+  .AI-coach-quiz-2 .frame {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .AI-coach-quiz-2 .logo-wrapper {
+    min-width: 0;
+  }
+
+  .AI-coach-quiz-2 .logo {
+    max-width: clamp(160px, 50vw, 220px);
+    height: auto;
+  }
+
   .AI-coach-quiz-2 .frame-4 {
-    flex-direction: column;
-    align-items: flex-end;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
     gap: 8px;
+    width: 100%;
+  }
+
+  .AI-coach-quiz-2 .frame-4 .text-wrapper,
+  .AI-coach-quiz-2 .frame-4 .text-wrapper-2 {
+    white-space: nowrap;
+    font-size: clamp(14px, 4vw, 18px);
   }
 }
 
 @media (max-width: 640px) {
   .AI-coach-quiz-2 .progress-bar {
-    padding-top: 24px;
+    --progress-padding-top: 24px;
   }
 
   .AI-coach-quiz-2 .progress-node-label {
@@ -1761,6 +1808,11 @@ a {
   border-radius: 12px;
 }
 
+.age-option-card .button-2 {
+  font-size: clamp(14px, 4vw, 16px);
+  white-space: nowrap;
+}
+
 @media (max-width: 1200px) {
   .age-option-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1773,7 +1825,8 @@ a {
   }
 
   .age-option-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 }
 
@@ -1836,7 +1889,7 @@ a {
   justify-content: center;
   gap: 24px;
   direction: ltr;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
 }
 
@@ -1900,9 +1953,9 @@ a {
 }
 
 .weight-scale-value {
-  flex: 0 0 90px;
-  height: 90px;
-  font-size: 40px;
+  flex: 0 0 80px;
+  height: 80px;
+  font-size: 34px;
   font-weight: 600;
   color: #999;
   display: inline-flex;
@@ -1965,20 +2018,30 @@ a {
 
 @media (max-width: 768px) {
   .weight-scale {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 8px;
   }
 
   .weight-scale-btn {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
+    font-size: 28px;
   }
 
   .weight-scale-box {
     width: 100%;
+    min-height: 104px;
   }
 
   .weight-scale-strip {
-    padding: 0 24px;
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .weight-scale-value {
+    flex: 0 0 60px;
+    height: 60px;
+    font-size: 26px;
   }
 
   .weight-question-actions {

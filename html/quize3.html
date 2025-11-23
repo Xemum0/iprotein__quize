@@ -58,14 +58,68 @@
 
       @media (max-width: 768px) {
         .quiz-name-floating-figure {
-          position: static;
-          width: min(140px, 50vw);
-          margin: 0 auto 24px;
+          grid-area: figure;
+          position: relative;
+          width: 100%;
+          max-width: none;
+          margin: 0;
+          justify-self: stretch;
+          align-self: flex-start;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
           z-index: 1;
         }
 
+        .quiz-name-screen .frame-2 {
+          display: grid;
+          grid-template-areas:
+            "progress progress"
+            "figure section";
+          grid-template-columns: minmax(160px, 44vw) 1fr;
+          gap: 12px;
+          padding-inline-start: 0; /* let figure touch right edge */
+          padding-inline-end: 16px;
+          align-items: start;
+        }
+
+        .quiz-name-screen .frame-3 {
+          grid-area: progress;
+        }
+
+        .quiz-name-screen .quiz-name-section {
+          grid-area: section;
+          padding-top: 0;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .quiz-name-screen .quiz-name-content {
+          width: 100%;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 16px;
+          flex-wrap: nowrap;
+        }
+
+        .quiz-name-screen .frame-6 {
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .quiz-name-screen .quiz-name-figure {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        .quiz-name-screen .quiz-name-section .text-wrapper-3 {
+          text-align: right;
+          width: 100%;
+        }
+
         .quiz-name-section {
-          padding-top: 16px;
+          padding-top: 0;
         }
       }
     </style>

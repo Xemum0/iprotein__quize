@@ -268,18 +268,42 @@
 
       @media (max-width: 768px) {
         .height-selector {
-          padding: 24px 16px;
+          padding: 20px 12px;
         }
 
         .height-selector .height-wrapper {
-          flex-direction: column;
-          --height-gap: 16px;
+          flex-direction: row-reverse;
+          flex-wrap: nowrap;
+          align-items: flex-start;
+          justify-content: space-between;
+          --height-gap: 12px;
         }
 
         .height-selector .person-box {
-          width: 220px;
-          height: 360px;
+          width: 180px;
+          height: 320px;
           --line-extension: 0px;
+        }
+
+        .height-selector .scale-column {
+          align-items: center;
+          gap: 12px;
+        }
+
+        .height-selector .scale {
+          width: 140px;
+          height: 300px;
+        }
+
+        .height-selector .btn {
+          width: 52px;
+          height: 52px;
+          font-size: 32px;
+        }
+
+        .height-selector .person-box img {
+          object-position: bottom center;
+          transform: translateY(6px);
         }
       }
     </style>
