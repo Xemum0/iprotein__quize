@@ -134,6 +134,40 @@
         height: auto;
         object-fit: contain;
       }
+
+      @media (max-width: 768px) {
+        .commitment-scale {
+          gap: 16px;
+          width: 100%;
+        }
+
+        .commitment-icons,
+        .commitment-numbers {
+          width: 100%;
+          gap: 4px;
+          transform: scale(1);
+        }
+
+        .commitment-icon img {
+          width: 34px;
+          height: 34px;
+        }
+
+        .commitment-number {
+          width: 44px;
+          height: 44px;
+          font-size: 0.9rem;
+        }
+
+        .commitment-figure {
+          position: static;
+          width: 140px;
+          order: 3;
+          margin-top: 12px;
+          transform: none;
+          align-self: center;
+        }
+      }
     </style>
   </head>
   <body>

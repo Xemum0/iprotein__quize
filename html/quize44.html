@@ -163,6 +163,24 @@
       height: auto;
       object-fit: contain;
     }
+
+    @media (max-width: 768px) {
+      .supplements-layout {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .supplements-figure {
+        order: -1;
+        padding: 0 12px 12px;
+      }
+
+      .supplements-figure img {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+    }
   </style>
 </head>
 

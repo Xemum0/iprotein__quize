@@ -37,6 +37,27 @@
         z-index: 1;
       }
 
+      .input-error {
+        display: none;
+        background: var(--primitives-colors-error-error-100, #fcdede);
+        color: var(--primitives-colors-error-error-600, #c10b11);
+        border: 1px solid var(--primitives-colors-error-error-600, #c10b11);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        direction: rtl;
+        text-align: right;
+      }
+
+      .input-error.is-visible {
+        display: block;
+      }
+
+      .form-control.is-error {
+        border-color: var(--primitives-colors-error-error-600, #c10b11);
+        box-shadow: 0 0 0 1px rgba(193, 11, 17, 0.15);
+      }
+
       .quiz-name-content {
         justify-content: center;
         align-items: center;
@@ -235,6 +256,7 @@
                   </div>
                 </div>
               </div>
+              <div class="input-error" data-name-error aria-live="polite" hidden></div>
               <button
                 class="button"
                 type="submit"
@@ -258,6 +280,46 @@
         </div>
       </div>
     </div>
+    <script>
+      (() => {
+        const form = document.querySelector("[data-name-step]");
+        if (!form) return;
+        const input = form.querySelector('input[name="fullName"]');
+        const errorEl = form.querySelector("[data-name-error]");
+        const control = form.querySelector(".form-control");
+
+        const showError = (message) => {
+          if (errorEl) {
+            errorEl.textContent = message;
+            errorEl.hidden = false;
+            errorEl.classList.add("is-visible");
+          }
+          control?.classList.add("is-error");
+        };
+
+        const clearError = () => {
+          if (errorEl) {
+            errorEl.hidden = true;
+            errorEl.classList.remove("is-visible");
+            errorEl.textContent = "";
+          }
+          control?.classList.remove("is-error");
+        };
+
+        form.addEventListener("submit", (e) => {
+          const value = (input?.value || "").trim();
+          if (!value) {
+            e.preventDefault();
+            showError("يرجى إدخال اسمك للمتابعة.");
+            input?.focus();
+          } else {
+            clearError();
+          }
+        });
+
+        input?.addEventListener("input", () => clearError());
+      })();
+    </script>
     <script src="../assets/js/quiz.js"></script>
   </body>
 </html>

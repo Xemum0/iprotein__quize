@@ -119,6 +119,27 @@
       .contact-actions .button {
         width: min(320px, 100%);
       }
+
+      .input-error {
+        display: none;
+        background: var(--primitives-colors-error-error-100, #fcdede);
+        color: var(--primitives-colors-error-error-600, #c10b11);
+        border: 1px solid var(--primitives-colors-error-error-600, #c10b11);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        direction: rtl;
+        text-align: right;
+      }
+
+      .input-error.is-visible {
+        display: block;
+      }
+
+      .form-control.is-error {
+        border-color: var(--primitives-colors-error-error-600, #c10b11);
+        box-shadow: 0 0 0 1px rgba(193, 11, 17, 0.12);
+      }
     </style>
   </head>
   <body>
@@ -214,6 +235,7 @@
                 </div>
               </div>
             </div>
+            <div class="input-error" data-contact-error aria-live="polite" hidden></div>
             <div class="contact-actions">
               <a
                 class="button"
@@ -251,6 +273,46 @@
           link.setAttribute("href", `${url.pathname}${url.search}${url.hash}`);
         };
         document.querySelectorAll("[data-contact-gender-link]").forEach(applyGender);
+
+        const widget = document.querySelector("[data-contact-widget]");
+        if (!widget) return;
+        const input = widget.querySelector("[data-contact-input]");
+        const errorEl = widget.querySelector("[data-contact-error]");
+        const control = widget.querySelector(".form-control");
+        const nextLink = widget.querySelector("[data-contact-gender-link]");
+
+        const emailValid = (value) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
+
+        const showError = (msg) => {
+          if (errorEl) {
+            errorEl.textContent = msg;
+            errorEl.hidden = false;
+            errorEl.classList.add("is-visible");
+          }
+          control?.classList.add("is-error");
+        };
+
+        const clearError = () => {
+          if (errorEl) {
+            errorEl.hidden = true;
+            errorEl.classList.remove("is-visible");
+            errorEl.textContent = "";
+          }
+          control?.classList.remove("is-error");
+        };
+
+        nextLink?.addEventListener("click", (e) => {
+          const value = (input?.value || "").trim();
+          if (!emailValid(value)) {
+            e.preventDefault();
+            showError("يرجى إدخال بريد إلكتروني صالح للمتابعة.");
+            input?.focus();
+          } else {
+            clearError();
+          }
+        });
+
+        input?.addEventListener("input", clearError);
       })();
     </script>
     <script src="../assets/js/quiz.js"></script>
