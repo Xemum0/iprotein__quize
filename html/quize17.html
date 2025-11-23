@@ -107,6 +107,35 @@
       .meal-actions .button {
         width: min(320px, 100%);
       }
+
+      @media (max-width: 768px) {
+        .meal-options {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+          justify-items: center;
+        }
+
+        .meal-option {
+          width: 100%;
+          max-width: 220px;
+          height: 260px;
+        }
+
+        .meal-option:last-child {
+          grid-column: 1 / -1;
+          justify-self: center;
+        }
+
+        .meal-option img {
+          width: 90%;
+          height: 180px;
+        }
+
+        .meal-option-label {
+          font-size: 1rem;
+        }
+      }
     </style>
   </head>
   <body>
