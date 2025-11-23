@@ -2049,6 +2049,42 @@ a {
   }
 }
 
+/* Mobile: show figure before form */
+@media (max-width: 768px) {
+  .supplement-layout,
+  .sleep-layout,
+  .breakfast-layout,
+  .meal-layout,
+  .snack-layout,
+  .sweets-layout,
+  .sugar-layout,
+  .training-layout,
+  .intensity-layout,
+  .energy-layout,
+  .barrier-layout,
+  .meal-style-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .supplement-figure,
+  .sleep-figure,
+  .breakfast-figure,
+  .meal-figure,
+  .snack-figure,
+  .sweets-figure,
+  .sugar-figure,
+  .training-figure,
+  .intensity-figure,
+  .energy-figure,
+  .barrier-figure,
+  .meal-style-figure {
+    order: -1;
+    align-self: center;
+    width: 100%;
+  }
+}
+
 /* == final plan screen == */
 .quiz-final-screen {
   background: var(--primitives-colors-white-white-50-w);
