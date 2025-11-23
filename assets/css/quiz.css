@@ -2069,6 +2069,9 @@ a {
   gap: clamp(24px, 4vw, 60px);
   align-items: center;
 }
+.final-overview--classic {
+  display: block;
+}
 
 .final-summary h1 {
   margin: 0 0 12px;
