@@ -322,6 +322,14 @@
         display: none;
       }
 
+      .plan-block--nutrition.is-collapsed .workout-collapse-toggle img {
+        transform: rotate(180deg);
+      }
+
+      .plan-block--nutrition.is-collapsed [data-nutrition-content] {
+        display: none;
+      }
+
       .final-overview-layout {
         display: flex;
         flex-direction: column;
@@ -631,6 +639,493 @@
         }
       }
 
+      /* Nutrition plan redesign */
+      .nutrition-plan-s {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 24px;
+        padding: 32px;
+        position: relative;
+        background-color: var(--primitives-colors-white-white-50-w);
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid var(--primitives-colors-primary-primary-500-p);
+        direction: rtl;
+        text-align: right;
+      }
+
+      .nutrition-plan-s .frame {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        padding: 8px 0px;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+      }
+
+      .nutrition-plan-s .remix-icons-line {
+        position: relative;
+        width: 36px;
+        height: 36px;
+      }
+
+      .nutrition-plan-s .button {
+        position: relative;
+        flex: 1;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-semibold-36-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-semibold-36-font-weight);
+        color: var(--primitives-colors-primary-primary-500-p);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-semibold-36-font-size);
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-semibold-36-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-semibold-36-line-height);
+        direction: rtl;
+        font-style: var(--typography-family-IBM-plex-sans-arabic-semibold-36-font-style);
+      }
+
+      .nutrition-plan-s .masked-icon {
+        display: flex;
+        width: 64px;
+        height: 64px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 2px 0px;
+        position: relative;
+        background-color: var(--primitives-colors-primary-primary-100);
+        border-radius: 50px;
+        aspect-ratio: 1;
+      }
+
+      .nutrition-plan-s .svgexport {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        aspect-ratio: 1;
+      }
+
+      .nutrition-plan-s .div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 20px;
+        padding: 32px;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+        background-color: #f3fbf8;
+        border-radius: 24px;
+        overflow: hidden;
+        direction: rtl;
+      }
+
+      .nutrition-plan-s .text-wrapper {
+        position: relative;
+        width: fit-content;
+        margin-top: -1px;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-semibold-26-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-semibold-26-font-weight);
+        color: var(--primitives-colors-primary-primary-500-p);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-semibold-26-font-size);
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-semibold-26-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-semibold-26-line-height);
+        direction: rtl;
+        font-style: var(--typography-family-IBM-plex-sans-arabic-semibold-26-font-style);
+      }
+
+      .nutrition-plan-s .frame-2 {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 24px;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+      }
+
+      .nutrition-plan-s .frame-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 16px;
+        position: relative;
+        flex: 1;
+        flex-grow: 1;
+        min-width: 320px;
+      }
+
+      .nutrition-plan-s .frame-4 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+        flex-direction: row-reverse;
+      }
+
+      .nutrition-plan-s .frame-5 {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .nutrition-plan-s .text-wrapper-2 {
+        position: relative;
+        width: fit-content;
+        margin-top: -1px;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-semibold-16-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-semibold-16-font-weight);
+        color: var(--primitives-colors-primary-primary-950);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-semibold-16-font-size);
+        text-align: center;
+        direction: rtl;
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-semibold-16-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-semibold-16-line-height);
+        font-style: var(--typography-family-IBM-plex-sans-arabic-semibold-16-font-style);
+      }
+
+      .nutrition-plan-s .ellipse {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        background-color: var(--primitives-colors-primary-primary-200);
+        border-radius: 8px;
+        aspect-ratio: 1;
+      }
+
+      .nutrition-plan-s .ellipse-2 {
+        background-color: var(--primitives-colors-primary-primary-400);
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border-radius: 8px;
+        aspect-ratio: 1;
+      }
+
+      .nutrition-plan-s .ellipse-3 {
+        background-color: var(--primitives-colors-primary-primary-500-p);
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border-radius: 8px;
+        aspect-ratio: 1;
+      }
+
+      .nutrition-plan-s .ellipse-5 {
+        background-color: var(--primitives-colors-secondary-secondary-500-s);
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border-radius: 8px;
+        aspect-ratio: 1;
+      }
+
+      .nutrition-plan-s .frame-6 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+      }
+
+      .nutrition-plan-s .macro-meter {
+        position: relative;
+        width: 100%;
+        height: 12px;
+        background-color: var(--primitives-colors-primary-primary-200);
+        border-radius: 16px;
+        overflow: hidden;
+        direction: rtl;
+      }
+
+      .nutrition-plan-s .macro-meter-bar {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        border-radius: 16px;
+        width: var(--size, 0%);
+        right: var(--offset, 0%);
+        transition: width 0.3s ease, right 0.3s ease;
+      }
+
+      .nutrition-plan-s .macro-meter-bar--fat {
+        background-color: var(--primitives-colors-primary-primary-200);
+      }
+
+      .nutrition-plan-s .macro-meter-bar--carbs {
+        background-color: var(--primitives-colors-primary-primary-400);
+      }
+
+      .nutrition-plan-s .macro-meter-bar--protein {
+        background-color: var(--primitives-colors-primary-primary-500-p);
+      }
+
+      .nutrition-plan-s .frame-10 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+        gap: 8px;
+        padding: 0 40px;
+        flex-direction: row-reverse;
+      }
+
+      .nutrition-plan-s .text-wrapper-3 {
+        position: relative;
+        width: fit-content;
+        margin-top: -1px;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-semibold-16-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-semibold-16-font-weight);
+        color: var(--primitives-colors-primary-primary-950);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-semibold-16-font-size);
+        text-align: center;
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-semibold-16-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-semibold-16-line-height);
+        font-style: var(--typography-family-IBM-plex-sans-arabic-semibold-16-font-style);
+      }
+
+      .nutrition-plan-s .frame-11 {
+        display: flex;
+        flex-direction: column;
+        width: 160px;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 8px;
+        background: var(--primitives-colors-white-white-50-w);
+        border: 1px solid var(--primitives-colors-primary-primary-200);
+        border-radius: 20px;
+      }
+
+      .nutrition-plan-s .calorie-circle {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--primitives-colors-primary-primary-500-p) 0deg,
+          var(--primitives-colors-primary-primary-500-p) 120deg,
+          var(--primitives-colors-primary-primary-400) 240deg,
+          var(--primitives-colors-primary-primary-200) 360deg
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nutrition-plan-s .calorie-circle::after {
+        content: "";
+        position: absolute;
+        inset: 12px;
+        border-radius: 50%;
+        background: var(--primitives-colors-white-white-50-w);
+      }
+
+      .nutrition-plan-s .calorie-circle-inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .nutrition-plan-s .element {
+        position: relative;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-semibold-14-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-semibold-14-font-weight);
+        color: var(--primitives-colors-primary-primary-500-p);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-semibold-14-font-size);
+        text-align: center;
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-semibold-14-letter-spacing);
+        line-height: 1.5;
+        font-style: var(--typography-family-IBM-plex-sans-arabic-semibold-14-font-style);
+      }
+
+      .nutrition-plan-s .element span {
+        display: block;
+        font-size: 22px;
+        color: var(--primitives-colors-primary-primary-950);
+      }
+
+      .nutrition-plan-s .frame-12 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        position: relative;
+        flex: 0 0 auto;
+        width: 100%;
+      }
+
+      .nutrition-plan-s .plan-card {
+        display: flex;
+        width: 100%;
+        min-height: 148px;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        padding: 20px 24px;
+        position: relative;
+        background-color: var(--primitives-colors-white-white-50-w);
+        border-radius: 24px;
+        border: 1px solid;
+        border-color: var(--primitives-colors-primary-primary-500-p);
+      }
+
+      .nutrition-plan-s .frame-13 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
+        position: relative;
+        flex: 1;
+        flex-grow: 1;
+      }
+
+      .nutrition-plan-s .frame-14 {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+        flex-wrap: wrap;
+      }
+
+      .nutrition-plan-s .frame-15 {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .nutrition-plan-s .text-wrapper-4 {
+        position: relative;
+        width: 100%;
+        margin-top: -1px;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-medium-20-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-medium-20-font-weight);
+        color: var(--primitives-colors-primary-primary-950);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-medium-20-font-size);
+        direction: rtl;
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-medium-20-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-medium-20-line-height);
+        font-style: var(--typography-family-IBM-plex-sans-arabic-medium-20-font-style);
+        text-align: right;
+      }
+
+      .nutrition-plan-s .remix-icons-line-2 {
+        position: relative;
+        width: 24px;
+        height: 24px;
+      }
+
+      .nutrition-plan-s .text-wrapper-5 {
+        position: relative;
+        width: fit-content;
+        margin-top: -1px;
+        font-family: var(--typography-family-IBM-plex-sans-arabic-semibold-20-font-family);
+        font-weight: var(--typography-family-IBM-plex-sans-arabic-semibold-20-font-weight);
+        color: var(--primitives-colors-primary-primary-950);
+        font-size: var(--typography-family-IBM-plex-sans-arabic-semibold-20-font-size);
+        letter-spacing: var(--typography-family-IBM-plex-sans-arabic-semibold-20-letter-spacing);
+        line-height: var(--typography-family-IBM-plex-sans-arabic-semibold-20-line-height);
+        direction: rtl;
+        font-style: var(--typography-family-IBM-plex-sans-arabic-semibold-20-font-style);
+      }
+
+      .nutrition-plan-s .frame-16 {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        position: relative;
+        align-self: stretch;
+        width: 100%;
+        flex: 0 0 auto;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+      }
+
+      .nutrition-plan-s .frame-17 {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        position: relative;
+        flex: 0 0 auto;
+        margin-top: -4px;
+        margin-bottom: -4px;
+      }
+
+      .nutrition-plan-s .plan-card-thumb {
+        position: relative;
+        align-self: stretch;
+        width: 140px;
+        height: 140px;
+        border-radius: 16px;
+        background-color: var(--primitives-colors-primary-primary-100);
+        background-size: cover;
+        background-position: 50% 50%;
+        flex-shrink: 0;
+      }
+
+      .nutrition-plan-s .plan-card-thumb.plan-card-thumb--placeholder {
+        background-image: url("../assets/images/meal.svg");
+        background-repeat: no-repeat;
+        background-size: 70%;
+        background-position: center;
+        filter: saturate(0.75);
+      }
+
+      @media (max-width: 900px) {
+        .nutrition-plan-s {
+          padding: 24px;
+        }
+
+        .nutrition-plan-s .frame-10 {
+          justify-content: space-between;
+        }
+
+        .nutrition-plan-s .plan-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nutrition-plan-s .plan-card-thumb {
+          width: 100%;
+          height: 180px;
+        }
+      }
+
       /* Reduce header-to-content spacing on the final screen */
       .quiz-final-screen .header {
         margin-bottom: clamp(8px, 2vw, 18px);
@@ -833,60 +1328,67 @@
         <section class="plan-block plan-block--nutrition">
           <header class="plan-block-header">
             <div>
-              <p class="section-eyebrow">خطة التغذية</p>
-              <h2 data-nutrition-heading>توزيع يومي للسعرات الخاصة بك</h2>
-              <p class="plan-description" data-macro-label>
-                التزم بترتيب الوجبات لضمان شعور الشبع وتحقيق نسبة البروتين اليومية.
-              </p>
+              <div class="workout-title">
+                <img class="workout-title-icon" src="../assets/images/eatingplan.svg" alt="" />
+                <h2>خطة التغذية</h2>
+              </div>
             </div>
-            <span class="chip chip--accent" data-macro-chip>--</span>
+            <div class="workout-header-actions">
+              <button
+                class="workout-collapse-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-label="طي خطة التغذية"
+                data-nutrition-collapse
+              >
+                <img src="../assets/images/down.svg" alt="" />
+              </button>
+            </div>
           </header>
-          <div class="nutrition-summary">
-            <div class="macro-breakdown">
-              <div class="macro-item">
-                <div>
-                  <span class="macro-dot macro-dot--fat" aria-hidden="true"></span>
-                  الدهون
+          <div class="nutrition-plan-s" data-nutrition-content>
+            <div class="div">
+              <div class="text-wrapper" data-nutrition-heading>توزيع المغذيات الكبرى</div>
+              <div class="frame-2">
+                <div class="frame-3">
+                  <div class="frame-4">
+                    <div class="frame-5">
+                      <div class="text-wrapper-2">الدهون: <span data-macro-fat-grams>--</span></div>
+                      <div class="ellipse" aria-hidden="true"></div>
+                    </div>
+                    <div class="frame-5">
+                      <div class="text-wrapper-2">الكربوهيدرات: <span data-macro-carb-grams>--</span></div>
+                      <div class="ellipse-2" aria-hidden="true"></div>
+                    </div>
+                    <div class="frame-5">
+                      <div class="text-wrapper-2">البروتين: <span data-macro-protein-grams>--</span></div>
+                      <div class="ellipse-3" aria-hidden="true"></div>
+                    </div>
+                  </div>
+                  <div class="frame-6">
+                    <div class="macro-meter">
+                      <span class="macro-meter-bar macro-meter-bar--fat" data-macro-bar="fat"></span>
+                      <span class="macro-meter-bar macro-meter-bar--carbs" data-macro-bar="carbs"></span>
+                      <span class="macro-meter-bar macro-meter-bar--protein" data-macro-bar="protein"></span>
+                    </div>
+                  </div>
+                  <div class="frame-10">
+                    <div class="text-wrapper-3" data-macro-fat-percentage>--</div>
+                    <div class="text-wrapper-3" data-macro-carb-percentage>--</div>
+                    <div class="text-wrapper-3" data-macro-protein-percentage>--</div>
+                  </div>
                 </div>
-                <strong data-macro-fat>--</strong>
-              </div>
-              <div class="macro-item">
-                <div>
-                  <span class="macro-dot macro-dot--carb" aria-hidden="true"></span>
-                  الكربوهيدرات
+                <div class="frame-11">
+                  <div class="calorie-circle">
+                    <div class="calorie-circle-inner">
+                      <div class="element"><span data-calorie-total>--</span><br />سعر حراري</div>
+                    </div>
+                  </div>
                 </div>
-                <strong data-macro-carb>--</strong>
               </div>
-              <div class="macro-item">
-                <div>
-                  <span class="macro-dot macro-dot--protein" aria-hidden="true"></span>
-                  البروتين
-                </div>
-                <strong data-macro-protein>--</strong>
-              </div>
-              <div class="macro-item">
-                <div>
-                  <span class="macro-dot macro-dot--cal" aria-hidden="true"></span>
-                  السعرات
-                </div>
-                <strong data-macro-calories>--</strong>
-              </div>
-              <div class="macro-bar">
-                <span class="macro-bar-fill" data-macro-bar="fat" style="--size: 0%; --offset: 0%; background: #bcdcce"></span>
-                <span class="macro-bar-fill" data-macro-bar="carbs" style="--size: 0%; --offset: 0%; background: #79b99d"></span>
-                <span class="macro-bar-fill" data-macro-bar="protein" style="--size: 0%; --offset: 0%; background: #294e3e"></span>
+              <div class="frame-12" data-meal-list>
+                <p class="plan-description">سيتم تحميل خطة الوجبات بناءً على بياناتك...</p>
               </div>
             </div>
-            <div class="calorie-ring">
-              <div class="calorie-ring-inner">
-                <p>إجمالي اليوم</p>
-                <strong data-calorie-total>--</strong>
-                <span>سعرة حرارية</span>
-              </div>
-            </div>
-          </div>
-          <div class="meal-grid" data-meal-list>
-            <p class="plan-description">سيتم تحميل خطة الوجبات بناءً على بياناتك...</p>
           </div>
         </section>
 
@@ -905,19 +1407,17 @@
         </section>
 
         <section class="plan-block final-cta">
-          <div>
-            <p class="section-eyebrow">الخطوة الأخيرة</p>
-            <h2>فعّل التذكيرات واحتفظ بالخطة</h2>
-            <p class="plan-description">أرسل الخطة إلى واتسابك أو حمّل نسخة PDF للرجوع إليها أثناء المتابعة.</p>
-          </div>
           <div class="final-actions">
-            <a class="final-action final-action--ghost" href="#" aria-label="إرسال الخطة عبر واتساب">
-              إرسال على الواتساب
-            </a>
             <a class="final-action final-action--primary" href="#" aria-label="تحميل الخطة PDF">
+              <img class="final-action__icon" src="../assets/images/download.svg" alt="" aria-hidden="true" />
               تحميل الخطة PDF
             </a>
+            <a class="final-action final-action--ghost" href="#" aria-label="إرسال الخطة عبر واتساب">
+              <img class="final-action__icon" src="../assets/images/whatsapp.svg" alt="" aria-hidden="true" />
+              إرسال على الواتساب
+            </a>
             <button class="final-action final-action--secondary" type="button" data-plan-regenerate>
+              <img class="final-action__icon" src="../assets/images/regenerate.svg" alt="" aria-hidden="true" />
               إعادة توليد الخطة
             </button>
           </div>
@@ -1244,11 +1744,14 @@
             .replace(/'/g, "&#39;");
         };
 
-        const formatMacro = (macro) => {
-          if (!macro || typeof macro !== "object") return "--";
-          const grams = macro.grams != null ? macro.grams : "--";
-          const percentage = macro.percentage != null ? macro.percentage : "--";
-          return `${grams} جم · ${percentage}%`;
+        const formatMacroGrams = (macro) => {
+          if (!macro || typeof macro !== "object" || macro.grams == null) return "--";
+          return `${macro.grams} جرام`;
+        };
+
+        const formatMacroPercentage = (macro) => {
+          if (!macro || typeof macro !== "object" || macro.percentage == null) return "--";
+          return `${macro.percentage}%`;
         };
 
         const updateText = (selector, value) => {
@@ -1360,6 +1863,30 @@
           });
         };
 
+        const initNutritionCollapse = () => {
+          const block = root.querySelector(".plan-block--nutrition");
+          if (!block) return;
+          const toggle = block.querySelector("[data-nutrition-collapse]");
+          const content = block.querySelector("[data-nutrition-content]");
+          if (!toggle || !content) return;
+
+          const setState = (expanded) => {
+            toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+            toggle.setAttribute(
+              "aria-label",
+              expanded ? "طي خطة التغذية" : "فتح خطة التغذية"
+            );
+            block.classList.toggle("is-collapsed", !expanded);
+            content.style.display = expanded ? "" : "none";
+          };
+
+          setState(true);
+          toggle.addEventListener("click", () => {
+            const expanded = toggle.getAttribute("aria-expanded") !== "true";
+            setState(expanded);
+          });
+        };
+
         const populateMeals = (meals = []) => {
           const container = root.querySelector("[data-meal-list]");
           if (!container) return;
@@ -1370,41 +1897,83 @@
             return;
           }
 
+          const resolveImage = (meal) =>
+            meal?.image || meal?.imageUrl || meal?.photo || meal?.thumbnail || "";
+
           meals.forEach((meal) => {
             const card = document.createElement("article");
-            card.className = "meal-card";
+            card.className = "plan-card";
+
+            const content = document.createElement("div");
+            content.className = "frame-13";
+
             const header = document.createElement("div");
-            const time = document.createElement("p");
-            time.className = "section-eyebrow";
-            time.textContent = meal.time || "";
-            const title = document.createElement("h3");
+            header.className = "frame-14";
+
+            const timeWrap = document.createElement("div");
+            timeWrap.className = "frame-15";
+
+            const time = document.createElement("div");
+            time.className = "text-wrapper-4";
+            time.textContent = meal.time || "وقت غير محدد";
+
+            const timeIcon = document.createElement("img");
+            timeIcon.className = "remix-icons-line-2";
+            timeIcon.src = "../assets/images/question45/timer.svg";
+            timeIcon.alt = "";
+
+            timeWrap.appendChild(time);
+            timeWrap.appendChild(timeIcon);
+
+            const title = document.createElement("div");
+            title.className = "text-wrapper-5";
             title.textContent = meal.name || "وجبة";
-            header.appendChild(time);
+
+            header.appendChild(timeWrap);
             header.appendChild(title);
 
-            const list = document.createElement("ul");
+            const statsRow = document.createElement("div");
+            statsRow.className = "frame-16";
+
             const stats = [
-              { label: "الدهون", key: "fat" },
-              { label: "الكربوهيدرات", key: "carbs" },
-              { label: "البروتين", key: "protein" },
-              { label: "السعرات", key: "calories" },
+              { label: "الدهون", key: "fat", className: "ellipse" },
+              { label: "الكربوهيدرات", key: "carbs", className: "ellipse-2" },
+              { label: "البروتين", key: "protein", className: "ellipse-3" },
+              { label: "السعرات", key: "calories", className: "ellipse-5" },
             ];
+
             stats.forEach((stat) => {
-              const li = document.createElement("li");
-              const strong = document.createElement("strong");
-              strong.textContent = `${stat.label}:`;
-              li.appendChild(strong);
-              const value = document.createTextNode(
-                ` ${meal[stat.key] != null ? meal[stat.key] : "--"}${
-                  stat.key === "calories" ? "" : " جم"
-                }`
-              );
-              li.appendChild(value);
-              list.appendChild(li);
+              const row = document.createElement("div");
+              row.className = "frame-17";
+
+              const text = document.createElement("div");
+              text.className = "text-wrapper-2";
+              const value = meal[stat.key] != null ? meal[stat.key] : "--";
+              const unit = stat.key === "calories" ? " سعر حراري" : " جرام";
+              text.textContent = `${stat.label}: ${value}${unit}`;
+
+              const dot = document.createElement("div");
+              dot.className = stat.className;
+
+              row.appendChild(text);
+              row.appendChild(dot);
+              statsRow.appendChild(row);
             });
 
-            card.appendChild(header);
-            card.appendChild(list);
+            content.appendChild(header);
+            content.appendChild(statsRow);
+
+            const thumb = document.createElement("div");
+            thumb.className = "plan-card-thumb";
+            const image = resolveImage(meal);
+            if (image) {
+              thumb.style.backgroundImage = `url(${encodeURI(image)})`;
+            } else {
+              thumb.classList.add("plan-card-thumb--placeholder");
+            }
+
+            card.appendChild(content);
+            card.appendChild(thumb);
             container.appendChild(card);
           });
         };
@@ -1491,26 +2060,15 @@
             "[data-nutrition-heading]",
             dailyCalories != null
               ? `توزيع يومي لـ ${dailyCalories} سعرة حرارية`
-              : "توزيع يومي للسعرات الخاصة بك"
+              : "توزيع المغذيات الكبرى"
           );
-          updateText("[data-macro-label]", macros.macroLabel || "");
-
-          const macroChip = root.querySelector("[data-macro-chip]");
-          if (macroChip) {
-            const fat = macros.fat?.percentage ?? "--";
-            const carbs = macros.carbs?.percentage ?? "--";
-            const protein = macros.protein?.percentage ?? "--";
-            macroChip.textContent = `${protein}% بروتين · ${carbs}% كارب · ${fat}% دهون`;
-          }
-
-          updateText("[data-macro-fat]", formatMacro(macros.fat));
-          updateText("[data-macro-carb]", formatMacro(macros.carbs));
-          updateText("[data-macro-protein]", formatMacro(macros.protein));
-          updateText("[data-macro-calories]", formatCalories(macros.totalCalories));
-          updateText(
-            "[data-calorie-total]",
-            macros.totalCalories ?? dailyCalories ?? "--"
-          );
+          updateText("[data-macro-fat-grams]", formatMacroGrams(macros.fat));
+          updateText("[data-macro-carb-grams]", formatMacroGrams(macros.carbs));
+          updateText("[data-macro-protein-grams]", formatMacroGrams(macros.protein));
+          updateText("[data-macro-fat-percentage]", formatMacroPercentage(macros.fat));
+          updateText("[data-macro-carb-percentage]", formatMacroPercentage(macros.carbs));
+          updateText("[data-macro-protein-percentage]", formatMacroPercentage(macros.protein));
+          updateText("[data-calorie-total]", macros.totalCalories ?? dailyCalories ?? "--");
 
           const macroOrder = ["fat", "carbs", "protein"];
           let offset = 0;
@@ -1522,9 +2080,6 @@
               info && typeof info.percentage === "number" ? info.percentage : 0;
             el.style.setProperty("--size", `${percentage}%`);
             el.style.setProperty("--offset", `${offset}%`);
-            if (info && info.color) {
-              el.style.setProperty("background", info.color);
-            }
             offset += percentage;
           });
 
@@ -1535,6 +2090,7 @@
 
         const state = readState();
         initWorkoutCollapse();
+        initNutritionCollapse();
         const answersPayload = buildAnswersPayload(state.answers || {});
         if (!Object.keys(answersPayload).length) {
           setStatus("لم نعثر على إجابات محفوظة. يرجى إعادة الاختبار.", "error");

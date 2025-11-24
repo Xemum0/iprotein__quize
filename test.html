@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>بطاقات المنتجات</title>
+  <style>
+    /* ===== Design Tokens & Typography Variables ===== */
+    :root {
+      /* Typography */
+      --typography-family-IBM-plex-sans-arabic-semibold-14-font-family: "IBM Plex Sans Arabic", Helvetica;
+      --typography-family-IBM-plex-sans-arabic-semibold-14-font-weight: 600;
+      --typography-family-IBM-plex-sans-arabic-semibold-14-font-size: 14px;
+      --typography-family-IBM-plex-sans-arabic-semibold-14-letter-spacing: 0px;
+      --typography-family-IBM-plex-sans-arabic-semibold-14-line-height: normal;
+      --typography-family-IBM-plex-sans-arabic-semibold-14-font-style: normal;
+
+      --typography-family-IBM-plex-sans-arabic-bold-24-font-family: "IBM Plex Sans Arabic", Helvetica;
+      --typography-family-IBM-plex-sans-arabic-bold-24-font-weight: 700;
+      --typography-family-IBM-plex-sans-arabic-bold-24-font-size: 24px;
+      --typography-family-IBM-plex-sans-arabic-bold-24-letter-spacing: 0px;
+      --typography-family-IBM-plex-sans-arabic-bold-24-line-height: normal;
+      --typography-family-IBM-plex-sans-arabic-bold-24-font-style: normal;
+
+      --typography-family-IBM-plex-sans-arabic-regular-18-font-family: "IBM Plex Sans Arabic", Helvetica;
+      --typography-family-IBM-plex-sans-arabic-regular-18-font-weight: 400;
+      --typography-family-IBM-plex-sans-arabic-regular-18-font-size: 18px;
+      --typography-family-IBM-plex-sans-arabic-regular-18-letter-spacing: 0px;
+      --typography-family-IBM-plex-sans-arabic-regular-18-line-height: normal;
+      --typography-family-IBM-plex-sans-arabic-regular-18-font-style: normal;
+
+      --typography-family-IBM-plex-sans-arabic-semibold-18-font-family: "IBM Plex Sans Arabic", Helvetica;
+      --typography-family-IBM-plex-sans-arabic-semibold-18-font-weight: 600;
+      --typography-family-IBM-plex-sans-arabic-semibold-18-font-size: 18px;
+      --typography-family-IBM-plex-sans-arabic-semibold-18-letter-spacing: 0px;
+      --typography-family-IBM-plex-sans-arabic-semibold-18-line-height: normal;
+      --typography-family-IBM-plex-sans-arabic-semibold-18-font-style: normal;
+
+      --new-folder-title-md-font-family: "IBM Plex Sans Arabic", Helvetica;
+      --new-folder-title-md-font-weight: 500;
+      --new-folder-title-md-font-size: 14px;
+      --new-folder-title-md-letter-spacing: 0px;
+      --new-folder-title-md-line-height: normal;
+      --new-folder-title-md-font-style: normal;
+
+      --typography-family-IBM-plex-sans-arabic-bold-20-font-family: "IBM Plex Sans Arabic", Helvetica;
+      --typography-family-IBM-plex-sans-arabic-bold-20-font-weight: 700;
+      --typography-family-IBM-plex-sans-arabic-bold-20-font-size: 20px;
+      --typography-family-IBM-plex-sans-arabic-bold-20-letter-spacing: 0px;
+      --typography-family-IBM-plex-sans-arabic-bold-20-line-height: normal;
+      --typography-family-IBM-plex-sans-arabic-bold-20-font-style: normal;
+
+      --typography-family-IBM-plex-sans-arabic-medium-18-font-family: "IBM Plex Sans Arabic", Helvetica;
+      --typography-family-IBM-plex-sans-arabic-medium-18-font-weight: 500;
+      --typography-family-IBM-plex-sans-arabic-medium-18-font-size: 18px;
+      --typography-family-IBM-plex-sans-arabic-medium-18-letter-spacing: 0px;
+      --typography-family-IBM-plex-sans-arabic-medium-18-line-height: normal;
+      --typography-family-IBM-plex-sans-arabic-medium-18-font-style: normal;
+
+      --typography-family-IBM-plex-sans-arabic-medium-14-font-family: "IBM Plex Sans Arabic", Helvetica;
+      --typography-family-IBM-plex-sans-arabic-medium-14-font-weight: 500;
+      --typography-family-IBM-plex-sans-arabic-medium-14-font-size: 14px;
+      --typography-family-IBM-plex-sans-arabic-medium-14-letter-spacing: 0px;
+      --typography-family-IBM-plex-sans-arabic-medium-14-line-height: normal;
+      --typography-family-IBM-plex-sans-arabic-medium-14-font-style: normal;
+
+      /* Colors */
+      --primitives-colors-secondary-secondary-700: rgba(138, 142, 11, 1);
+      --primitives-colors-primary-primary-500-p: rgba(41, 78, 62, 1);
+      --primitives-colors-white-white-50-w: rgba(255, 255, 255, 1);
+      --primitives-colors-natural-natural-500-n: rgba(143, 143, 143, 1);
+      --primitives-colors-error-error-500-e: rgba(244, 62, 68, 1);
+      --primitives-colors-secondary-secondary-500-s: rgba(230, 237, 20, 1);
+      --primitives-colors-primary-primary-50: rgba(238, 246, 243, 1);
+    }
+
+    /* ===== Layout & Components ===== */
+    .frame {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 24px;
+      padding: 8px;
+      overflow: hidden;
+      font-family: "IBM Plex Sans Arabic", Helvetica, sans-serif;
+    }
+
+    .product-card-wrapper { display: inline-flex; flex-direction: column; }
+
+    .product-card {
+      width: 330px;
+      border: 1px solid var(--primitives-colors-natural-natural-500-n);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .image-container {
+      height: 294px;
+      padding: 16px;
+      background: linear-gradient(0deg, #fff 0%, #fff 100%), var(--primitives-colors-white-white-50-w);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 10px;
+      position: relative;
+    }
+
+    .image-container > div:first-child { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+    .div-2 { display: inline-flex; align-items: center; gap: 8px; }
+
+    .action-buttons {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+    }
+
+    .remix-icons-line { width: 26.67px; height: 26.67px; }
+
+    .chip, .chip-2 {
+      min-width: 32px; height: 36px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .chip  { background: var(--primitives-colors-secondary-secondary-500-s); color: var(--primitives-colors-secondary-secondary-700); }
+    .chip-2 { background: var(--primitives-colors-error-error-500-e); color: #fff; }
+
+    .product-info {
+      padding: 16px;
+      background: var(--primitives-colors-primary-primary-50);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-end;
+    }
+
+    .product-name {
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--primitives-colors-primary-primary-500-p);
+      margin: 0;
+    }
+
+    .div-5 {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .product-name-2 { font-size: 18px; margin: 0; color: var(--primitives-colors-primary-primary-500-p); }
+    .product-name-3 { font-weight: 600; font-size: 18px; color: var(--primitives-colors-primary-primary-500-p); }
+
+    .rating-count {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primitives-colors-primary-primary-500-p);
+    }
+
+    .current-price {
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--primitives-colors-primary-primary-500-p);
+    }
+
+    .original-price {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primitives-colors-natural-natural-500-n);
+      text-decoration: line-through;
+    }
+
+    .button {
+      all: unset;
+      box-sizing: border-box;
+      height: 52px;
+      background: var(--primitives-colors-primary-primary-500-p);
+      color: #fff;
+      font-weight: 500;
+      font-size: 18px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Simple placeholder images */
+    .placeholder-img {
+      width: 100%;
+      height: 100%;
+      background: #e0e0e0;
+      background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame" dir="rtl">
+    <!-- Card 1 -->
+    <div class="product-card-wrapper">
+      <div class="product-card">
+        <div class="image-container">
+          <div>
+            <div class="div-2">
+              <div class="action-buttons"><img class="remix-icons-line" src="assets/images/bag.svg" alt="cart"></div>
+              <div class="action-buttons"><img class="remix-icons-line" src="assets/images/heart.svg" alt="heart"></div>
+            </div>
+            <div><div class="chip"><div>الأكثر مبيعا</div></div></div>
+          </div>
+          <div class="placeholder-img">
+            <!-- <img src="assets/images/whey.jpg" alt=""> -->
+          </div>
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">كويست نيوترشن بروتين شيبس</div>
+            <div>
+              <div class="div-5"><div class="product-name-2">سكوب واحد (30 كغ)</div><div class="product-name-3">الجرعة:</div><img class="full-star-icon" src="https://via.placeholder.com/24" alt="star"></div>
+              <div class="div-5"><p class="product-name-2">بعد التمرين أو حسب الحاجة</p><div class="product-name-3">التكرار:</div><img class="full-star-icon" src="https://via.placeholder.com/24" alt="star"></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;justify-content:space-between;width:100%;">
+            <div class="rating-count">4.8 (200)</div>
+            <div class="current-price">120.00 د.ع</div>
+          </div>
+          <button class="button">اشتري الان</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- You can duplicate the blocks above for the other two cards -->
+  </div>
+</body>
+</html>
