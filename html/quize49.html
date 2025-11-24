@@ -88,6 +88,240 @@
         gap: 12px;
       }
 
+      .workout-schedule {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 12px;
+      }
+
+      .workout-day-card {
+        background: #9bcab6;
+        border: 1px solid #9bcab6;
+        border-radius: 24px;
+        padding: 18px 18px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+      }
+
+      .workout-card-header {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .workout-card-header-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        justify-content: flex-start;
+      }
+
+      .workout-card-header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      .workout-card-chip {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 12px;
+      }
+
+      .workout-card-day {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .workout-card-day-name {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primitives-colors-primary-primary-950);
+      }
+
+      .workout-card-day-index {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--primitives-colors-white-white-50-w);
+        color: var(--primitives-colors-primary-primary-950);
+        font-weight: 700;
+        border: 1px solid #cfe2da;
+      }
+
+      .workout-card-duration {
+        color: var(--primitives-colors-primary-primary-500-p);
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .workout-card-body {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .workout-card-title {
+        margin: 0;
+        font-weight: 700;
+        color: var(--primitives-colors-primary-primary-950);
+        text-align: right;
+      }
+
+      .exercise-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .exercise-entry {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        background: #f0f471;
+        border-radius: 16px;
+        direction: ltr;
+      }
+
+      .exercise-entry-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .exercise-meta-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 116px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.06);
+        color: var(--primitives-colors-primary-primary-950);
+        font-weight: 700;
+        text-align: center;
+        direction: rtl;
+      }
+
+      .exercise-meta-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        display: inline-block;
+      }
+
+      .exercise-entry-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+        text-align: right;
+        flex: 1;
+      }
+
+
+      .exercise-entry-title {
+        margin: 0;
+        font-weight: 700;
+        color: var(--primitives-colors-primary-primary-950);
+      }
+
+      .exercise-entry-note {
+        margin: 0;
+        color: var(--primitives-colors-natural-natural-500-n);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 720px) {
+        .workout-card-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .workout-card-header-right {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .exercise-entry {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .exercise-entry-meta {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .exercise-entry-copy {
+          width: 100%;
+        }
+      }
+
+      .workout-header-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .workout-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .workout-title-icon {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+      }
+
+      .workout-collapse-toggle {
+        border: 1px solid #cfe2da;
+        background: var(--primitives-colors-white-white-50-w);
+        border-radius: 12px;
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+
+      .workout-collapse-toggle img {
+        width: 20px;
+        height: 20px;
+        transform: rotate(0deg);
+        transition: transform 0.2s ease;
+      }
+
+      .plan-block--workout.is-collapsed .workout-collapse-toggle img {
+        transform: rotate(180deg);
+      }
+
+      .plan-block--workout.is-collapsed [data-workout-list] {
+        display: none;
+      }
+
       .final-overview-layout {
         display: flex;
         flex-direction: column;
@@ -396,6 +630,16 @@
           height: 280px;
         }
       }
+
+      /* Reduce header-to-content spacing on the final screen */
+      .quiz-final-screen .header {
+        margin-bottom: clamp(8px, 2vw, 18px);
+        padding: 16px clamp(16px, 6vw, 100px);
+      }
+
+      .quiz-final-screen .quiz-final-content {
+        padding-top: clamp(12px, 3vw, 28px);
+      }
     </style>
   </head>
   <body>
@@ -563,13 +807,23 @@
         <section class="plan-block plan-block--workout">
           <header class="plan-block-header">
             <div>
-              <p class="section-eyebrow">خطة التمرين</p>
-              <h2 data-workout-title>حصص مصممة خصيصًا لهدفك</h2>
-              <p class="plan-description" data-workout-description>
-                ابدأ بقوة، ركّز على التحكم في السرعة، وتابع الملاحظات تحت كل تمرين.
-              </p>
+              
+              <div class="workout-title">
+                <img class="workout-title-icon" src="../assets/images/muscle.svg" alt="" />
+                <h2>خطة التمرين</h2>
+              </div>
             </div>
-            <span class="chip chip--primary">جاهز للتنفيذ</span>
+            <div class="workout-header-actions">
+              <button
+                class="workout-collapse-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-label="طي خطة التمرين"
+                data-workout-collapse
+              >
+                <img src="../assets/images/down.svg" alt="" />
+              </button>
+            </div>
           </header>
           <div class="workout-schedule" data-workout-list>
             <p class="plan-description">سنقوم بتحميل جدول التمارين بناءً على إجاباتك...</p>
@@ -1012,11 +1266,15 @@
           );
           const sets = escapeHTML(exercise.sets || "--");
           return `
-            <li class="exercise-card">
-              <p class="exercise-name">${name}</p>
-              <span class="exercise-meta">${sets}</span>
-              <p class="exercise-note">${note}</p>
-            </li>
+            <article class="exercise-entry">
+              <div class="exercise-entry-meta">
+                <span class="exercise-meta-badge">${sets}</span>
+              </div>
+              <div class="exercise-entry-copy">
+                <h3 class="exercise-entry-title">${name}</h3>
+                <p class="exercise-entry-note">${note}</p>
+              </div>
+            </article>
           `;
         };
 
@@ -1025,25 +1283,42 @@
             day.dayName ||
             (day.dayNumber ? `اليوم ${day.dayNumber}` : `اليوم ${index + 1}`);
           const safeLabel = escapeHTML(label);
-          const title = escapeHTML(day.title || "جلسة تدريب");
-          const duration = escapeHTML(day.duration || "");
+          const title = escapeHTML(day.title || "");
+          const duration = escapeHTML(day.duration || "--");
           const exercises = Array.isArray(day.exercises) ? day.exercises : [];
           const exercisesMarkup = exercises.length
             ? exercises.map(renderExerciseItem).join("")
             : renderExerciseItem({});
+          const typeLabel = escapeHTML(day.type || day.focus || title || "جلسة تدريب");
+          const displayNumber = escapeHTML(
+            day.dayNumber != null ? day.dayNumber : index + 1
+          );
 
           return `
-            <article class="workout-day">
-              <div class="workout-day-header">
-                <div>
-                  <p class="workout-day-meta">${safeLabel}</p>
-                  <h3>${title}</h3>
+            <article class="workout-day-card" data-day-label="${safeLabel}">
+              <header class="workout-card-header">
+                <div class="workout-card-header-left">
+                  <span class="workout-card-day-index">${displayNumber}</span>
+                  <h3 class="workout-card-day-name">${safeLabel}</h3>
                 </div>
-                <span class="chip chip--ghost">${duration}</span>
+                <span class="chip chip--primary workout-card-chip">${typeLabel}</span>
+                <div class="workout-card-header-right">
+                  <span class="workout-card-duration">
+                    <img
+                      class="exercise-meta-icon"
+                      src="../assets/images/question45/timer.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    ${duration}
+                  </span>
+                </div>
+              </header>
+              <div class="workout-card-body">
+                <div class="exercise-stack">
+                  ${exercisesMarkup}
+                </div>
               </div>
-              <ul class="exercise-list">
-                ${exercisesMarkup}
-              </ul>
             </article>
           `;
         };
@@ -1060,6 +1335,29 @@
           container.innerHTML = schedule
             .map((day, index) => renderWorkoutDay(day, index))
             .join("");
+        };
+
+        const initWorkoutCollapse = () => {
+          const block = root.querySelector(".plan-block--workout");
+          if (!block) return;
+          const toggle = block.querySelector("[data-workout-collapse]");
+          const list = block.querySelector("[data-workout-list]");
+          if (!toggle || !list) return;
+
+          const setState = (expanded) => {
+            toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+            toggle.setAttribute(
+              "aria-label",
+              expanded ? "طي خطة التمرين" : "فتح خطة التمرين"
+            );
+            block.classList.toggle("is-collapsed", !expanded);
+          };
+
+          setState(true);
+          toggle.addEventListener("click", () => {
+            const expanded = toggle.getAttribute("aria-expanded") !== "true";
+            setState(expanded);
+          });
         };
 
         const populateMeals = (meals = []) => {
@@ -1190,14 +1488,6 @@
           syncBodyFatCompare(bodyFat, planSummary, gender);
 
           updateText(
-            "[data-workout-title]",
-            planSummary.workoutDays
-              ? `${planSummary.workoutDays} مخصصة لك`
-              : "خطة التمرين"
-          );
-          updateText("[data-workout-description]", planSummary.goal || "");
-
-          updateText(
             "[data-nutrition-heading]",
             dailyCalories != null
               ? `توزيع يومي لـ ${dailyCalories} سعرة حرارية`
@@ -1244,6 +1534,7 @@
         };
 
         const state = readState();
+        initWorkoutCollapse();
         const answersPayload = buildAnswersPayload(state.answers || {});
         if (!Object.keys(answersPayload).length) {
           setStatus("لم نعثر على إجابات محفوظة. يرجى إعادة الاختبار.", "error");
