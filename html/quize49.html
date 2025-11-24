@@ -88,6 +88,95 @@
         gap: 12px;
       }
 
+      .final-overview-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        justify-content: center;
+        max-width: 1100px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .final-overview .frame-2.final-overview-layout {
+        justify-content: center;
+      }
+
+      .final-overview-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 560px;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+      }
+
+      .final-overview .frame-9 {
+        align-items: center !important;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .final-overview-content .frame-9 {
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .final-overview-side {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 1rem;
+        align-items: center;
+        justify-items: center;
+        justify-content: center;
+        width: auto;
+      }
+
+      .final-overview-hero img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .final-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 220px));
+        gap: 10px;
+        width: auto;
+      }
+
+      .final-metrics-grid .indicator,
+      .final-metrics-grid .indicator-2,
+      .final-metrics-grid .indicator-3,
+      .final-metrics-grid .indicator-4 {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 900px) {
+        .final-overview-layout {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .final-overview-content {
+          align-items: center;
+        }
+
+        .final-overview-side {
+          grid-template-columns: 1fr;
+        }
+      }
+
       .bodyfat-card {
         background: #fff;
         border: 3px solid #deede7;
@@ -330,9 +419,17 @@
       <main class="quiz-final-content" data-plan-root>
         <div class="plan-status" data-plan-status aria-live="polite" style="display: none;"></div>
         <section class="final-overview final-overview--classic">
-          <div class="frame-2">
-            <div class="frame-3">
-              <div class="frame-4">
+          <div class="frame-2 final-overview-layout">
+            <div class="final-overview-content">
+              <div class="frame-9">
+                <p class="p">خطتك الشخصية جاهزة!</p>
+                <p class="text-wrapper-5">
+                  جمعنا إجاباتك لنصنع لك جدول تمارين، تغذية، ومكملات يقودك لخسارة دهون ثابتة خلال الأشهر الستة القادمة.
+                </p>
+              </div>
+            </div>
+            <div class="final-overview-side">
+              <div class="final-metrics-grid">
                 <div class="indicator">
                   <span class="indicator-icon" aria-hidden="true">📅</span>
                   <div class="div-2">
@@ -362,28 +459,8 @@
                   </div>
                 </div>
               </div>
-              <div class="frame-wrapper">
-                <img class="frame-illustration" src="../assets/images/mensetting.svg" alt="متدرب جاهز للتمرين" />
-                <div class="frame-5">
-                  <div class="div-wrapper">
-                    <div class="frame-6">
-                      <div class="text-wrapper-2" data-readiness-score>--%</div>
-                    </div>
-                  </div>
-                  <div class="frame-7">
-                    <div class="text-wrapper-4">هدف اليوم</div>
-                    <div class="text-wrapper-3" data-daily-target>--</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="frame-8">
-              <div class="frame-9">
-                <p class="p">خطتك الشخصية جاهزة!</p>
-                <p class="text-wrapper-5">
-                  جمعنا إجاباتك لنصنع لك جدول تمارين، تغذية، ومكملات يقودك لخسارة دهون ثابتة خلال الأشهر الستة القادمة.
-                </p>
-                <p class="plan-description" data-readiness-caption>كل الخطوات مكتملة</p>
+              <div class="final-overview-hero">
+                <img src="../assets/images/final_male.svg" alt="متدرب جاهز للتمرين" data-final-hero />
               </div>
             </div>
           </div>
@@ -646,6 +723,20 @@
         const resolveBodyFatRange = (value) =>
           bodyFatRanges.find((range) => value >= range.min && value <= range.max) ||
           bodyFatRanges[bodyFatRanges.length - 1];
+
+        const setFinalHero = (gender) => {
+          const hero = root.querySelector("[data-final-hero]");
+          if (!hero) return;
+          const src =
+            gender === "female"
+              ? "../assets/images/final_women.svg"
+              : "../assets/images/final_male.svg";
+          hero.setAttribute("src", src);
+          hero.setAttribute(
+            "alt",
+            gender === "female" ? "متدربة جاهزة للتمرين" : "متدرب جاهز للتمرين"
+          );
+        };
 
         const alignBodyFatHandlesFor = (role) => {
           if (!bodyFatSection) return;
@@ -1051,6 +1142,7 @@
           const user = data.user || {};
           const bodyFat = data.bodyFat || {};
           const macros = data.macros || {};
+          setFinalHero(gender);
 
           updateText("[data-summary-duration]", planSummary.duration || "--");
           updateText("[data-summary-workout-days]", planSummary.workoutDays || "--");
