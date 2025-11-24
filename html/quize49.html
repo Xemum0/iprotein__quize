@@ -11,6 +11,294 @@
     />
     <link rel="stylesheet" href="../assets/css/quiz.css" />
     <title>iProtein Quiz - Personalized Plan</title>
+    <style>
+      .bodyfat-compare {
+        background: #f3fbf8;
+        border: 1px solid #deede7;
+        border-radius: 20px;
+        padding: 28px 24px;
+        margin: 28px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .bodyfat-compare__header h2 {
+        margin: 6px 0;
+      }
+
+      .bodyfat-compare__labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .bodyfat-label {
+        background: #fff;
+        border: 1px solid #c9dfd5;
+        border-radius: 12px;
+        padding: 10px 16px;
+        font-weight: 700;
+        color: #294e3e;
+      }
+
+      .bodyfat-label--accent {
+        background: #294e3e;
+        color: #fff;
+        border-color: #294e3e;
+      }
+
+      .bodyfat-compare__layout {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .bodyfat-compare__grid {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .bodyfat-compare__cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .bodyfat-compare__arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .bodyfat-compare__arrow img {
+        width: 100%;
+        max-width: 120px;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .bodyfat-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .bodyfat-card {
+        background: #fff;
+        border: 3px solid #deede7;
+        border-radius: 18px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-height: 100%;
+      }
+
+      .bodyfat-card__title {
+        font-weight: 700;
+        color: #294e3e;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .bodyfat-card__pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: #294e3e;
+        color: #fff;
+      }
+
+      .bodyfat-card--summary {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .bodyfat-card--summary strong {
+        font-size: 2rem;
+        color: #294e3e;
+      }
+
+      .body-fat-selector {
+        width: 100%;
+        padding: 16px 12px;
+        background: #deede7;
+        border: 3px solid #deede7;
+        border-radius: 16px;
+        box-shadow: 0 0 8px rgba(222, 237, 231, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        position: relative;
+      }
+
+      .body-fat-selector--readonly input[type="range"] {
+        pointer-events: none;
+      }
+
+      .body-fat-gradient {
+        position: relative;
+        width: 100%;
+        height: 18px;
+        border-radius: 12px;
+        background: linear-gradient(90deg, #4caf4f 0%, #e6ed14 50%, #f43e44 100%);
+        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+      }
+
+      .body-fat-thumb {
+        position: absolute;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid #294e3e;
+        background: #fff;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        box-shadow: 0 2px 6px rgba(41, 78, 62, 0.25);
+        transition: left 0.2s ease;
+      }
+
+      .body-fat-indicator {
+        position: absolute;
+        top: -46px;
+        width: 90px;
+        height: 36px;
+        background: #294e3e;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        transition: left 0.25s ease;
+        pointer-events: none;
+        transform: translateX(-50%);
+      }
+
+      .body-fat-indicator::after {
+        content: "";
+        position: absolute;
+        bottom: -9px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 10px solid #294e3e;
+      }
+
+      .body-fat-slider {
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 100%;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        direction: ltr;
+      }
+
+      .body-fat-slider input[type="range"] {
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        height: 6px;
+        pointer-events: auto;
+        direction: ltr;
+      }
+
+      .body-fat-slider input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        cursor: default;
+      }
+
+      .body-fat-slider input[type="range"]::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: default;
+      }
+
+      .body-fat-scale-labels {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 15px;
+        font-weight: 600;
+        color: #294e3e;
+        direction: ltr;
+      }
+
+      .body-fat-figure-box {
+        width: 200px;
+        height: 340px;
+        border: 3px solid #9bcab6;
+        border-radius: 12px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 12px 12px;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+
+      .body-fat-figure-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+      }
+
+      .body-fat-figure-label {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #294e3e;
+        color: #fff;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1024px) {
+        .bodyfat-compare__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .body-fat-figure-box {
+          height: 280px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="AI-coach-quiz quiz-final-screen">
@@ -100,7 +388,92 @@
             </div>
           </div>
         </section>
-      <!-- section need to be put here  -->
+        <section class="plan-block bodyfat-compare" data-bodyfat-compare>
+          <div class="bodyfat-compare__header">
+            <p class="section-eyebrow">نسبة الدهون</p>
+            <h2>رحلتك من الآن إلى هدفك</h2>
+            <p class="plan-description">
+              نجمع بين القياس الذي أدخلته والتوقع الذي نبنيه من خطتك لنريك كيف سيتغير شكل جسمك.
+            </p>
+          </div>
+          <div class="bodyfat-compare__labels">
+            <span class="bodyfat-label">الآن</span>
+            <span class="bodyfat-label bodyfat-label--accent">
+              بعد المدة <span data-bodyfat-duration>س</span>
+            </span>
+          </div>
+          <div class="bodyfat-compare__layout">
+            <div class="bodyfat-compare__grid">
+              <article class="bodyfat-card" data-bodyfat-card="current">
+                <p class="bodyfat-card__title">
+                  <span class="bodyfat-card__pill">الآن</span>
+                  نسبة الدهون الحالية
+                </p>
+                <div class="body-fat-figure-box">
+                  <div class="body-fat-figure-label" data-bodyfat-range="current">--</div>
+                  <img src="../assets/images/question6/man2.svg" alt="توضيح نسبة الدهون الحالية" data-bodyfat-figure="current" />
+                </div>
+                <div class="body-fat-selector body-fat-selector--readonly">
+                  <div class="body-fat-gradient" data-bodyfat-bar="current">
+                    <div class="body-fat-thumb" aria-hidden="true" data-bodyfat-thumb="current"></div>
+                    <div class="body-fat-indicator" data-bodyfat-indicator="current">--</div>
+                    <div class="body-fat-slider">
+                      <input
+                        type="range"
+                        min="5"
+                        max="50"
+                        step="1"
+                        value="20"
+                        disabled
+                        data-bodyfat-slider="current"
+                      />
+                    </div>
+                  </div>
+                  <div class="body-fat-scale-labels">
+                    <span>5%</span>
+                    <span>50%</span>
+                  </div>
+                </div>
+              </article>
+              <div class="bodyfat-compare__arrow" aria-hidden="true">
+                <img src="../assets/images/ arrow.svg" alt="" />
+              </div>
+              <article class="bodyfat-card" data-bodyfat-card="target">
+                <p class="bodyfat-card__title">
+                  <span class="bodyfat-card__pill">بعد المدة </span>
+                  نسبة الدهون المتوقعة
+                </p>
+                <div class="body-fat-figure-box">
+                  <div class="body-fat-figure-label" data-bodyfat-range="target">--</div>
+                  <img src="../assets/images/question6/man2.svg" alt="توضيح نسبة الدهون المتوقعة" data-bodyfat-figure="target" />
+                </div>
+                <div class="body-fat-selector body-fat-selector--readonly">
+                  <div class="body-fat-gradient" data-bodyfat-bar="target">
+                    <div class="body-fat-thumb" aria-hidden="true" data-bodyfat-thumb="target"></div>
+                    <div class="body-fat-indicator" data-bodyfat-indicator="target">--</div>
+                    <div class="body-fat-slider">
+                      <input
+                        type="range"
+                        min="5"
+                        max="50"
+                        step="1"
+                        value="20"
+                        disabled
+                        data-bodyfat-slider="target"
+                      />
+                    </div>
+                  </div>
+                  <div class="body-fat-scale-labels">
+                    <span>5%</span>
+                    <span>50%</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="bodyfat-summary-grid">
+            </div>
+          </div>
+        </section>
         <section class="plan-block plan-block--workout">
           <header class="plan-block-header">
             <div>
@@ -226,6 +599,150 @@
         const statusEl = root.querySelector("[data-plan-status]");
         const regenerateButton = root.querySelector("[data-plan-regenerate]");
         let isLoading = false;
+
+        const bodyFatSection = root.querySelector("[data-bodyfat-compare]");
+        const bodyFatRanges = [
+          {
+            min: 5,
+            max: 12,
+            label: "رياضي (5-12%)",
+            male: "../assets/images/question6/man1.svg",
+            female: "../assets/images/question6/female1.svg",
+          },
+          {
+            min: 13,
+            max: 20,
+            label: "متوازن (13-20%)",
+            male: "../assets/images/question6/man2.svg",
+            female: "../assets/images/question6/female2.svg",
+          },
+          {
+            min: 21,
+            max: 30,
+            label: "متوسط (21-30%)",
+            male: "../assets/images/question6/man3.svg",
+            female: "../assets/images/question6/female3.svg",
+          },
+          {
+            min: 31,
+            max: 50,
+            label: "مرتفع (31-50%)",
+            male: "../assets/images/question6/man4.svg",
+            female: "../assets/images/question6/female4.svg",
+          },
+        ];
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        const parseBodyFatValue = (value) => {
+          if (typeof value === "number" && Number.isFinite(value)) return value;
+          if (typeof value === "string") {
+            const match = value.match(/([0-9]+(?:\.[0-9]+)?)/);
+            if (match) return Number(match[1]);
+          }
+          return null;
+        };
+
+        const resolveBodyFatRange = (value) =>
+          bodyFatRanges.find((range) => value >= range.min && value <= range.max) ||
+          bodyFatRanges[bodyFatRanges.length - 1];
+
+        const alignBodyFatHandlesFor = (role) => {
+          if (!bodyFatSection) return;
+          const slider = bodyFatSection.querySelector(`[data-bodyfat-slider="${role}"]`);
+          const bar = bodyFatSection.querySelector(`[data-bodyfat-bar="${role}"]`);
+          const indicator = bodyFatSection.querySelector(`[data-bodyfat-indicator="${role}"]`);
+          const thumb = bodyFatSection.querySelector(`[data-bodyfat-thumb="${role}"]`);
+          if (!slider || !bar || !indicator) return;
+          const min = Number(slider.min) || 5;
+          const max = Number(slider.max) || 50;
+          const value = Number(slider.value) || min;
+          const width = bar.clientWidth || 1;
+          const ratio = (value - min) / (max - min || 1);
+          const pos = Math.min(Math.max(ratio, 0), 1) * width;
+          indicator.style.left = `${pos}px`;
+          if (thumb) thumb.style.left = `${pos}px`;
+        };
+
+        const alignBodyFatHandles = () => {
+          ["current", "target"].forEach(alignBodyFatHandlesFor);
+        };
+
+        const updateBodyFatCard = (role, value, gender) => {
+          if (!bodyFatSection) return;
+          const slider = bodyFatSection.querySelector(`[data-bodyfat-slider="${role}"]`);
+          const indicator = bodyFatSection.querySelector(`[data-bodyfat-indicator="${role}"]`);
+          const label = bodyFatSection.querySelector(`[data-bodyfat-range="${role}"]`);
+          const figure = bodyFatSection.querySelector(`[data-bodyfat-figure="${role}"]`);
+          if (!slider || !indicator || !label) return;
+
+          const min = Number(slider.min) || 5;
+          const max = Number(slider.max) || 50;
+          const fallbackValue = clamp(Number(slider.value) || min, min, max);
+          const numericValue = value == null ? fallbackValue : clamp(value, min, max);
+
+          slider.value = numericValue;
+          indicator.textContent = value == null ? "--" : `${numericValue}%`;
+
+          const range = resolveBodyFatRange(numericValue);
+          if (range) {
+            label.textContent = value == null ? "لم يتم تزويد نسبة الدهون" : range.label;
+            if (figure) {
+              const nextSrc = range[gender] || range.male;
+              figure.setAttribute("src", nextSrc);
+              const alt =
+                gender === "female"
+                  ? "توضيح نسبة الدهون للسيدات"
+                  : "توضيح نسبة الدهون للرجال";
+              figure.setAttribute("alt", alt);
+            }
+          }
+
+          alignBodyFatHandlesFor(role);
+          return range;
+        };
+
+        const syncBodyFatCompare = (bodyFatData = {}, planSummary = {}, gender = "male") => {
+          if (!bodyFatSection) return;
+          const durationEl = bodyFatSection.querySelector("[data-bodyfat-duration]");
+          if (durationEl) {
+            durationEl.textContent = planSummary.duration || "س";
+          }
+
+          const currentValue = parseBodyFatValue(bodyFatData.current);
+          const targetValue = parseBodyFatValue(bodyFatData.target ?? bodyFatData.goal);
+
+          const currentRange = updateBodyFatCard("current", currentValue, gender);
+          const targetRange = updateBodyFatCard("target", targetValue, gender);
+
+          const summaryValueCurrent = bodyFatSection.querySelector('[data-bodyfat-summary="current"]');
+          const summaryValueTarget = bodyFatSection.querySelector('[data-bodyfat-summary="target"]');
+          const summaryRangeCurrent = bodyFatSection.querySelector('[data-bodyfat-summary-range="current"]');
+          const summaryRangeTarget = bodyFatSection.querySelector('[data-bodyfat-summary-range="target"]');
+
+          if (summaryValueCurrent) {
+            summaryValueCurrent.textContent =
+              currentValue == null ? "--" : `${currentValue}%`;
+          }
+          if (summaryValueTarget) {
+            summaryValueTarget.textContent =
+              targetValue == null ? "--" : `${targetValue}%`;
+          }
+          if (summaryRangeCurrent) {
+            summaryRangeCurrent.textContent =
+              currentValue == null
+                ? "لم يتم تزويد نسبة الدهون"
+                : currentRange?.label || "--";
+          }
+          if (summaryRangeTarget) {
+            summaryRangeTarget.textContent =
+              targetValue == null ? "لم يتم تزويد نسبة الدهون" : targetRange?.label || "--";
+          }
+
+          alignBodyFatHandles();
+        };
+
+        window.addEventListener("resize", alignBodyFatHandles);
 
         const setStatus = (message, tone = "info") => {
           if (!statusEl) return;
@@ -569,6 +1086,7 @@
           if (pointer && typeof bodyFat.pointerPosition === "number") {
             pointer.style.setProperty("--position", `${bodyFat.pointerPosition}%`);
           }
+          syncBodyFatCompare(bodyFat, planSummary, gender);
 
           updateText(
             "[data-workout-title]",
