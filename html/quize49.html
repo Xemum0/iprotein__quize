@@ -330,6 +330,14 @@
         display: none;
       }
 
+      .plan-block--supplements.is-collapsed .workout-collapse-toggle img {
+        transform: rotate(180deg);
+      }
+
+      .plan-block--supplements.is-collapsed [data-supplement-list] {
+        display: none;
+      }
+
       .final-overview-layout {
         display: flex;
         flex-direction: column;
@@ -1394,16 +1402,23 @@
 
         <section class="plan-block plan-block--supplements">
           <header class="plan-block-header">
-            <div>
-              <p class="section-eyebrow">اختيارات المكملات</p>
-              <h2>دعم إضافي حسب احتياجك</h2>
-              <p class="plan-description">منتجات موثوقة مع توجيهات الجرعة والتكرار لضمان أفضل استجابة.</p>
+            <div class="workout-title">
+              <img class="workout-title-icon" src="../assets/images/complements.svg" alt="" />
+              <h2>المكملات الموصى بها</h2>
             </div>
-            <span class="chip chip--ghost">اختياري</span>
+            <div class="workout-header-actions">
+              <button
+                class="workout-collapse-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-label="طي قسم المكملات"
+                data-supplement-collapse
+              >
+                <img src="../assets/images/down.svg" alt="" />
+              </button>
+            </div>
           </header>
-          <div class="supplement-grid" data-supplement-list>
-            <p class="plan-description">سنقترح المكملات المناسبة بعد معالجة إجاباتك...</p>
-          </div>
+          <div class="supplement-grid" data-supplement-list></div>
         </section>
 
         <section class="plan-block final-cta">
@@ -1887,6 +1902,30 @@
           });
         };
 
+        const initSupplementCollapse = () => {
+          const block = root.querySelector(".plan-block--supplements");
+          if (!block) return;
+          const toggle = block.querySelector("[data-supplement-collapse]");
+          const content = block.querySelector("[data-supplement-list]");
+          if (!toggle || !content) return;
+
+          const setState = (expanded) => {
+            toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+            toggle.setAttribute(
+              "aria-label",
+              expanded ? "طي قسم المكملات" : "فتح قسم المكملات"
+            );
+            block.classList.toggle("is-collapsed", !expanded);
+            content.style.display = expanded ? "" : "none";
+          };
+
+          setState(true);
+          toggle.addEventListener("click", () => {
+            const expanded = toggle.getAttribute("aria-expanded") !== "true";
+            setState(expanded);
+          });
+        };
+
         const populateMeals = (meals = []) => {
           const container = root.querySelector("[data-meal-list]");
           if (!container) return;
@@ -1981,34 +2020,148 @@
         const populateSupplements = (supplements = []) => {
           const container = root.querySelector("[data-supplement-list]");
           if (!container) return;
-          container.innerHTML = "";
-          if (!Array.isArray(supplements) || !supplements.length) {
-            container.innerHTML =
-              '<p class="plan-description">لا توجد مكملات مقترحة الآن. سنعلمك بمجرد توفر التوصيات.</p>';
-            return;
-          }
 
-          supplements.forEach((supplement) => {
+          const fallbackSupplements = [
+            {
+              name: "أوبتيموم واي بروتين",
+              dose: "سكوب (30 غ)",
+              frequency: "بعد التمرين أو مع الإفطار",
+              price: "145.00 د.ع",
+              rating: "4.9 (420)",
+              badge: "الأكثر مبيعاً",
+              discount: "-25%",
+              image: "../assets/images/whey.jpg",
+            },
+            {
+              name: "كازين بروتين - فانيلا",
+              dose: "سكوب (28 غ)",
+              frequency: "قبل النوم",
+              price: "110.00 د.ع",
+              rating: "4.7 (260)",
+              badge: "أفضل قيمة",
+              discount: "-15%",
+              image: "../assets/images/whey_iso.png",
+            },
+            {
+              name: "أوميجا 3 بلس",
+              dose: "كبسولتان",
+              frequency: "بعد الغداء",
+              price: "80.00 د.ع",
+              rating: "4.9 (320)",
+              badge: "صحة القلب",
+              discount: "-10%",
+              image: "../assets/images/omega_3.png",
+            },
+            {
+              name: "ناو سوبر أوميجا 3-6-9",
+              dose: "كبسولة واحدة",
+              frequency: "يومياً بعد الإفطار",
+              price: "65.00 د.ع",
+              rating: "4.8 (210)",
+              badge: "دعم المناعة",
+              discount: "-20%",
+              image: "../assets/images/casein_protein.jpg",
+            },
+          ];
+
+          const list = fallbackSupplements;
+          container.innerHTML = "";
+
+          list.forEach((supplement) => {
             const card = document.createElement("article");
             card.className = "supplement-card";
-            const content = document.createElement("div");
-            content.className = "supplement-content";
+
+            const image = document.createElement("div");
+            image.className = "supplement-card__image";
+
+            const actions = document.createElement("div");
+            actions.className = "supplement-card__actions";
+            ["bag", "heart"].forEach((icon) => {
+              const btn = document.createElement("button");
+              btn.className = "supplement-card__action";
+              btn.type = "button";
+              btn.innerHTML = `<img src="../assets/images/${icon}.svg" alt="" aria-hidden="true" />`;
+              actions.appendChild(btn);
+            });
+
+            const chips = document.createElement("div");
+            chips.className = "supplement-card__chips";
+            const primaryBadge = supplement.badge || "الأكثر مبيعاً";
+            const discountBadge = supplement.discount || "-20%";
+            const chip = document.createElement("span");
+            chip.className = "supplement-chip";
+            chip.textContent = primaryBadge;
+            chips.appendChild(chip);
+            const chipDanger = document.createElement("span");
+            chipDanger.className = "supplement-chip supplement-chip--danger";
+            chipDanger.textContent = discountBadge;
+            chips.appendChild(chipDanger);
+
+            const imageUrl = supplement.image || supplement.imageUrl || supplement.thumbnail;
+            const placeholder = document.createElement("div");
+            placeholder.className = "supplement-card__placeholder";
+            placeholder.dataset.supplementImage = "";
+            if (imageUrl) {
+              placeholder.style.backgroundImage = `url(${imageUrl})`;
+              placeholder.classList.add("has-image");
+            }
+
+            image.appendChild(actions);
+            image.appendChild(chips);
+            image.appendChild(placeholder);
+
+            const body = document.createElement("div");
+            body.className = "supplement-card__body";
             const title = document.createElement("h3");
             title.textContent = supplement.name || "مكمل غذائي";
-            const link = document.createElement("a");
-            link.className = "final-action final-action--primary";
-            link.textContent = "عرض المنتج";
-            link.href = supplement.url || "#";
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            const note = document.createElement("p");
-            note.className = "plan-description";
-            note.textContent = "سيتم جلب باقي التفاصيل عند فتح المنتج.";
 
-            content.appendChild(title);
-            content.appendChild(note);
-            content.appendChild(link);
-            card.appendChild(content);
+            const meta = document.createElement("div");
+            meta.className = "supplement-card__meta";
+
+            const makeRow = (label, value) => {
+              const row = document.createElement("div");
+              row.className = "supplement-card__row";
+              const valueEl = document.createElement("span");
+              valueEl.textContent = value || "--";
+              const labelEl = document.createElement("span");
+              labelEl.className = "supplement-card__label";
+              labelEl.textContent = label;
+              row.appendChild(valueEl);
+              row.appendChild(labelEl);
+              return row;
+            };
+
+            const doseRow = makeRow("الجرعة:", supplement.dose);
+            const freqRow = makeRow("التكرار:", supplement.frequency);
+
+            meta.appendChild(doseRow);
+            meta.appendChild(freqRow);
+
+            const footer = document.createElement("div");
+            footer.className = "supplement-card__footer";
+            const rating = document.createElement("span");
+            rating.className = "supplement-card__rating";
+            rating.textContent = supplement.rating || "4.8 (200)";
+            const price = document.createElement("span");
+            price.className = "supplement-card__price";
+            price.textContent = supplement.price || "--";
+            footer.appendChild(rating);
+            footer.appendChild(price);
+
+            const cta = document.createElement("a");
+            cta.className = "button--supplement";
+            cta.textContent = "اشتري الآن";
+            cta.href = supplement.url || "#";
+            cta.target = "_blank";
+            cta.rel = "noopener noreferrer";
+
+            body.appendChild(title);
+            body.appendChild(meta);
+            body.appendChild(footer);
+            body.appendChild(cta);
+
+            card.appendChild(image);
+            card.appendChild(body);
             container.appendChild(card);
           });
         };
@@ -2091,9 +2244,11 @@
         const state = readState();
         initWorkoutCollapse();
         initNutritionCollapse();
+        initSupplementCollapse();
         const answersPayload = buildAnswersPayload(state.answers || {});
         if (!Object.keys(answersPayload).length) {
           setStatus("لم نعثر على إجابات محفوظة. يرجى إعادة الاختبار.", "error");
+          populateSupplements();
           return;
         }
 
@@ -2149,6 +2304,7 @@
             .catch((error) => {
               console.error("Plan request failed:", error);
               setStatus("حدث خطأ أثناء تحميل خطتك. يرجى المحاولة لاحقاً.", "error");
+              populateSupplements();
             })
             .finally(() => {
               isLoading = false;
@@ -2167,6 +2323,7 @@
           });
         }
 
+        populateSupplements();
         fetchPlan();
       })();
     </script>
