@@ -1,0 +1,26 @@
+<svg width="1440" height="640" viewBox="0 0 1440 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F1C16"/>
+      <stop offset="100%" stop-color="#1C2F26"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#E6ED14" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#E6ED14" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="640" fill="url(#g1)"/>
+  <circle cx="420" cy="360" r="360" fill="url(#spot)"/>
+  <circle cx="1080" cy="260" r="320" fill="url(#spot)"/>
+  <g transform="translate(320 220)">
+    <rect x="40" y="220" width="200" height="120" rx="28" fill="#EEF6F3" stroke="#294E3E" stroke-width="4"/>
+    <rect x="230" y="180" width="200" height="160" rx="32" fill="#E6ED14" stroke="#294E3E" stroke-width="4"/>
+    <rect x="420" y="220" width="200" height="120" rx="28" fill="#EEF6F3" stroke="#294E3E" stroke-width="4"/>
+    <circle cx="140" cy="200" r="70" fill="#E6ED14" stroke="#294E3E" stroke-width="4"/>
+    <circle cx="330" cy="160" r="90" fill="#EEF6F3" stroke="#294E3E" stroke-width="4"/>
+    <circle cx="520" cy="200" r="70" fill="#E6ED14" stroke="#294E3E" stroke-width="4"/>
+    <text x="140" y="210" text-anchor="middle" font-family="IBM Plex Sans Arabic" font-size="22" font-weight="700" fill="#294E3E">NEW</text>
+    <text x="330" y="170" text-anchor="middle" font-family="IBM Plex Sans Arabic" font-size="22" font-weight="700" fill="#294E3E">NEW</text>
+    <text x="520" y="210" text-anchor="middle" font-family="IBM Plex Sans Arabic" font-size="22" font-weight="700" fill="#294E3E">NEW</text>
+  </g>
+</svg>

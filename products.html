@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="popup-dialog.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="announcement-bar">
+      <span class="announcement-icon" aria-hidden="true">🎉</span>
+      <span class="announcement-text"
+        >توصيل مجاني للطلبات اكثر من 300.00 د.ع</span
+      >
+    </div>
+    <div class="header">
+      <div class="header-mobile">
+        <div class="icon-group">
+          <div class="frame">
+            <img class="remix-icons-line" src="assets/icons/profile.svg" />
+          </div>
+          <button class="action-buttons" type="button" data-popup-cart-trigger>
+            <img class="remix-icons-line" src="assets/icons/bag.svg" />
+            <div class="element-wrapper"><div class="element">2</div></div>
+          </button>
+          <div class="div">
+            <img class="remix-icons-line" src="assets/icons/heart.svg" />
+            <div class="element-wrapper"><div class="element">4</div></div>
+          </div>
+        </div>
+        <div class="logo-wrapper">
+          <div class="logo">
+            <img class="group" src="assets/icons/logo.svg" />
+          </div>
+        </div>
+        <div class="icon-group-2">
+          <div class="frame">
+            <div class="icon">
+              <img class="remix-icons-line" src="assets/icons/search.svg" />
+            </div>
+          </div>
+          <div class="frame">
+            <div class="icon">
+              <img class="remix-icons-line" src="assets/icons/burger.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-desktop">
+        <div class="desktop-top">
+          <div class="desktop-icons">
+            <div class="desktop-icon">
+              <img
+                class="desktop-icon-img"
+                src="assets/icons/profile.svg"
+                alt=""
+              />
+            </div>
+            <button class="desktop-action" type="button" data-popup-cart-trigger>
+              <img
+                class="desktop-icon-img"
+                src="assets/icons/bag.svg"
+                alt=""
+              />
+              <span class="desktop-badge">2</span>
+            </button>
+            <a class="desktop-action" href="favorite.html">
+              <img
+                class="desktop-icon-img"
+                src="assets/icons/heart.svg"
+                alt=""
+              />
+              <span class="desktop-badge">4</span>
+            </a>
+          </div>
+          <div class="desktop-search">
+            <img
+              class="desktop-search-icon"
+              src="assets/icons/search.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <input
+              type="search"
+              placeholder="ابحث عن اي مكمل غذائي قد يخطر ببالك"
+              aria-label="بحث"
+            />
+          </div>
+          <div class="desktop-logo">
+            <img src="assets/icons/logo.svg" alt="iProtein" />
+          </div>
+        </div>
+        <div class="desktop-nav-row">
+          <button class="desktop-discover" type="button" data-link="meal-analyzer.html">
+            <img src="assets/icons/arrow.svg" alt="" aria-hidden="true" />
+            ابدأ اكتشاف نفسك
+          </button>
+          <nav class="desktop-links" aria-label="التنقل الرئيسي">
+            <a class="nav-link" href="index.html">الرئيسية</a>
+            <a class="nav-link has-dropdown" href="products.html">
+              المنتجات
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </a>
+            <a class="nav-link" href="products.html">العروض والخصومات</a>
+            <a class="nav-link" href="blog.html">المدونة</a>
+            <a class="nav-link" href="about.html">من نحن</a>
+            <a class="nav-link" href="contact.html">تواصل معنا</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <main class="products-page">
+      <section class="products-section" aria-label="قائمة المنتجات">
+        <div class="products-container">
+          <div class="products-breadcrumb">
+            <span>الرئيسية</span>
+            <span class="crumb-sep">/</span>
+            <span>المنتجات</span>
+          </div>
+          <div class="products-categories" role="tablist" aria-label="التصنيفات">
+            <button class="category-pill active" data-filter="all" role="tab">
+              الكل
+            </button>
+            <button class="category-pill" data-filter="best" role="tab">
+              الأكثر مبيعاً
+            </button>
+            <button class="category-pill" data-filter="protein" role="tab">
+              البروتين
+            </button>
+            <button class="category-pill" data-filter="pre" role="tab">
+              مكملات قبل التمرين
+            </button>
+            <button class="category-pill" data-filter="vitamins" role="tab">
+              الفيتامينات والمعادن
+            </button>
+            <button class="category-pill" data-filter="amino" role="tab">
+              الأحماض الأمينية
+            </button>
+            <button class="category-pill" data-filter="energy" role="tab">
+              تعزيز الطاقة
+            </button>
+            <button class="category-pill" data-filter="collagen" role="tab">
+              الكولاجين
+            </button>
+            <button class="category-pill" data-filter="omega" role="tab">
+              أوميغا 3
+            </button>
+          </div>
+          <div class="products-layout">
+            <aside class="filters-sidebar" aria-label="خيارات الفلترة">
+              <button
+                class="filters-header"
+                type="button"
+                aria-expanded="true"
+                aria-controls="filters-body"
+              >
+                <span>فلترة حسب</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="filters-body" id="filters-body">
+                <div class="filter-group" data-filter-group="goals">
+                  <div class="filter-title">الأهداف</div>
+                  <label>
+                    <input type="checkbox" data-filter-group="goals" data-filter-value="muscle" />
+                    بناء العضلات والأداء
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="goals" data-filter-value="wellness" />
+                    الصحة العامة والجمال
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="goals" data-filter-value="focus" />
+                    تحسين التركيز
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="goals" data-filter-value="energy" />
+                    النشاط والطاقة
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="goals" data-filter-value="weight" />
+                    التحكم في الوزن
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="goals" data-filter-value="nutrition" />
+                    التغذية
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="goals" data-filter-value="joints" />
+                    المفاصل والغضاريف
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="goals" data-filter-value="sleep" />
+                    قلة النوم
+                  </label>
+                </div>
+                <div class="filter-group" data-filter-group="category">
+                  <div class="filter-title">الفئة</div>
+                  <label>
+                    <input type="checkbox" data-filter-group="category" data-filter-value="rope" />
+                    حبل (10)
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="category" data-filter-value="split" />
+                    سبليت (7)
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="category" data-filter-value="hbda" />
+                    هبدا (1)
+                  </label>
+                </div>
+                <div class="filter-group" data-filter-group="brand">
+                  <div class="filter-title">البراند</div>
+                  <label>
+                    <input type="checkbox" data-filter-group="brand" data-filter-value="myprotein" />
+                    MyProtein
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="brand" data-filter-value="scitec" />
+                    Scitec Nutrition
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="brand" data-filter-value="dymatize" />
+                    Dymatize
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="brand" data-filter-value="iherb" />
+                    iHerb
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="brand" data-filter-value="muscletech" />
+                    MuscleTech
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="brand" data-filter-value="biotech" />
+                    BioTechUSA
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="brand" data-filter-value="optimum" />
+                    Optimum Nutrition
+                  </label>
+                </div>
+                <div class="filter-group" data-filter-group="diet">
+                  <div class="filter-title">خيارات غذائية</div>
+                  <label>
+                    <input type="checkbox" data-filter-group="diet" data-filter-value="organic" />
+                    عضوي
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="diet" data-filter-value="gluten-free" />
+                    خالي من الغلوتين
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="diet" data-filter-value="lactose-free" />
+                    خالي من اللاكتوز
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="diet" data-filter-value="vegan" />
+                    نباتي
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="diet" data-filter-value="sugar-free" />
+                    خالي من السكر
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="diet" data-filter-value="caffeine-free" />
+                    خالي من الكافيين
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="diet" data-filter-value="halal" />
+                    حلال
+                  </label>
+                </div>
+                <div class="filter-group" data-filter-group="form">
+                  <div class="filter-title">الشكل</div>
+                  <label>
+                    <input type="checkbox" data-filter-group="form" data-filter-value="powder" />
+                    مسحوق
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="form" data-filter-value="capsules" />
+                    كبسولات
+                  </label>
+                  <label>
+                    <input type="checkbox" data-filter-group="form" data-filter-value="drink" />
+                    مشروب
+                  </label>
+                </div>
+                <div class="filter-group">
+                  <div class="filter-title">السعر</div>
+                  <div class="price-range">
+                    <input type="range" min="10" max="200" value="120" />
+                    <div class="price-labels">
+                      <span>د.ع 10.000</span>
+                      <span>د.ع 200.000</span>
+                    </div>
+                    <div class="price-current-value" data-price-output>حتى 120.000 د.ع</div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+            <div class="products-content">
+              <div class="products-toolbar">
+                <button class="sort-dropdown" type="button">
+                  <span>تصنيف حسب</span>
+                  <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="sort-menu" aria-hidden="true">
+                  <button type="button" data-sort="default">الافتراضي</button>
+                  <button type="button" data-sort="price-asc">
+                    السعر: من الأقل
+                  </button>
+                  <button type="button" data-sort="price-desc">
+                    السعر: من الأعلى
+                  </button>
+                  <button type="button" data-sort="rating-desc">
+                    الأعلى تقييماً
+                  </button>
+                </div>
+              </div>
+              <div class="products-list">
+                <article class="product-card" data-tags="best sale protein" data-price="120" data-rating="4.8" data-goals="muscle energy" data-category="rope" data-brand="myprotein" data-diet="gluten-free lactose-free" data-form="powder">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-01.png');">
+                    <div class="badge-row">
+                      <span class="badge sale">-20%</span>
+                      <span class="badge best">الأكثر مبيعاً</span>
+                    </div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">بيرسونال ريكورد</span>
+                      <span class="product-title">بروتين آيزوليت</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                      <span class="price-old">140.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="product-card" data-tags="vitamins" data-price="120" data-rating="4.8" data-goals="nutrition weight" data-category="split" data-brand="dymatize" data-diet="organic sugar-free" data-form="drink">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-02.png');">
+                    <div class="badge-row"></div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">Quest Nutrition</span>
+                      <span class="product-title">بار غذائي عالي البروتين</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="product-card" data-tags="energy" data-price="120" data-rating="4.8" data-goals="energy focus" data-category="split" data-brand="biotech" data-diet="caffeine-free" data-form="drink">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-03.png');">
+                    <div class="badge-row"></div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">ZOE Nutrition</span>
+                      <span class="product-title">آيزو درينك</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="product-card" data-tags="best protein" data-price="120" data-rating="4.8" data-goals="muscle" data-category="rope" data-brand="scitec" data-diet="gluten-free" data-form="powder">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-04.png');">
+                    <div class="badge-row">
+                      <span class="badge best">الأكثر مبيعاً</span>
+                    </div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">لابيرفا</span>
+                      <span class="product-title">آيزو تربل زيرو</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="product-card" data-tags="pre" data-price="120" data-rating="4.8" data-goals="energy focus" data-category="hbda" data-brand="muscletech" data-diet="halal" data-form="powder">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-05.png');">
+                    <div class="badge-row"></div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">أولمب</span>
+                      <span class="product-title">نوك أوت 2.0</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="product-card" data-tags="best sale protein" data-price="120" data-rating="4.8" data-goals="muscle" data-category="rope" data-brand="optimum" data-diet="lactose-free" data-form="powder">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-06.png');">
+                    <div class="badge-row">
+                      <span class="badge sale">-20%</span>
+                      <span class="badge best">الأكثر مبيعاً</span>
+                    </div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">أوبتيموم</span>
+                      <span class="product-title">واي بروتين آيزوليت</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                      <span class="price-old">140.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="product-card" data-tags="omega" data-price="120" data-rating="4.8" data-goals="wellness joints sleep" data-category="split" data-brand="iherb" data-diet="halal" data-form="capsules">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-07.png');">
+                    <div class="badge-row"></div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">NOW Foods</span>
+                      <span class="product-title">سوبر أوميغا 3-6-9</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="product-card" data-tags="amino" data-price="120" data-rating="4.8" data-goals="muscle" data-category="hbda" data-brand="optimum" data-diet="sugar-free" data-form="capsules">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-08.png');">
+                    <div class="badge-row"></div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">أوبتيموم</span>
+                      <span class="product-title">أحماض أمينية مركزة</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="product-card" data-tags="energy" data-price="120" data-rating="4.8" data-goals="energy nutrition" data-category="split" data-brand="myprotein" data-diet="vegan" data-form="powder">
+                  <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-09.png');">
+                    <div class="badge-row"></div>
+                    <div class="icon-row">
+                      <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
+                        <img src="assets/icons/bag.svg" alt="" />
+                      </button>
+                      <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
+                        <img src="assets/icons/heart.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <h3 class="product-name">
+                      <span class="product-brand">نيوترا بيو</span>
+                      <span class="product-title">بيك O2 باودر</span>
+                    </h3>
+                    <div class="price-row">
+                      <span class="price-current">120.00 د.ع</span>
+                    </div>
+                    <button class="product-cta" data-link="product.html">
+                      <span>اشتري الان</span>
+                    </button>
+                  </div>
+                </article>
+              </div>
+              <div class="products-pagination" aria-label="تنقل الصفحات">
+                <button class="page-btn" type="button" aria-label="السابق">
+                  <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
+                <button class="page-btn" type="button" aria-label="الصفحة 5">
+                  <span>5</span>
+                </button>
+                <button class="page-btn" type="button" aria-label="الصفحة 4">
+                  <span>4</span>
+                </button>
+                <button class="page-btn" type="button" aria-label="الصفحة 3">
+                  <span>3</span>
+                </button>
+                <button
+                  class="page-btn active"
+                  type="button"
+                  aria-label="الصفحة 2"
+                >
+                  <span>2</span>
+                </button>
+                <button class="page-btn" type="button" aria-label="الصفحة 1">
+                  <span>1</span>
+                </button>
+                <button class="page-btn" type="button" aria-label="التالي">
+                  <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="site-footer">
+              <div class="footer-inner">
+                <div class="footer-top">
+                  <div class="footer-brand">
+                    <img
+                      class="footer-brand-logo"
+                      src="assets/icons/logo.svg"
+                      alt="iProtein"
+                    />
+                    <p class="footer-copy">
+                      شريكك الموثوق في عالم الصحة واللياقة. في iProtein نوفر مكملات غذائية
+                      ومنتجات عافية موثوقة تدعم أهدافك في الأداء والمناعة واحتياجاتك
+                      اليومية. رحلتك نحو أفضل نسخة من نفسك تبدأ من هنا!
+                    </p>
+                  </div>
+                  <div class="footer-links-wrap">
+                    <div class="footer-col">
+                      <h3 class="footer-title">خدمة العملاء</h3>
+                      <div class="footer-links">
+                        <a href="faq.html">الأسئلة الشائعة</a>
+                        <a href="orders.html">طلباتي</a>
+                        <a href="returns.html">سياسة الإرجاع والاستبدال</a>
+                        <a href="contact.html">تواصل معنا</a>
+                        <a href="privacy.html">سياسة الخصوصية</a>
+                        <a href="terms.html">الشروط والأحكام</a>
+                      </div>
+                    </div>
+                    <div class="footer-col">
+                      <h3 class="footer-title">روابط سريعة</h3>
+                      <div class="footer-links">
+                        <a href="index.html">الرئيسية</a>
+                        <a href="products.html">الأكثر مبيعًا</a>
+                        <a href="products.html">العروض والخصومات</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer-divider"></div>
+                <div class="footer-row">
+                  <h3 class="footer-title">للتواصل و المتابعة</h3>
+                  <div class="social-row">
+                    <a class="social-icon" href="https://facebook.com" aria-label="Facebook">
+                      <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a class="social-icon" href="https://instagram.com" aria-label="Instagram">
+                      <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a class="social-icon" href="https://youtube.com" aria-label="YouTube">
+                      <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a class="social-icon" href="https://linkedin.com" aria-label="LinkedIn">
+                      <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="footer-divider"></div>
+                <div class="footer-row">
+                  <h3 class="footer-title">وسائل الدفع المتوفرة</h3>
+                  <div class="payment-row">
+                    <div class="payment-icon">
+                      <img src="assets/images/footer/visa.svg" alt="Visa" />
+                    </div>
+                    <div class="payment-icon">
+                      <img src="assets/images/footer/mastercard.svg" alt="Mastercard" />
+                    </div>
+                    <div class="payment-icon">
+                      <img src="assets/images/footer/wayl.jpeg" alt="Wayl" />
+                    </div>
+                  </div>
+                </div>
+                <div class="footer-divider"></div>
+                <div class="footer-subscribe">
+                  <p class="footer-title">اشترك معنا للمزيد من العروض والتخفيضات</p>
+                  <div class="newsletter-form">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="ادخل بريدك الالكتروني"
+                      aria-label="البريد الالكتروني"
+                    />
+                    <button type="button" data-link="contact.html">اشتراك</button>
+                  </div>
+                </div>
+                <div class="footer-apps">
+                  <a class="app-badge" href="https://apps.apple.com/" aria-label="App Store">
+                    <img
+                      class="app-badge-icon"
+                      src="assets/images/footer/apple.svg"
+                      alt=""
+                    />
+                    <span class="app-badge-text">
+                      <span class="app-badge-top">Download on</span>
+                      <span class="app-badge-bottom">App Store</span>
+                    </span>
+                  </a>
+                  <a class="app-badge" href="https://play.google.com/store" aria-label="Google Play">
+                    <img
+                      class="app-badge-icon"
+                      src="assets/images/footer/play_store.svg"
+                      alt=""
+                    />
+                    <span class="app-badge-text">
+                      <span class="app-badge-top">Get it on</span>
+                      <span class="app-badge-bottom">Google Play</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="footer-bottom">
+                  <div class="footer-line"></div>
+                  <p class="copyright">© 2025، كل الحقوق محفوظة، آي بروتين.</p>
+                </div>
+              </div>
+            </footer>
+    </main>
+      <dialog class="popup-dialog" id="popup-cart-dialog" aria-label="سلة المشتريات">
+      <div class="popup-dialog-card">
+        <div class="popup-dialog-header">
+          <button class="popup-dialog-btn" type="button" data-popup-close>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+          <img class="popup-dialog-logo" src="assets/icons/logo.svg" alt="iProtein" />
+          <button class="popup-dialog-btn" type="button">
+            <img src="assets/figma/product-details/icon-share.svg" alt="" />
+          </button>
+        </div>
+
+        <div class="popup-dialog-coupon">
+          <button class="popup-dialog-apply" type="button">تطبيق</button>
+          <label class="popup-dialog-input">
+            <span>كوبون التخفيض</span>
+            <input type="text" aria-label="كوبون التخفيض" />
+          </label>
+        </div>
+
+        <div class="popup-dialog-shipping">
+          <p>أنت على بعد 300.00 د.ع للحصول على امتياز الشحن المجاني.</p>
+          <div class="popup-dialog-progress">
+            <span class="popup-dialog-progress-icon">
+              <i class="fa-solid fa-truck" aria-hidden="true"></i>
+            </span>
+            <span class="popup-dialog-progress-track">
+              <span class="popup-dialog-progress-fill"></span>
+            </span>
+          </div>
+          <span class="popup-dialog-note">
+            قد تختلف تكاليف الشحن حسب موقعك. يتم حساب الشحن عند الدفع.
+          </span>
+        </div>
+
+        <div class="popup-dialog-items">
+          <article class="popup-dialog-item">
+            <div class="popup-dialog-info">
+              <div class="popup-dialog-title">
+                <div class="popup-dialog-actions">
+                  <button type="button" aria-label="حذف">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                  </button>
+                  <span class="popup-dialog-divider"></span>
+                  <button type="button" aria-label="إضافة للمفضلة" data-link="favorite.html">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <h3>أوبتيموم واي بروتين</h3>
+              </div>
+              <div class="popup-dialog-meta">
+                <span>النكهة: شكولاتة</span>
+                <span>السعة: 2.27 كغ</span>
+              </div>
+              <span class="popup-dialog-chip">
+                اسم العنصر
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+              <div class="popup-dialog-bottom">
+                <span class="popup-dialog-price">120.00 د.ع</span>
+                <div class="qty-stepper" data-qty>
+                  <button type="button" aria-label="ناقص">
+                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                  </button>
+                  <span>1</span>
+                  <button type="button" aria-label="زائد">
+                    <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-dialog-thumb">
+              <img src="assets/figma/products/product-01.png" alt="أوبتيموم واي بروتين" />
+            </div>
+          </article>
+
+          <div class="popup-dialog-line"></div>
+
+          <article class="popup-dialog-item">
+            <div class="popup-dialog-info">
+              <div class="popup-dialog-title">
+                <div class="popup-dialog-actions">
+                  <button type="button" aria-label="حذف">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                  </button>
+                  <span class="popup-dialog-divider"></span>
+                  <button type="button" aria-label="إضافة للمفضلة" data-link="favorite.html">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <h3>مسَل تك كرياتين قطع</h3>
+              </div>
+              <div class="popup-dialog-meta">
+                <span>النكهة: حمضيات</span>
+                <span>السعة: 90 كبسولة</span>
+              </div>
+              <span class="popup-dialog-chip">
+                اسم العنصر
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+              <div class="popup-dialog-bottom">
+                <span class="popup-dialog-price">120.00 د.ع</span>
+                <div class="qty-stepper" data-qty>
+                  <button type="button" aria-label="ناقص">
+                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                  </button>
+                  <span>1</span>
+                  <button type="button" aria-label="زائد">
+                    <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-dialog-thumb">
+              <img src="assets/figma/products/product-02.png" alt="مسَل تك كرياتين قطع" />
+            </div>
+          </article>
+        </div>
+
+        <div class="popup-dialog-footer">
+          <div class="popup-dialog-points">
+            <div class="popup-dialog-point-row">
+              <span>+100 نقطة</span>
+              <span>
+                النقاط المكتسبة من هذا الطلب:
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+            </div>
+            <div class="popup-dialog-point-row">
+              <span>120 نقطة = 300.00 د.ع</span>
+              <span>
+                رصيدك الحالي:
+                <img src="assets/figma/product-details/icon-money.svg" alt="" />
+              </span>
+            </div>
+          </div>
+          <a class="popup-dialog-checkout" href="checkout.html">التوجه للدفع (240.00 د.ع)</a>
+        </div>
+      </div>
+    </dialog>
+
+  </body>
+</html>

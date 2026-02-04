@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="popup-dialog.css" />
+    <link rel="stylesheet" href="checkout.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="checkout-body">
+    <div class="announcement-bar">
+      <span class="announcement-icon" aria-hidden="true">🎉</span>
+      <span class="announcement-text"
+        >توصيل مجاني للطلبات اكثر من 300.00 د.ع</span
+      >
+    </div>
+    <div class="header">
+      <div class="header-mobile">
+        <div class="icon-group">
+          <div class="frame">
+            <img class="remix-icons-line" src="assets/icons/profile.svg" />
+          </div>
+          <button class="action-buttons" type="button" data-popup-cart-trigger>
+            <img class="remix-icons-line" src="assets/icons/bag.svg" />
+            <div class="element-wrapper"><div class="element">2</div></div>
+          </button>
+          <div class="div">
+            <img class="remix-icons-line" src="assets/icons/heart.svg" />
+            <div class="element-wrapper"><div class="element">4</div></div>
+          </div>
+        </div>
+        <div class="logo-wrapper">
+          <div class="logo">
+            <img class="group" src="assets/icons/logo.svg" />
+          </div>
+        </div>
+        <div class="icon-group-2">
+          <div class="frame">
+            <div class="icon">
+              <img class="remix-icons-line" src="assets/icons/search.svg" />
+            </div>
+          </div>
+          <div class="frame">
+            <div class="icon">
+              <img class="remix-icons-line" src="assets/icons/burger.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-desktop">
+        <div class="desktop-top">
+          <div class="desktop-icons">
+            <div class="desktop-icon">
+              <img
+                class="desktop-icon-img"
+                src="assets/icons/profile.svg"
+                alt=""
+              />
+            </div>
+            <button class="desktop-action" type="button" data-popup-cart-trigger>
+              <img
+                class="desktop-icon-img"
+                src="assets/icons/bag.svg"
+                alt=""
+              />
+              <span class="desktop-badge">2</span>
+            </button>
+            <a class="desktop-action" href="favorite.html">
+              <img
+                class="desktop-icon-img"
+                src="assets/icons/heart.svg"
+                alt=""
+              />
+              <span class="desktop-badge">4</span>
+            </a>
+          </div>
+          <div class="desktop-search">
+            <img
+              class="desktop-search-icon"
+              src="assets/icons/search.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <input
+              type="search"
+              placeholder="ابحث عن اي مكمل غذائي قد يخطر ببالك"
+              aria-label="بحث"
+            />
+          </div>
+          <div class="desktop-logo">
+            <img src="assets/icons/logo.svg" alt="iProtein" />
+          </div>
+        </div>
+        <div class="desktop-nav-row">
+          <button class="desktop-discover" type="button" data-link="meal-analyzer.html">
+            <img src="assets/icons/arrow.svg" alt="" aria-hidden="true" />
+            ابدأ اكتشاف نفسك
+          </button>
+          <nav class="desktop-links" aria-label="التنقل الرئيسي">
+            <a class="nav-link" href="index.html">الرئيسية</a>
+            <a class="nav-link has-dropdown" href="products.html">
+              المنتجات
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </a>
+            <a class="nav-link" href="products.html">العروض والخصومات</a>
+            <a class="nav-link" href="blog.html">المدونة</a>
+            <a class="nav-link" href="about.html">من نحن</a>
+            <a class="nav-link" href="contact.html">تواصل معنا</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <header class="checkout-header">
+      <button
+        class="checkout-cart-btn"
+        aria-label="سلة التسوق"
+        type="button"
+        data-popup-cart-trigger
+      >
+        <img src="assets/icons/bag.svg" alt="" />
+        <span class="checkout-badge">2</span>
+      </button>
+      <img class="checkout-logo" src="assets/icons/logo.svg" alt="iProtein" />
+    </header>
+
+    <main class="checkout-page">
+      <section class="checkout-form">
+        <div class="checkout-section">
+          <h2>معلومات التوصيل</h2>
+          <div class="checkout-fields">
+            <label class="checkout-input">
+              <span>البريد الالكتروني</span>
+              <input type="email" />
+            </label>
+            <label class="checkout-input">
+              <span>الاسم</span>
+              <input type="text" />
+            </label>
+            <div class="checkout-row">
+              <label class="checkout-input">
+                <span>منطقة السكن</span>
+                <input type="text" />
+              </label>
+              <label class="checkout-input checkout-select">
+                <span>المدينة</span>
+                <select>
+                  <option>بغداد</option>
+                  <option>أربيل</option>
+                  <option>البصرة</option>
+                </select>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </label>
+            </div>
+            <label class="checkout-input has-icon">
+              <span>رقم الواتساب</span>
+              <input type="tel" />
+              <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
+            </label>
+          </div>
+        </div>
+
+        <div class="checkout-section">
+          <h2>الدفع</h2>
+          <div class="checkout-payments">
+            <label class="checkout-payment">
+              <span>الدفع عند الاستلام</span>
+              <input type="radio" name="payment" />
+              <i class="fa-regular fa-circle" aria-hidden="true"></i>
+            </label>
+            <label class="checkout-payment active">
+              <span>الدفع عبر منصة ويل</span>
+              <input type="radio" name="payment" checked />
+              <i class="fa-regular fa-circle-dot" aria-hidden="true"></i>
+            </label>
+          </div>
+          <div class="checkout-note">
+            <p>*ستضاف نقاطك مباشرة بعد تأكيد الطلب</p>
+            <label class="checkout-checkbox">
+              <input type="checkbox" />
+              استخدم نقاطي (120 نقطة = 300.00 د.ع خصم)
+            </label>
+          </div>
+        </div>
+
+        <button type="button" class="checkout-submit" data-link="order-confirmation.html">إكمال الطلب</button>
+      </section>
+
+      <aside class="checkout-summary">
+        <div class="checkout-products">
+          <article class="checkout-item">
+            <div class="checkout-item-info">
+              <div class="checkout-qty">1</div>
+              <div>
+                <h3>أوبتيموم واي بروتين</h3>
+                <div class="checkout-meta">
+                  <span>النكهة: شكولاتة</span>
+                  <span>السعة: 2.27 كغ</span>
+                </div>
+                <span class="checkout-chip">
+                  اسم العنصر
+                  <img src="assets/figma/product-details/icon-gift.png" alt="" />
+                </span>
+                <p class="checkout-price">120.00 د.ع</p>
+              </div>
+            </div>
+            <div class="checkout-thumb">
+              <img src="assets/figma/products/product-01.png" alt="أوبتيموم واي بروتين" />
+            </div>
+          </article>
+          <article class="checkout-item">
+            <div class="checkout-item-info">
+              <div class="checkout-qty">1</div>
+              <div>
+                <h3>مسَل تك كرياتين قطع</h3>
+                <div class="checkout-meta">
+                  <span>النكهة: حمضيات</span>
+                  <span>السعة: 90 كبسولة</span>
+                </div>
+                <span class="checkout-chip">
+                  اسم العنصر
+                  <img src="assets/figma/product-details/icon-gift.png" alt="" />
+                </span>
+                <p class="checkout-price">120.00 د.ع</p>
+              </div>
+            </div>
+            <div class="checkout-thumb">
+              <img src="assets/figma/products/product-02.png" alt="مسَل تك كرياتين قطع" />
+            </div>
+          </article>
+        </div>
+
+        <div class="checkout-coupon" aria-live="polite">
+          <h3>الكوبون</h3>
+          <div class="checkout-coupon-row">
+            <button type="button" class="checkout-apply">تطبيق</button>
+            <label class="checkout-input">
+              <span>كوبون التخفيض</span>
+              <input type="text" />
+            </label>
+          </div>
+          <p class="checkout-coupon-message" aria-live="polite"></p>
+        </div>
+
+        <div class="checkout-pricing">
+          <div class="checkout-price-row" data-price-row="subtotal">
+            <span>المجموع الفرعي</span>
+            <span data-price-value>240.00 د.ع</span>
+          </div>
+          <div class="checkout-price-row" data-price-row="coupon">
+            <span>كوبون التخفيض</span>
+            <span data-price-value>0.00 د.ع</span>
+          </div>
+          <div class="checkout-price-row" data-price-row="points">
+            <span>خصم النقاط</span>
+            <span data-price-value>0.00 د.ع</span>
+          </div>
+          <div class="checkout-price-row" data-price-row="shipping">
+            <span>سعر التوصيل</span>
+            <span data-price-value>100.00 د.ع</span>
+          </div>
+          <div class="checkout-divider"></div>
+          <div class="checkout-total" data-price-row="total">
+            <span>السعر الإجمالي</span>
+            <span data-price-value>340.00 د.ع</span>
+          </div>
+        </div>
+
+        <div class="checkout-points">
+          <div class="checkout-points-row">
+            <span>+100 نقطة</span>
+            <span class="checkout-points-label">
+              النقاط المكتسبة من هذا الطلب:
+              <img src="assets/figma/product-details/icon-gift.png" alt="" />
+            </span>
+          </div>
+          <div class="checkout-points-row">
+            <span>120 نقطة = 300.00 د.ع</span>
+            <span class="checkout-points-label">
+              رصيدك الحالي:
+              <img src="assets/figma/product-details/icon-money.svg" alt="" />
+            </span>
+          </div>
+        </div>
+      </aside>
+    
+    </main>
+
+    <footer class="site-footer">
+            <div class="footer-inner">
+              <div class="footer-top">
+                <div class="footer-brand">
+                  <img
+                    class="footer-brand-logo"
+                    src="assets/icons/logo.svg"
+                    alt="iProtein"
+                  />
+                  <p class="footer-copy">
+                    شريكك الموثوق في عالم الصحة واللياقة. في iProtein نوفر مكملات غذائية
+                    ومنتجات عافية موثوقة تدعم أهدافك في الأداء والمناعة واحتياجاتك
+                    اليومية. رحلتك نحو أفضل نسخة من نفسك تبدأ من هنا!
+                  </p>
+                </div>
+                <div class="footer-links-wrap">
+                  <div class="footer-col">
+                    <h3 class="footer-title">خدمة العملاء</h3>
+                    <div class="footer-links">
+                      <a href="faq.html">الأسئلة الشائعة</a>
+                      <a href="orders.html">طلباتي</a>
+                      <a href="returns.html">سياسة الإرجاع والاستبدال</a>
+                      <a href="contact.html">تواصل معنا</a>
+                      <a href="privacy.html">سياسة الخصوصية</a>
+                      <a href="terms.html">الشروط والأحكام</a>
+                    </div>
+                  </div>
+                  <div class="footer-col">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <div class="footer-links">
+                      <a href="index.html">الرئيسية</a>
+                      <a href="products.html">الأكثر مبيعًا</a>
+                      <a href="products.html">العروض والخصومات</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-divider"></div>
+              <div class="footer-row">
+                <h3 class="footer-title">للتواصل و المتابعة</h3>
+                <div class="social-row">
+                  <a class="social-icon" href="https://facebook.com" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                  </a>
+                  <a class="social-icon" href="https://instagram.com" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                  </a>
+                  <a class="social-icon" href="https://youtube.com" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                  </a>
+                  <a class="social-icon" href="https://linkedin.com" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="footer-divider"></div>
+              <div class="footer-row">
+                <h3 class="footer-title">وسائل الدفع المتوفرة</h3>
+                <div class="payment-row">
+                  <div class="payment-icon">
+                    <img src="assets/images/footer/visa.svg" alt="Visa" />
+                  </div>
+                  <div class="payment-icon">
+                    <img src="assets/images/footer/mastercard.svg" alt="Mastercard" />
+                  </div>
+                  <div class="payment-icon">
+                    <img src="assets/images/footer/wayl.jpeg" alt="Wayl" />
+                  </div>
+                </div>
+              </div>
+              <div class="footer-divider"></div>
+              <div class="footer-subscribe">
+                <p class="footer-title">اشترك معنا للمزيد من العروض والتخفيضات</p>
+                <div class="newsletter-form">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="ادخل بريدك الالكتروني"
+                    aria-label="البريد الالكتروني"
+                  />
+                  <button type="button" data-link="contact.html">اشتراك</button>
+                </div>
+              </div>
+              <div class="footer-apps">
+                <a class="app-badge" href="https://apps.apple.com/" aria-label="App Store">
+                  <img
+                    class="app-badge-icon"
+                    src="assets/images/footer/apple.svg"
+                    alt=""
+                  />
+                  <span class="app-badge-text">
+                    <span class="app-badge-top">Download on</span>
+                    <span class="app-badge-bottom">App Store</span>
+                  </span>
+                </a>
+                <a class="app-badge" href="https://play.google.com/store" aria-label="Google Play">
+                  <img
+                    class="app-badge-icon"
+                    src="assets/images/footer/play_store.svg"
+                    alt=""
+                  />
+                  <span class="app-badge-text">
+                    <span class="app-badge-top">Get it on</span>
+                    <span class="app-badge-bottom">Google Play</span>
+                  </span>
+                </a>
+              </div>
+              <div class="footer-bottom">
+                <div class="footer-line"></div>
+                <p class="copyright">© 2025، كل الحقوق محفوظة، آي بروتين.</p>
+              </div>
+            </div>
+          </footer>
+
+      <dialog class="popup-dialog" id="popup-cart-dialog" aria-label="سلة المشتريات">
+      <div class="popup-dialog-card">
+        <div class="popup-dialog-header">
+          <button class="popup-dialog-btn" type="button" data-popup-close>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+          <img class="popup-dialog-logo" src="assets/icons/logo.svg" alt="iProtein" />
+          <button class="popup-dialog-btn" type="button">
+            <img src="assets/figma/product-details/icon-share.svg" alt="" />
+          </button>
+        </div>
+
+        <div class="popup-dialog-coupon">
+          <button class="popup-dialog-apply" type="button">تطبيق</button>
+          <label class="popup-dialog-input">
+            <span>كوبون التخفيض</span>
+            <input type="text" aria-label="كوبون التخفيض" />
+          </label>
+        </div>
+
+        <div class="popup-dialog-shipping">
+          <p>أنت على بعد 300.00 د.ع للحصول على امتياز الشحن المجاني.</p>
+          <div class="popup-dialog-progress">
+            <span class="popup-dialog-progress-icon">
+              <i class="fa-solid fa-truck" aria-hidden="true"></i>
+            </span>
+            <span class="popup-dialog-progress-track">
+              <span class="popup-dialog-progress-fill"></span>
+            </span>
+          </div>
+          <span class="popup-dialog-note">
+            قد تختلف تكاليف الشحن حسب موقعك. يتم حساب الشحن عند الدفع.
+          </span>
+        </div>
+
+        <div class="popup-dialog-items">
+          <article class="popup-dialog-item">
+            <div class="popup-dialog-info">
+              <div class="popup-dialog-title">
+                <div class="popup-dialog-actions">
+                  <button type="button" aria-label="حذف">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                  </button>
+                  <span class="popup-dialog-divider"></span>
+                  <button type="button" aria-label="إضافة للمفضلة" data-link="favorite.html">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <h3>أوبتيموم واي بروتين</h3>
+              </div>
+              <div class="popup-dialog-meta">
+                <span>النكهة: شكولاتة</span>
+                <span>السعة: 2.27 كغ</span>
+              </div>
+              <span class="popup-dialog-chip">
+                اسم العنصر
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+              <div class="popup-dialog-bottom">
+                <span class="popup-dialog-price">120.00 د.ع</span>
+                <div class="qty-stepper" data-qty>
+                  <button type="button" aria-label="ناقص">
+                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                  </button>
+                  <span>1</span>
+                  <button type="button" aria-label="زائد">
+                    <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-dialog-thumb">
+              <img src="assets/figma/products/product-01.png" alt="أوبتيموم واي بروتين" />
+            </div>
+          </article>
+
+          <div class="popup-dialog-line"></div>
+
+          <article class="popup-dialog-item">
+            <div class="popup-dialog-info">
+              <div class="popup-dialog-title">
+                <div class="popup-dialog-actions">
+                  <button type="button" aria-label="حذف">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                  </button>
+                  <span class="popup-dialog-divider"></span>
+                  <button type="button" aria-label="إضافة للمفضلة" data-link="favorite.html">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <h3>مسَل تك كرياتين قطع</h3>
+              </div>
+              <div class="popup-dialog-meta">
+                <span>النكهة: حمضيات</span>
+                <span>السعة: 90 كبسولة</span>
+              </div>
+              <span class="popup-dialog-chip">
+                اسم العنصر
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+              <div class="popup-dialog-bottom">
+                <span class="popup-dialog-price">120.00 د.ع</span>
+                <div class="qty-stepper" data-qty>
+                  <button type="button" aria-label="ناقص">
+                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                  </button>
+                  <span>1</span>
+                  <button type="button" aria-label="زائد">
+                    <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-dialog-thumb">
+              <img src="assets/figma/products/product-02.png" alt="مسَل تك كرياتين قطع" />
+            </div>
+          </article>
+        </div>
+
+        <div class="popup-dialog-footer">
+          <div class="popup-dialog-points">
+            <div class="popup-dialog-point-row">
+              <span>+100 نقطة</span>
+              <span>
+                النقاط المكتسبة من هذا الطلب:
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+            </div>
+            <div class="popup-dialog-point-row">
+              <span>120 نقطة = 300.00 د.ع</span>
+              <span>
+                رصيدك الحالي:
+                <img src="assets/figma/product-details/icon-money.svg" alt="" />
+              </span>
+            </div>
+          </div>
+          <a class="popup-dialog-checkout" href="checkout.html">التوجه للدفع (240.00 د.ع)</a>
+        </div>
+      </div>
+    </dialog>
+
+  </body>
+</html>

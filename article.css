@@ -1,0 +1,127 @@
+.article-page {
+  direction: rtl;
+  padding: 32px 16px 80px;
+  color: var(--primitives-colors-primary-primary-950);
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.article-breadcrumbs {
+  font-size: 12px;
+  color: var(--primitives-colors-natural-natural-500);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.article-page h1 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.article-meta {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  color: var(--primitives-colors-natural-natural-500);
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.article-hero {
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.article-hero img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.article-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  line-height: 1.8;
+}
+
+.article-content h2,
+.article-content h3 {
+  margin: 0;
+}
+
+.article-content p,
+.article-content li {
+  font-size: 14px;
+  color: var(--primitives-colors-primary-primary-500-p);
+}
+
+.article-content ul {
+  margin: 0;
+  padding-right: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.article-cta {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.article-cta-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 200px;
+  aspect-ratio: 3 / 2;
+}
+
+.article-cta-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-cta-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+  padding: 24px;
+  gap: 10px;
+  color: #fff;
+  background: rgba(9, 17, 13, 0.45);
+}
+
+.article-cta-overlay button {
+  background: var(--primitives-colors-primary-primary-500-p);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .article-page {
+    max-width: 100%;
+  }
+
+  .article-hero img {
+    height: 200px;
+  }
+
+  .article-cta {
+    grid-template-columns: 1fr;
+  }
+}

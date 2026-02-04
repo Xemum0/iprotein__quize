@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="popup-dialog.css" />
+    <link rel="stylesheet" href="faq.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="announcement-bar">
+      <span class="announcement-icon" aria-hidden="true">🎉</span>
+      <span class="announcement-text"
+        >توصيل مجاني للطلبات اكثر من 300.00 د.ع</span
+      >
+    </div>
+    <div class="header">
+      <div class="header-mobile">
+        <div class="icon-group">
+          <div class="frame">
+            <img class="remix-icons-line" src="assets/icons/profile.svg" />
+          </div>
+          <button class="action-buttons" type="button" data-popup-cart-trigger>
+            <img class="remix-icons-line" src="assets/icons/bag.svg" />
+            <div class="element-wrapper"><div class="element">2</div></div>
+          </button>
+          <div class="div">
+            <img class="remix-icons-line" src="assets/icons/heart.svg" />
+            <div class="element-wrapper"><div class="element">4</div></div>
+          </div>
+        </div>
+        <div class="logo-wrapper">
+          <div class="logo">
+            <img class="group" src="assets/icons/logo.svg" />
+          </div>
+        </div>
+        <div class="icon-group-2">
+          <div class="frame">
+            <div class="icon">
+              <img class="remix-icons-line" src="assets/icons/search.svg" />
+            </div>
+          </div>
+          <div class="frame">
+            <div class="icon">
+              <img class="remix-icons-line" src="assets/icons/burger.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-desktop">
+        <div class="desktop-top">
+          <div class="desktop-icons">
+            <div class="desktop-icon">
+              <img
+                class="desktop-icon-img"
+                src="assets/icons/profile.svg"
+                alt=""
+              />
+            </div>
+            <button class="desktop-action" type="button" data-popup-cart-trigger>
+              <img class="desktop-icon-img" src="assets/icons/bag.svg" alt="" />
+              <span class="desktop-badge">2</span>
+            </button>
+            <a class="desktop-action" href="favorite.html">
+              <img class="desktop-icon-img" src="assets/icons/heart.svg" alt="" />
+              <span class="desktop-badge">4</span>
+            </a>
+          </div>
+          <div class="desktop-search">
+            <img
+              class="desktop-search-icon"
+              src="assets/icons/search.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <input
+              type="search"
+              placeholder="ابحث عن اي مكمل غذائي قد يخطر ببالك"
+              aria-label="بحث"
+            />
+          </div>
+          <div class="desktop-logo">
+            <img src="assets/icons/logo.svg" alt="iProtein" />
+          </div>
+        </div>
+        <div class="desktop-nav-row">
+          <button class="desktop-discover" type="button" data-link="meal-analyzer.html">
+            <img src="assets/icons/arrow.svg" alt="" aria-hidden="true" />
+            ابدأ اكتشاف نفسك
+          </button>
+          <nav class="desktop-links" aria-label="التنقل الرئيسي">
+            <a class="nav-link" href="index.html">الرئيسية</a>
+            <a class="nav-link has-dropdown" href="products.html">
+              المنتجات
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </a>
+            <a class="nav-link" href="products.html">العروض والخصومات</a>
+            <a class="nav-link" href="blog.html">المدونة</a>
+            <a class="nav-link" href="about.html">من نحن</a>
+            <a class="nav-link" href="contact.html">تواصل معنا</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <main class="faq-page">
+      <section class="faq-hero">
+        <img class="faq-logo" src="assets/icons/logo.svg" alt="iProtein" />
+        <h1>الأسئلة الشائعة</h1>
+        <p>كل ما تحتاج معرفته عن منتجات وخدمات iProtein في مكان واحد</p>
+      </section>
+
+      <section class="faq-section">
+        <h2>الأصالة وسلسلة التوريد</h2>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <button class="faq-question" type="button">
+              من أين تأتون بالمكملات وهل هي أصلية؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              نعم—جميع منتجات iProtein أصلية 100%. نعتمد ثلاث قنوات شراء
+              معتمدة:
+              <p>الوكلاء/الموزعون الحصريون للعلامات في المنطقة (حسب توافر التفويض).</p>
+              <p>شركات توزيع أمريكية وعالمية معتمدة مثل: Muscle Foods USA.</p>
+              <p>
+                منصّات عالمية موثوقة لشراء العلامات الأصلية مثل: iHerb (وفق
+                القوانين واللوائح المحلية وبحسب التوافر).
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              كيف أتحقق بنفسي من الأصالة؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              افحص ختم الأمان ولاصق الحماية ورقم التشغيلة (LOT) وتاريخ الصلاحية
+              (EXP). طابق الباركود والملصق الغذائي مع موقع الشركة الأم. يمكنك
+              طلب فاتورة التوريد/شهادة المنشأ (إن وُجدت) وCOA (شهادة تحليل)
+              لبعض المنتجات. لو راودك أدنى شك، طبّق سياسة “صفر مخاطرة”: بلغنا
+              خلال 48 ساعة لنستبدل المنتج أو نعيد المبلغ بعد الفحص.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل لديكم دليل توريد؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              نحتفظ داخليًا بـ فواتير الموردين وسجل التشغيلات وسندات الإدخال
+              للمخزن. عند طلب رسمي من العميل أو جهة رقابية نقدّم ما يلزم قانونيًا.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              كيف تخزّنون المنتجات أثناء الحرّ؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              مستودعاتنا ضمن نطاق حرارة [18–25°C] ورطوبة مضبوطة، بعيدًا عن أشعة
+              الشمس؛ ونستخدم عوازل حرارية للنقل في الأجواء الحارّة عند الحاجة.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>السلامة والجودة</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل منتجاتكم معتمدة أو مختبرة؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              نختار علامات لديها تصنيع وفق معايير جودة معروفة (مثل: ممارسات
+              التصنيع الجيد GMP). لبعض المنتجات يمكن توفير COA من الشركة المصنّعة
+              أو المورّد.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل المكملات بديل عن العلاج الطبي؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              لا. محتوى الموقع إرشادي عام. استشر طبيبك إذا لديك حالة صحية/أدوية/حمل
+              أو رضاعة.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              ما هو العمر الأدنى المسموح به لاستخدام المكملات؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              نوصي بالمكملات لمن هم [18+] ما لم تنصّ تعليمات الشركة على غير ذلك.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل منتجاتكم مناسبة للرياضيين المحترفين (اختبارات منشّطات)؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              اختر منتجات خالية من المواد المحظورة حسب لوائح منظمتك الرياضية. اطلب
+              منّا دعمًا لاختيار أصناف Informed Choice/Certified Sport (إن كانت
+              متوفرة).
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>المكونات والأنظمة الغذائية</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل المنتجات حلال؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              نوفّر ما نستطيع من توثيق “حلال” للمنتجات التي تحمل هذا الوسم من الشركة
+              الأم. اسألنا عن شهادات الحلال المتاحة لكل منتج.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل توجد منتجات خالية من اللاكتوز أو الغلوتين أو تناسب الحساسيّات؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              تفقّد ملصق المكوّنات قبل الشراء. نوفر فلاتر: خالي لاكتوز/غلوتين/نباتي/
+              خالي سكّر حيث ينطبق.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل المنتجات تحتوي على مُحلّيات أو منكّهات صناعية؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              بعض المساحيق تستخدم سوكريلوز/ستيفيا/سكرالوز أو منكّهات طبيعية/مطابقة
+              للطبيعة—ستجد التفاصيل على الملصق. راسلنا لو تحتاج توصية بدون مُحلّيات.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>الاستخدام والجرعات</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              كيف أختار مسحوق البروتين المناسب لي؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              الهدف: زيادة/حفاظ/تنشيف. الهضم: وي بروتين Isolate لضعف تحمّل
+              اللاكتوز؛ Casein قبل النوم؛ Blend للاستخدام العام. السعرات/الطعم:
+              اختر ما يناسبك—جرب حجمًا صغيرًا أولًا إذا ترددت. راجع دليلنا:
+              [رابط دليل اختيار البروتين].
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل الكرياتين آمن؟ وما هي الجرعة الموصى بها؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              موثّق علميًا لرفع القوة/الأداء. الجرعة الشائعة 3–5 غ/يوم. اشرب ماء
+              كافيًا. استشر طبيبك عند وجود حالة صحية.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              متى أتوقع ظهور النتائج من استخدام المكملات؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              تختلف حسب التغذية/التمرين/النوم والالتزام. المكملات تدعم البرنامج وليست
+              بديلًا عنه.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>الطلبات والشحن</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              متى يصل طلبي؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              داخل العراق عادةً 1–3 أيام عمل بعد التأكيد. المناطق البعيدة قد تحتاج
+              وقتًا إضافيًا.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل الشحن الدولي متاح؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">لا، فقط داخل العراق الاتحادي.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              ما هي قيمة التوصيل داخل العراق؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              تظهر عند الدفع حسب المدينة/الوزن. وقد نقدّم شحنًا مجانيًا للطلبات التي
+              تتجاوز 100,000 IQD.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              ما هو وقت تجهيز الطلبات (Cut-off Time)؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              الطلبات المؤكدة قبل [2:00 ظهرًا] تُجهّز عادةً نفس اليوم.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>الدفع والفواتير</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              ما هي طرق الدفع المتاحة؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              الدفع عند الاستلام، بطاقات، بوابات دفع محلية/دولية، محافظ رقمية.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل توجد رسوم إضافية عند الدفع الإلكتروني؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              قد تفرض بوابات الدفع رسوم خدمة—نعرضها قبل إتمام العملية.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              هل أحصل على فاتورة الشراء؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              نرسل إيصالًا إلكترونيًا تلقائيًا عبر واتساب.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>الإرجاع والاستبدال</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              ما الحالات التي يُقبل فيها إرجاع المنتجات؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              إرجاع العبوات غير المفتوحة خلال [7] أيام من الاستلام. لا نقبل إرجاع
+              المنتجات المفتوحة (لدواعٍ صحية) إلا إن كانت معيبة/خاطئة.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              ماذا أفعل إذا استلمت منتجًا تالفًا أو خاطئًا؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              بلغنا خلال 48 ساعة بالصور ورقم الطلب—نغطّي الشحن العكسي ونقدّم
+              استبدالًا/استردادًا بعد الفحص.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              كيف أقدّم طلب إرجاع؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              عبر التواصل واتساب على الرقم 07816994411.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              متى أستلم المبلغ بعد الإرجاع؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              بعد وصول المنتج وفحصه خلال [7–14] يوم عمل إلى وسيلة الدفع الأصلية.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>التخزين والصلاحية</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              كيف أحفظ المنتج؟ وهل يتأثر بالحرارة؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              احفظه في مكان جاف وبارد بعيدًا عن الشمس. أثناء الشحن الحار نستخدم
+              تعبئة واقية عند الحاجة. لا تترك العبوة في السيارة لساعات طويلة.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              ماذا يحدث إذا كان المنتج قريبًا من انتهاء الصلاحية؟
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              نحدّد ذلك بوضوح ونوفّر سعرًا خاصًا عند الاقتضاء.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+            <div class="footer-inner">
+              <div class="footer-top">
+                <div class="footer-brand">
+                  <img
+                    class="footer-brand-logo"
+                    src="assets/icons/logo.svg"
+                    alt="iProtein"
+                  />
+                  <p class="footer-copy">
+                    شريكك الموثوق في عالم الصحة واللياقة. في iProtein نوفر مكملات غذائية
+                    ومنتجات عافية موثوقة تدعم أهدافك في الأداء والمناعة واحتياجاتك
+                    اليومية. رحلتك نحو أفضل نسخة من نفسك تبدأ من هنا!
+                  </p>
+                </div>
+                <div class="footer-links-wrap">
+                  <div class="footer-col">
+                    <h3 class="footer-title">خدمة العملاء</h3>
+                    <div class="footer-links">
+                      <a href="faq.html">الأسئلة الشائعة</a>
+                      <a href="orders.html">طلباتي</a>
+                      <a href="returns.html">سياسة الإرجاع والاستبدال</a>
+                      <a href="contact.html">تواصل معنا</a>
+                      <a href="privacy.html">سياسة الخصوصية</a>
+                      <a href="terms.html">الشروط والأحكام</a>
+                    </div>
+                  </div>
+                  <div class="footer-col">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <div class="footer-links">
+                      <a href="index.html">الرئيسية</a>
+                      <a href="products.html">الأكثر مبيعًا</a>
+                      <a href="products.html">العروض والخصومات</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-divider"></div>
+              <div class="footer-row">
+                <h3 class="footer-title">للتواصل و المتابعة</h3>
+                <div class="social-row">
+                  <a class="social-icon" href="https://facebook.com" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                  </a>
+                  <a class="social-icon" href="https://instagram.com" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                  </a>
+                  <a class="social-icon" href="https://youtube.com" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                  </a>
+                  <a class="social-icon" href="https://linkedin.com" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="footer-divider"></div>
+              <div class="footer-row">
+                <h3 class="footer-title">وسائل الدفع المتوفرة</h3>
+                <div class="payment-row">
+                  <div class="payment-icon">
+                    <img src="assets/images/footer/visa.svg" alt="Visa" />
+                  </div>
+                  <div class="payment-icon">
+                    <img src="assets/images/footer/mastercard.svg" alt="Mastercard" />
+                  </div>
+                  <div class="payment-icon">
+                    <img src="assets/images/footer/wayl.jpeg" alt="Wayl" />
+                  </div>
+                </div>
+              </div>
+              <div class="footer-divider"></div>
+              <div class="footer-subscribe">
+                <p class="footer-title">اشترك معنا للمزيد من العروض والتخفيضات</p>
+                <div class="newsletter-form">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="ادخل بريدك الالكتروني"
+                    aria-label="البريد الالكتروني"
+                  />
+                  <button type="button" data-link="contact.html">اشتراك</button>
+                </div>
+              </div>
+              <div class="footer-apps">
+                <a class="app-badge" href="https://apps.apple.com/" aria-label="App Store">
+                  <img
+                    class="app-badge-icon"
+                    src="assets/images/footer/apple.svg"
+                    alt=""
+                  />
+                  <span class="app-badge-text">
+                    <span class="app-badge-top">Download on</span>
+                    <span class="app-badge-bottom">App Store</span>
+                  </span>
+                </a>
+                <a class="app-badge" href="https://play.google.com/store" aria-label="Google Play">
+                  <img
+                    class="app-badge-icon"
+                    src="assets/images/footer/play_store.svg"
+                    alt=""
+                  />
+                  <span class="app-badge-text">
+                    <span class="app-badge-top">Get it on</span>
+                    <span class="app-badge-bottom">Google Play</span>
+                  </span>
+                </a>
+              </div>
+              <div class="footer-bottom">
+                <div class="footer-line"></div>
+                <p class="copyright">© 2025، كل الحقوق محفوظة، آي بروتين.</p>
+              </div>
+            </div>
+          </footer>
+
+    <dialog class="popup-dialog" id="popup-cart-dialog" aria-label="سلة المشتريات">
+      <div class="popup-dialog-card">
+        <div class="popup-dialog-header">
+          <button class="popup-dialog-btn" type="button" data-popup-close>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+          <img class="popup-dialog-logo" src="assets/icons/logo.svg" alt="iProtein" />
+          <button class="popup-dialog-btn" type="button">
+            <img src="assets/figma/product-details/icon-share.svg" alt="" />
+          </button>
+        </div>
+
+        <div class="popup-dialog-coupon">
+          <button class="popup-dialog-apply" type="button">تطبيق</button>
+          <label class="popup-dialog-input">
+            <span>كوبون التخفيض</span>
+            <input type="text" aria-label="كوبون التخفيض" />
+          </label>
+        </div>
+
+        <div class="popup-dialog-shipping">
+          <p>أنت على بعد 300.00 د.ع للحصول على امتياز الشحن المجاني.</p>
+          <div class="popup-dialog-progress">
+            <span class="popup-dialog-progress-icon">
+              <i class="fa-solid fa-truck" aria-hidden="true"></i>
+            </span>
+            <span class="popup-dialog-progress-track">
+              <span class="popup-dialog-progress-fill"></span>
+            </span>
+          </div>
+          <span class="popup-dialog-note">
+            قد تختلف تكاليف الشحن حسب موقعك. يتم حساب الشحن عند الدفع.
+          </span>
+        </div>
+
+        <div class="popup-dialog-items">
+          <article class="popup-dialog-item">
+            <div class="popup-dialog-info">
+              <div class="popup-dialog-title">
+                <div class="popup-dialog-actions">
+                  <button type="button" aria-label="حذف">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                  </button>
+                  <span class="popup-dialog-divider"></span>
+                  <button type="button" aria-label="إضافة للمفضلة" data-link="favorite.html">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <h3>أوبتيموم واي بروتين</h3>
+              </div>
+              <div class="popup-dialog-meta">
+                <span>النكهة: شكولاتة</span>
+                <span>السعة: 2.27 كغ</span>
+              </div>
+              <span class="popup-dialog-chip">
+                اسم العنصر
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+              <div class="popup-dialog-bottom">
+                <span class="popup-dialog-price">120.00 د.ع</span>
+                <div class="qty-stepper" data-qty>
+                  <button type="button" aria-label="ناقص">
+                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                  </button>
+                  <span>1</span>
+                  <button type="button" aria-label="زائد">
+                    <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-dialog-thumb">
+              <img src="assets/figma/products/product-01.png" alt="أوبتيموم واي بروتين" />
+            </div>
+          </article>
+
+          <div class="popup-dialog-line"></div>
+
+          <article class="popup-dialog-item">
+            <div class="popup-dialog-info">
+              <div class="popup-dialog-title">
+                <div class="popup-dialog-actions">
+                  <button type="button" aria-label="حذف">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                  </button>
+                  <span class="popup-dialog-divider"></span>
+                  <button type="button" aria-label="إضافة للمفضلة" data-link="favorite.html">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <h3>مسَل تك كرياتين قطع</h3>
+              </div>
+              <div class="popup-dialog-meta">
+                <span>النكهة: حمضيات</span>
+                <span>السعة: 90 كبسولة</span>
+              </div>
+              <span class="popup-dialog-chip">
+                اسم العنصر
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+              <div class="popup-dialog-bottom">
+                <span class="popup-dialog-price">120.00 د.ع</span>
+                <div class="qty-stepper" data-qty>
+                  <button type="button" aria-label="ناقص">
+                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                  </button>
+                  <span>1</span>
+                  <button type="button" aria-label="زائد">
+                    <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-dialog-thumb">
+              <img src="assets/figma/products/product-02.png" alt="مسَل تك كرياتين قطع" />
+            </div>
+          </article>
+        </div>
+
+        <div class="popup-dialog-footer">
+          <div class="popup-dialog-points">
+            <div class="popup-dialog-point-row">
+              <span>+100 نقطة</span>
+              <span>
+                النقاط المكتسبة من هذا الطلب:
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+            </div>
+            <div class="popup-dialog-point-row">
+              <span>120 نقطة = 300.00 د.ع</span>
+              <span>
+                رصيدك الحالي:
+                <img src="assets/figma/product-details/icon-money.svg" alt="" />
+              </span>
+            </div>
+          </div>
+          <a class="popup-dialog-checkout" href="checkout.html">التوجه للدفع (240.00 د.ع)</a>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

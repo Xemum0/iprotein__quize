@@ -1,0 +1,347 @@
+.popup-cart-body {
+  background: #f6f8f7;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.popup-cart-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  direction: rtl;
+}
+
+.popup-cart-card {
+  background: #fff;
+  border-radius: 24px;
+  width: min(640px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px 32px 24px;
+  box-shadow: 0 20px 60px rgba(9, 17, 13, 0.12);
+}
+
+.popup-cart-header {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  gap: 16px;
+}
+
+.popup-cart-logo {
+  width: 160px;
+  justify-self: center;
+}
+
+.popup-icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--primitives-colors-primary-primary-500-p);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primitives-colors-primary-primary-500-p);
+  cursor: pointer;
+}
+
+.popup-icon-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.popup-coupon-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.popup-apply {
+  background: var(--primitives-colors-secondary-secondary-500-s);
+  color: #5c5f07;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-family: var(
+      --typography-family-IBM-plex-sans-arabic-medium-18-font-family
+    ),
+    "Cairo", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.popup-input {
+  flex: 1;
+  border: 1px solid var(--primitives-colors-natural-natural-100);
+  border-radius: 8px;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--primitives-colors-primary-primary-950);
+}
+
+.popup-input span {
+  font-size: 12px;
+  color: var(--primitives-colors-natural-natural-500);
+}
+
+.popup-input input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: inherit;
+  text-align: right;
+}
+
+.popup-shipping {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--primitives-colors-primary-primary-500-p);
+  font-weight: 600;
+}
+
+.popup-shipping p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.popup-shipping-note {
+  font-size: 12px;
+  color: var(--primitives-colors-natural-natural-500);
+}
+
+.popup-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.popup-progress-icon {
+  background: var(--primitives-colors-primary-primary-100);
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primitives-colors-primary-primary-500-p);
+}
+
+.popup-progress-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--primitives-colors-primary-primary-100);
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-progress-fill {
+  position: absolute;
+  right: 0;
+  width: 25%;
+  height: 100%;
+  background: var(--primitives-colors-primary-primary-500-p);
+  border-radius: 999px;
+}
+
+.popup-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.popup-item {
+  display: grid;
+  grid-template-columns: 1fr 96px;
+  gap: 16px;
+  align-items: start;
+}
+
+.popup-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.popup-item-top h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--primitives-colors-primary-primary-950);
+}
+
+.popup-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primitives-colors-primary-primary-500-p);
+}
+
+.popup-item-icon {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.popup-divider {
+  width: 1px;
+  height: 12px;
+  background: #d5d5d5;
+}
+
+.popup-item-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  color: var(--primitives-colors-primary-primary-950);
+}
+
+.popup-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fcfde7;
+  color: #8a8e0b;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  width: fit-content;
+}
+
+.popup-chip img {
+  width: 14px;
+  height: 14px;
+}
+
+.popup-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.popup-price {
+  font-weight: 600;
+  color: var(--primitives-colors-primary-primary-500-p);
+}
+
+.qty-stepper {
+  border: 1px solid var(--primitives-colors-primary-primary-500-p);
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 16px;
+  font-weight: 600;
+  color: var(--primitives-colors-primary-primary-500-p);
+}
+
+.qty-stepper button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.qty-stepper img {
+  width: 18px;
+  height: 18px;
+}
+
+.popup-item-thumb {
+  width: 96px;
+  height: 96px;
+  background: var(--primitives-colors-primary-primary-50);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-item-thumb img {
+  width: 60%;
+  height: auto;
+}
+
+.popup-line {
+  height: 1px;
+  background: #efefef;
+}
+
+.popup-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.popup-points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.popup-point-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--primitives-colors-primary-primary-950);
+}
+
+.popup-point-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.popup-point-label img {
+  width: 18px;
+  height: 18px;
+}
+
+.popup-checkout {
+  background: var(--primitives-colors-primary-primary-500-p);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .popup-cart-card {
+    padding: 24px 16px;
+  }
+
+  .popup-item {
+    grid-template-columns: 1fr 80px;
+  }
+
+  .popup-item-top {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .popup-item-meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

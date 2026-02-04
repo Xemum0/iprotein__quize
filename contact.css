@@ -1,0 +1,141 @@
+.contact-page {
+  direction: rtl;
+  padding: 32px 16px 80px;
+  color: var(--primitives-colors-primary-primary-950);
+}
+
+.contact-hero {
+  background: var(--primitives-colors-primary-primary-500-p);
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 20px;
+  max-width: 1240px;
+  margin: 0 auto 32px;
+}
+
+.contact-logo {
+  width: 180px;
+  margin-bottom: 16px;
+}
+
+.contact-hero h1 {
+  margin: 0 0 8px;
+  color: var(--primitives-colors-secondary-secondary-500-s);
+  font-size: 28px;
+}
+
+.contact-hero p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.contact-cards {
+  max-width: 1240px;
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.contact-card {
+  background: #eef6f3;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: #dbe9e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primitives-colors-primary-primary-500-p);
+  font-size: 20px;
+}
+
+.contact-card button {
+  border: none;
+  background: var(--primitives-colors-primary-primary-500-p);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact-card button.whatsapp {
+  background: #2bb741;
+}
+
+.contact-form {
+  max-width: 1240px;
+  margin: 0 auto;
+  background: #f1f7f5;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.contact-form h2 {
+  margin: 0;
+}
+
+.contact-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  text-align: right;
+}
+
+.contact-inputs label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--primitives-colors-natural-natural-500);
+}
+
+.contact-inputs input,
+.contact-inputs textarea {
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  text-align: right;
+  background: #fff;
+}
+
+.contact-inputs .full {
+  grid-column: 1 / -1;
+}
+
+.contact-submit {
+  align-self: center;
+  background: var(--primitives-colors-primary-primary-500-p);
+  color: #fff;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-inputs {
+    grid-template-columns: 1fr;
+  }
+}

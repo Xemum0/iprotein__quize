@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="popup-cart.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="popup-cart-body">
+    <main class="popup-cart-page">
+      <section class="popup-cart-card" aria-label="سلة المشتريات">
+        <div class="popup-cart-header">
+          <button class="popup-icon-btn" aria-label="إغلاق">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+          <img class="popup-cart-logo" src="assets/icons/logo.svg" alt="iProtein" />
+          <button class="popup-icon-btn" aria-label="مشاركة">
+            <img src="assets/figma/product-details/icon-share.svg" alt="" />
+          </button>
+        </div>
+
+        <div class="popup-coupon-row">
+          <button class="popup-apply" type="button">تطبيق</button>
+          <label class="popup-input">
+            <span>كوبون التخفيض</span>
+            <input type="text" placeholder="" aria-label="كوبون التخفيض" />
+          </label>
+        </div>
+
+        <div class="popup-shipping">
+          <p>أنت على بعد 300.00 د.ع للحصول على امتياز الشحن المجاني.</p>
+          <div class="popup-progress">
+            <span class="popup-progress-icon">
+              <i class="fa-solid fa-truck" aria-hidden="true"></i>
+            </span>
+            <span class="popup-progress-track">
+              <span class="popup-progress-fill"></span>
+            </span>
+          </div>
+          <span class="popup-shipping-note">
+            قد تختلف تكاليف الشحن حسب موقعك. يتم حساب الشحن عند الدفع.
+          </span>
+        </div>
+
+        <div class="popup-items">
+          <article class="popup-item">
+            <div class="popup-item-info">
+              <div class="popup-item-top">
+                <div class="popup-item-actions">
+                  <button class="popup-item-icon" aria-label="حذف">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                  </button>
+                  <span class="popup-divider"></span>
+                  <button class="popup-item-icon" aria-label="إضافة للمفضلة" data-link="favorite.html">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <h3>أوبتيموم واي بروتين</h3>
+              </div>
+              <div class="popup-item-meta">
+                <span>النكهة: شكولاتة</span>
+                <span>السعة: 2.27 كغ</span>
+              </div>
+              <span class="popup-chip">
+                اسم العنصر
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+              <div class="popup-item-bottom">
+                <span class="popup-price">120.00 د.ع</span>
+                <div class="qty-stepper" data-qty>
+                  <button type="button" aria-label="ناقص">
+                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                  </button>
+                  <span>1</span>
+                  <button type="button" aria-label="زائد">
+                    <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-item-thumb">
+              <img src="assets/figma/products/product-01.png" alt="أوبتيموم واي بروتين" />
+            </div>
+          </article>
+
+          <div class="popup-line"></div>
+
+          <article class="popup-item">
+            <div class="popup-item-info">
+              <div class="popup-item-top">
+                <div class="popup-item-actions">
+                  <button class="popup-item-icon" aria-label="حذف">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                  </button>
+                  <span class="popup-divider"></span>
+                  <button class="popup-item-icon" aria-label="إضافة للمفضلة" data-link="favorite.html">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <h3>مسَل تك كرياتين قطع</h3>
+              </div>
+              <div class="popup-item-meta">
+                <span>النكهة: حمضيات</span>
+                <span>السعة: 90 كبسولة</span>
+              </div>
+              <span class="popup-chip">
+                اسم العنصر
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+              <div class="popup-item-bottom">
+                <span class="popup-price">120.00 د.ع</span>
+                <div class="qty-stepper" data-qty>
+                  <button type="button" aria-label="ناقص">
+                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                  </button>
+                  <span>1</span>
+                  <button type="button" aria-label="زائد">
+                    <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-item-thumb">
+              <img src="assets/figma/products/product-02.png" alt="مسَل تك كرياتين قطع" />
+            </div>
+          </article>
+        </div>
+
+        <div class="popup-footer">
+          <div class="popup-points">
+            <div class="popup-point-row">
+              <span class="popup-point-value">+100 نقطة</span>
+              <span class="popup-point-label">
+                النقاط المكتسبة من هذا الطلب:
+                <img src="assets/figma/product-details/icon-gift.png" alt="" />
+              </span>
+            </div>
+            <div class="popup-point-row">
+              <span class="popup-point-value">120 نقطة = 300.00 د.ع</span>
+              <span class="popup-point-label">
+                رصيدك الحالي:
+                <img src="assets/figma/product-details/icon-money.svg" alt="" />
+              </span>
+            </div>
+          </div>
+          <button class="popup-checkout" type="button" data-link="checkout.html">
+            التوجه للدفع (240.00 د.ع)
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
