@@ -793,6 +793,17 @@ function initProductsPage() {
     });
   });
 
+  const setFiltersCollapsed = (shouldCollapse) => {
+    if (!filtersHeader || !filtersBody) return;
+    filtersBody.classList.toggle("is-collapsed", shouldCollapse);
+    filtersHeader.setAttribute("aria-expanded", shouldCollapse ? "false" : "true");
+  };
+
+  if (filtersHeader && filtersBody) {
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    setFiltersCollapsed(!isDesktop);
+  }
+
   if (filtersHeader && filtersBody) {
     filtersHeader.addEventListener("click", () => {
       filtersBody.classList.toggle("is-collapsed");
