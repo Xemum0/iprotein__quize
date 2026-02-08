@@ -24,6 +24,14 @@
       <span class="announcement-text"
         >توصيل مجاني للطلبات اكثر من 300.00 د.ع</span
       >
+      <button
+        class="announcement-close"
+        type="button"
+        aria-label="إغلاق التنبيه"
+        data-announcement-close
+      >
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
     </div>
     <div class="header">
       <div class="header-mobile">
@@ -251,7 +259,16 @@
           <p class="shop-goal-subtitle">
             اعرف المكملات الأنسب لك لتحقق أهدافك الصحية والرياضية بيسر.
           </p>
-          <div class="goal-carousel" aria-label="أهداف التسوق">
+          <div class="goal-carousel-wrap">
+            <button
+              class="goal-nav-btn goal-nav-prev"
+              type="button"
+              aria-label="السابق"
+              data-goal-nav="prev"
+            >
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <div class="goal-carousel" aria-label="أهداف التسوق">
             <article class="goal-card">
               <div class="goal-visual">
                 <img
@@ -328,6 +345,15 @@
                 <span>تسوق الان</span>
               </button>
             </article>
+            </div>
+            <button
+              class="goal-nav-btn goal-nav-next"
+              type="button"
+              aria-label="التالي"
+              data-goal-nav="next"
+            >
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
       </section>

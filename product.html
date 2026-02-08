@@ -129,14 +129,6 @@
               <span class="pm-tag yellow">الأكثر مبيعاً</span>
               <span class="pm-tag red">-20%</span>
             </div>
-            <div class="pm-media-icons">
-              <button aria-label="أضف للعربة" data-link="cart.html">
-                <img src="assets/figma/product-details/icon-minus.svg" alt="" />
-              </button>
-              <button aria-label="أضف للمفضلة" data-link="favorite.html">
-                <img src="assets/icons/heart.svg" alt="" />
-              </button>
-            </div>
             <img
               src="assets/figma/product-details/product-main.png"
               alt="أوبتيموم واي بروتين"
@@ -181,6 +173,8 @@
             التعافي بعد التمارين الرياضية.
           </p>
 
+          <div class="pm-divider"></div>
+
           <div class="pm-option">
             <div class="pm-option-title">الشكل:</div>
             <div class="pm-option-value">مسحوق</div>
@@ -190,20 +184,22 @@
             <div class="pm-chips">
               <button>0.45 كغ</button>
               <button>0.9 كغ</button>
-              <button class="disabled">4.54 كغ</button>
               <button class="active">2.27 كغ</button>
+              <button class="disabled">4.54 كغ</button>
             </div>
           </div>
           <div class="pm-option">
             <div class="pm-option-title">النكهة:</div>
             <div class="pm-chips">
+              <button class="active">شوكولاتة</button>
               <button>فانيليا</button>
               <button>فراولة</button>
               <button>موكا كابتشينو</button>
-              <button class="active">شوكولاتة</button>
+              <button>تشوكليت منت</button>
               <button>روكي رود</button>
               <button>كراميل توفي</button>
               <button class="disabled">وايت شوكولاتة ريسبي</button>
+              <button class="disabled">إكستريم ميلك شوكولات</button>
             </div>
           </div>
 
@@ -239,9 +235,13 @@
               </button>
             </div>
             <div class="pm-qty">
-              <button aria-label="نقص">−</button>
+              <button aria-label="نقص">
+                <i class="fa-solid fa-minus" aria-hidden="true"></i>
+              </button>
               <span>1</span>
-              <button aria-label="زيادة">+</button>
+              <button aria-label="زيادة">
+                <img src="assets/figma/product-details/icon-plus.svg" alt="" />
+              </button>
             </div>
           </div>
 
@@ -252,28 +252,28 @@
         </div>
         <section class="pm-benefits">
           <div class="pm-benefit">
-            <span>24 جم من البروتين لكل حصة لدعم بناء العضلات</span>
             <span class="icon"
               ><img src="assets/figma/product-details/icon-benefit-1.svg" alt=""
             /></span>
+            <span>24 جم من البروتين لكل حصة لدعم بناء العضلات</span>
           </div>
           <div class="pm-benefit">
-            <span>خال من الغلوتين</span>
             <span class="icon"
               ><img src="assets/figma/product-details/icon-benefit-2.svg" alt=""
             /></span>
+            <span>خال من الغلوتين</span>
           </div>
           <div class="pm-benefit">
-            <span>5.5 جم أحماض أمينية (BCAAs) للحصة</span>
             <span class="icon"
               ><img src="assets/figma/product-details/icon-benefit-3.svg" alt=""
             /></span>
+            <span>5.5 جم أحماض أمينية (BCAAs) للحصة</span>
           </div>
           <div class="pm-benefit">
-            <span>مختبر لضمان خلوه من المواد المحظورة</span>
             <span class="icon"
               ><img src="assets/figma/product-details/icon-benefit-4.svg" alt=""
             /></span>
+            <span>مختبر لضمان خلوه من المواد المحظورة</span>
           </div>
         </section>
       </section>
@@ -282,71 +282,125 @@
         <div class="pm-accordion-item open">
           <button class="pm-accordion-header" type="button">
             <span>حول هذا المنتج</span>
-            <span>+</span>
+            <span class="pm-accordion-icon">+</span>
           </button>
           <div class="pm-accordion-body">
             يوفر جولد ستاندرد 100% واي بروتين باودر 24 جم بروتين عالي الجودة و5.5
-            جم BCAAs في كل حصة، لدعم بناء العضلات وتسريع التعافي بعد التمرين.
+            جم BCAAs في كل حصة، لدعم بناء العضلات وتسريع التعافي بعد التمرين. يعتمد
+            على بروتين مصل اللبن المعزول سريع الامتصاص لضمان أفضل نتائج، ويأتي
+            بنكهات لذيذة وسهلة التحضير، مما يجعله خيارًا مثاليًا للمبتدئين
+            والمحترفين على حد سواء.
           </div>
         </div>
         <div class="pm-accordion-divider"></div>
-        <div class="pm-accordion-item">
+        <div class="pm-accordion-item open">
           <button class="pm-accordion-header" type="button">
             <span>طريقة الاستخدام</span>
-            <span>+</span>
+            <span class="pm-accordion-icon">+</span>
           </button>
           <div class="pm-accordion-body">
-            امزج مقدار سكوب واحد من المسحوق مع 180 إلى 240 مل من الماء البارد.
+            امزج مقدار سكوب واحد من المسحوق مع 6 إلى 8 أونصات (حوالي 180 إلى 240
+            مل) من الماء البارد، الحليب، أو أي مشروب آخر تفضله. قم بالتحريك أو
+            الرجّ أو المزج حتى يذوب تمامًا. للحصول على أفضل النتائج، يُفضل تحضير
+            مشروب البروتين الخاص بك خلال 30 إلى 60 دقيقة بعد التمرين، أو استخدامه
+            كوجبة خفيفة في أي وقت كجزء من نظام غذائي صحي ومتوازن.
           </div>
         </div>
         <div class="pm-accordion-divider"></div>
-        <div class="pm-accordion-item">
+        <div class="pm-accordion-item open pm-accordion-quality">
           <button class="pm-accordion-header" type="button">
             <span>الثقة والجودة</span>
-            <span>+</span>
+            <span class="pm-accordion-icon">+</span>
           </button>
-          <div class="pm-accordion-body">
-            نضمن جميع منتجاتنا بأنها موثوقة المصدر ومستودة من الوكلاء الرسميين.
+          <div class="pm-accordion-body pm-accordion-quality-body">
+            <img
+              class="pm-quality-badge"
+              src="assets/figma/product-details/badge-tested.svg"
+              alt="مختبر لضمان الجودة"
+            />
+            <div class="pm-quality-content">
+              <img
+                class="pm-quality-logo"
+                src="assets/icons/logo-yellow.svg"
+                alt="iProtein"
+              />
+              <p>
+                نضمن جميع منتجاتنا بأنها موثوقة المصدر ومستوردة من الوكلاء
+                الرسميين.
+              </p>
+            </div>
           </div>
         </div>
         <div class="pm-accordion-divider"></div>
-        <div class="pm-accordion-item">
+        <div class="pm-accordion-item open pm-accordion-nutrition">
           <button class="pm-accordion-header" type="button">
             <span>الحقائق الغذائية</span>
-            <span>+</span>
+            <span class="pm-accordion-icon">+</span>
           </button>
           <div class="pm-accordion-body">
-            السعرات الحرارية: 120 • البروتين: 24 جم • الدهون: 1.5 جم
+            <div class="pm-nutrition-intro">
+              <p>حجم الحصة: ( 30.4 جم حوالي سكوب واحد )</p>
+              <p class="pm-nutrition-note">
+                *تدل نسبة الاحتياج اليومي للمغذيات في الحصة الواحدة على احتياج
+                الفرد اليومي ومبنية على نظام غذائي محتوي على 2000 سعرة حرارية.
+              </p>
+            </div>
+            <ul class="pm-nutrition-list">
+              <li>الدهون الكلية: 1.5 جم 2%</li>
+              <li>السعرات الحرارية: 120 جم</li>
+              <li>البروتين: 24 جم 48%</li>
+              <li>الدهون المشبعة: 1 جم 5%</li>
+              <li>الكوليسترول: 55 مجم 18%</li>
+              <li>الكربوهيدرات الكلية: 3 جم 1%</li>
+              <li>الصوديوم: 130 مج 6%</li>
+              <li>الألياف الغذائية: &lt;1جم 2%</li>
+              <li>الكالسيوم: 130 مجم 10%</li>
+              <li>السكريات الكلية: 1 جم</li>
+              <li>البوتاسيوم: 200 مجم 4%</li>
+              <li>الحديد: 0.7 مجم 4%</li>
+            </ul>
           </div>
         </div>
         <div class="pm-accordion-divider"></div>
-        <div class="pm-accordion-item">
+        <div class="pm-accordion-item open">
           <button class="pm-accordion-header" type="button">
             <span>المكونات</span>
-            <span>+</span>
+            <span class="pm-accordion-icon">+</span>
           </button>
           <div class="pm-accordion-body">
-            بروتين مصل اللبن المعزول، مسحوق الكاكاو، النكهات الطبيعية.
+            مزيج البروتين (بروتين مصل اللبن المعزول، بروتين مصل اللبن المتحلل،
+            بروتين مصل اللبن المركز)، مسحوق الكاكاو (معالج بالقلويات)، ليسيثين
+            عباد الشمس، النكهات الطبيعية والصناعية، السوكروز، أسيسولفام
+            البوتاسيوم، مزيج الأنزيمات (أميلاز، لاكتاز، بروتياز، سليولوز).
           </div>
         </div>
         <div class="pm-accordion-divider"></div>
-        <div class="pm-accordion-item">
+        <div class="pm-accordion-item open">
           <button class="pm-accordion-header" type="button">
             <span>الشركة المصنعة</span>
-            <span>+</span>
+            <span class="pm-accordion-icon">+</span>
           </button>
           <div class="pm-accordion-body">
-            أوبتيموم نيوتريشن إحدى الشركات الرائدة عالميًا في منتجات البروتين.
+            تعد أوبتيموم نيوتريشن إحدى الشركات الرائدة في العالم والتي تنتج منتجات
+            البروتين الأفضل والأعلى مبيعًا في السوق العالمي.
+            <br />
+            إن مكونات "اوبتيموم نيوترشن" المختارة، ومراقبة الجودة، والإختبارات
+            المعملية، وعمليات التصنيع، جميعها تعمل لهدف واحد: تزويدك بمنتجات
+            التغذية الرياضية المتاحة الأعلى جودةً على الإطلاق.
           </div>
         </div>
       </section>
 
       <section class="pm-reviews">
         <div class="pm-section-heading">
+          <img class="pm-section-edge" src="assets/icons/edge.svg" alt="" aria-hidden="true" />
           <h2 class="pm-section-title">التقييمات</h2>
+          <img class="pm-section-edge" src="assets/icons/edge2.svg" alt="" aria-hidden="true" />
         </div>
         <div class="pm-review-summary">
-          <button class="pm-review-cta" type="button" data-link="sign-in.html">اضف تعليق</button>
+          <button class="pm-review-cta" type="button" data-link="sign-in.html">
+            اضف تعليق
+          </button>
           <div class="pm-review-score">
             <span class="pm-review-score-number">4.3</span>
             <div class="pm-review-stars" aria-label="تقييم 4.3 من 5">
@@ -392,7 +446,9 @@
                   <span class="pm-review-chip">مشتري موثق</span>
                 </div>
               </div>
-              <div class="pm-review-avatar" aria-hidden="true">أ</div>
+              <div class="pm-review-avatar">
+                <img src="assets/figma/product-details/avatar-1.png" alt="أحمد" />
+              </div>
             </div>
           </div>
           <div class="pm-review-divider"></div>
@@ -428,7 +484,9 @@
                   <span class="pm-review-chip">مشتري موثق</span>
                 </div>
               </div>
-              <div class="pm-review-avatar" aria-hidden="true">ل</div>
+              <div class="pm-review-avatar">
+                <img src="assets/figma/product-details/avatar-2.png" alt="ليلى" />
+              </div>
             </div>
           </div>
           <div class="pm-review-divider"></div>
@@ -462,148 +520,164 @@
                   <span class="pm-review-chip">مشتري موثق</span>
                 </div>
               </div>
-              <div class="pm-review-avatar" aria-hidden="true">ي</div>
+              <div class="pm-review-avatar">
+                <img src="assets/figma/product-details/avatar-3.png" alt="يوسف" />
+              </div>
             </div>
           </div>
         </div>
         <div class="pm-review-pagination">
-          <button class="pm-page-btn" type="button" aria-label="السابق">
-            <img src="assets/figma/products/icon-arrow-left.svg" alt="" />
+          <button class="pm-page-btn" type="button" aria-label="التالي">
+            <img src="assets/figma/products/icon-arrow-right.svg" alt="" />
           </button>
           <button class="pm-page-btn active" type="button">1</button>
           <button class="pm-page-btn" type="button">2</button>
-          <button class="pm-page-btn" type="button" aria-label="التالي">
-            <img src="assets/figma/products/icon-arrow-right.svg" alt="" />
+          <button class="pm-page-btn" type="button" aria-label="السابق">
+            <img src="assets/figma/products/icon-arrow-left.svg" alt="" />
           </button>
         </div>
       </section>
 
       <section class="pm-similar">
         <div class="pm-section-heading">
+          <img class="pm-section-edge" src="assets/icons/edge.svg" alt="" aria-hidden="true" />
           <h2 class="pm-section-title">منتجات مشابهة</h2>
+          <img class="pm-section-edge" src="assets/icons/edge2.svg" alt="" aria-hidden="true" />
         </div>
         <div class="pm-similar-row">
-          <article class="product-card">
-            <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-01.png');">
-              <div class="badge-row">
-                <span class="badge sale">-20%</span>
-                <span class="badge best">الأكثر مبيعاً</span>
+          <article class="pm-similar-card product-card">
+            <div class="pm-similar-media">
+              <div class="pm-similar-top">
+                <div class="pm-similar-badges">
+                  <span class="pm-similar-badge sale">-20%</span>
+                  <span class="pm-similar-badge best">الأكثر مبيعاً</span>
+                </div>
+                <div class="pm-similar-actions">
+                  <button aria-label="أضف للعربة" data-link="cart.html">
+                    <img src="assets/icons/bag.svg" alt="" />
+                  </button>
+                  <button aria-label="أضف للمفضلة" data-link="favorite.html">
+                    <img src="assets/icons/heart.svg" alt="" />
+                  </button>
+                </div>
               </div>
-              <div class="icon-row">
-                <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
-                  <img src="assets/icons/bag.svg" alt="" />
-                </button>
-                <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
-                  <img src="assets/icons/heart.svg" alt="" />
-                </button>
-              </div>
+              <img src="assets/figma/products/product-06.png" alt="بيرسونال ريكورد بروتين آيزوليت" />
             </div>
-            <div class="product-info">
+            <div class="pm-similar-info">
               <h3 class="product-name">بيرسونال ريكورد بروتين آيزوليت</h3>
-              <div class="price-row">
-                <span class="price-current">120.00 د.ع</span>
-                <span class="price-old">140.00 د.ع</span>
+              <div class="pm-similar-meta">
+                <div class="pm-similar-rating">
+                  <span>4.8 (200)</span>
+                  <img src="assets/figma/product-details/icon-star.svg" alt="" />
+                </div>
+                <div class="pm-similar-price">
+                  <span class="old price-old">140.00 د.ع</span>
+                  <span class="current price-current">120.00 د.ع</span>
+                </div>
               </div>
-              <button class="product-cta" data-link="product.html">
-                <span>اشتري الان</span>
+              <button class="pm-similar-cta product-cta" data-link="product.html">
+                اشتري الان
               </button>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-04.png');">
-              <div class="badge-row">
-                <span class="badge fresh">جديد</span>
+          <article class="pm-similar-card product-card">
+            <div class="pm-similar-media">
+              <div class="pm-similar-top">
+                <div class="pm-similar-badges">
+                  <span class="pm-similar-badge new">جديد</span>
+                </div>
+                <div class="pm-similar-actions">
+                  <button aria-label="أضف للعربة" data-link="cart.html">
+                    <img src="assets/icons/bag.svg" alt="" />
+                  </button>
+                  <button aria-label="أضف للمفضلة" data-link="favorite.html">
+                    <img src="assets/icons/heart.svg" alt="" />
+                  </button>
+                </div>
               </div>
-              <div class="icon-row">
-                <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
-                  <img src="assets/icons/bag.svg" alt="" />
-                </button>
-                <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
-                  <img src="assets/icons/heart.svg" alt="" />
-                </button>
-              </div>
+              <img src="assets/figma/products/product-04.png" alt="وومنز بيست - شيب بودي شيك" />
             </div>
-            <div class="product-info">
+            <div class="pm-similar-info">
               <h3 class="product-name">وومنز بيست - شيب بودي شيك</h3>
-              <div class="price-row">
-                <span class="price-current">120.00 د.ع</span>
+              <div class="pm-similar-meta">
+                <div class="pm-similar-rating">
+                  <span>4.8 (200)</span>
+                  <img src="assets/figma/product-details/icon-star.svg" alt="" />
+                </div>
+                <div class="pm-similar-price">
+                  <span class="current price-current">120.00 د.ع</span>
+                </div>
               </div>
-              <button class="product-cta" data-link="product.html">
-                <span>اشتري الان</span>
+              <button class="pm-similar-cta product-cta" data-link="product.html">
+                اشتري الان
               </button>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-05.png');">
-              <div class="badge-row">
-                <span class="badge best">الأكثر مبيعاً</span>
+          <article class="pm-similar-card product-card">
+            <div class="pm-similar-media">
+              <div class="pm-similar-top">
+                <div class="pm-similar-badges">
+                  <span class="pm-similar-badge best">الأكثر مبيعاً</span>
+                </div>
+                <div class="pm-similar-actions">
+                  <button aria-label="أضف للعربة" data-link="cart.html">
+                    <img src="assets/icons/bag.svg" alt="" />
+                  </button>
+                  <button aria-label="أضف للمفضلة" data-link="favorite.html">
+                    <img src="assets/icons/heart.svg" alt="" />
+                  </button>
+                </div>
               </div>
-              <div class="icon-row">
-                <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
-                  <img src="assets/icons/bag.svg" alt="" />
-                </button>
-                <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
-                  <img src="assets/icons/heart.svg" alt="" />
-                </button>
-              </div>
+              <img src="assets/figma/products/product-05.png" alt="لابيرفا - آيزو تربل زيرو" />
             </div>
-            <div class="product-info">
+            <div class="pm-similar-info">
               <h3 class="product-name">لابيرفا - آيزو تربل زيرو</h3>
-              <div class="price-row">
-                <span class="price-current">120.00 د.ع</span>
+              <div class="pm-similar-meta">
+                <div class="pm-similar-rating">
+                  <span>4.8 (200)</span>
+                  <img src="assets/figma/product-details/icon-star.svg" alt="" />
+                </div>
+                <div class="pm-similar-price">
+                  <span class="current price-current">120.00 د.ع</span>
+                </div>
               </div>
-              <button class="product-cta" data-link="product.html">
-                <span>اشتري الان</span>
+              <button class="pm-similar-cta product-cta" data-link="product.html">
+                اشتري الان
               </button>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-06.png');">
-              <div class="badge-row">
-                <span class="badge sale">-20%</span>
-                <span class="badge best">الأكثر مبيعاً</span>
+          <article class="pm-similar-card product-card">
+            <div class="pm-similar-media">
+              <div class="pm-similar-top">
+                <div class="pm-similar-badges">
+                  <span class="pm-similar-badge sale">-20%</span>
+                  <span class="pm-similar-badge best">الأكثر مبيعاً</span>
+                </div>
+                <div class="pm-similar-actions">
+                  <button aria-label="أضف للعربة" data-link="cart.html">
+                    <img src="assets/icons/bag.svg" alt="" />
+                  </button>
+                  <button aria-label="أضف للمفضلة" data-link="favorite.html">
+                    <img src="assets/icons/heart.svg" alt="" />
+                  </button>
+                </div>
               </div>
-              <div class="icon-row">
-                <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
-                  <img src="assets/icons/bag.svg" alt="" />
-                </button>
-                <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
-                  <img src="assets/icons/heart.svg" alt="" />
-                </button>
-              </div>
+              <img src="assets/figma/products/product-06.png" alt="أوبتيموم آيزوليت واي بروتين" />
             </div>
-            <div class="product-info">
+            <div class="pm-similar-info">
               <h3 class="product-name">أوبتيموم آيزوليت واي بروتين</h3>
-              <div class="price-row">
-                <span class="price-current">120.00 د.ع</span>
-                <span class="price-old">140.00 د.ع</span>
+              <div class="pm-similar-meta">
+                <div class="pm-similar-rating">
+                  <span>4.8 (200)</span>
+                  <img src="assets/figma/product-details/icon-star.svg" alt="" />
+                </div>
+                <div class="pm-similar-price">
+                  <span class="old price-old">140.00 د.ع</span>
+                  <span class="current price-current">120.00 د.ع</span>
+                </div>
               </div>
-              <button class="product-cta" data-link="product.html">
-                <span>اشتري الان</span>
-              </button>
-            </div>
-          </article>
-          <article class="product-card">
-            <div class="product-image" style="background-image: linear-gradient(135deg, rgba(41, 78, 62, 0.12), rgba(230, 237, 20, 0.12)), url('assets/figma/products/product-07.png');">
-              <div class="badge-row">
-                <span class="badge best">الأكثر مبيعاً</span>
-              </div>
-              <div class="icon-row">
-                <button class="icon-button" aria-label="أضف للعربة" data-link="cart.html">
-                  <img src="assets/icons/bag.svg" alt="" />
-                </button>
-                <button class="icon-button" aria-label="أضف للمفضلة" data-link="favorite.html">
-                  <img src="assets/icons/heart.svg" alt="" />
-                </button>
-              </div>
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">هيلث فارم نيوترشن بروتين ايزو</h3>
-              <div class="price-row">
-                <span class="price-current">120.00 د.ع</span>
-              </div>
-              <button class="product-cta" data-link="product.html">
-                <span>اشتري الان</span>
+              <button class="pm-similar-cta product-cta" data-link="product.html">
+                اشتري الان
               </button>
             </div>
           </article>
@@ -611,6 +685,28 @@
       </section>
 
       <section class="pm-cta">
+        <div class="pm-cta-gradient">
+          <img
+            class="pattern"
+            src="assets/figma/product-details/cta-pattern.png"
+            alt=""
+          />
+          <img
+            class="bolt"
+            src="assets/figma/product-details/cta-bolt.svg"
+            alt=""
+          />
+          <img
+            class="left"
+            src="assets/figma/product-details/cta-left.svg"
+            alt=""
+          />
+          <img
+            class="right"
+            src="assets/figma/product-details/cta-right.svg"
+            alt=""
+          />
+        </div>
         <div class="pm-cta-photo">
           <div class="pm-cta-content">
             <h3>ابدأ اكتشاف نفسك الآن</h3>
@@ -626,28 +722,6 @@
               ابدأ اكتشاف نفسك
             </button>
           </div>
-        </div>
-        <div class="pm-cta-gradient">
-          <img
-            class="pattern"
-            src="assets/figma/product-details/cta-pattern.png"
-            alt=""
-          />
-          <img
-            class="bolt"
-            src="assets/figma/product-details/cta-bolt.png"
-            alt=""
-          />
-          <img
-            class="left"
-            src="assets/figma/product-details/cta-left.png"
-            alt=""
-          />
-          <img
-            class="right"
-            src="assets/figma/product-details/cta-right.png"
-            alt=""
-          />
         </div>
       </section>
 
@@ -827,7 +901,7 @@
                 <span class="popup-dialog-price">120.00 د.ع</span>
                 <div class="qty-stepper" data-qty>
                   <button type="button" aria-label="ناقص">
-                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                    <i class="fa-solid fa-minus" aria-hidden="true"></i>
                   </button>
                   <span>1</span>
                   <button type="button" aria-label="زائد">
@@ -869,7 +943,7 @@
                 <span class="popup-dialog-price">120.00 د.ع</span>
                 <div class="qty-stepper" data-qty>
                   <button type="button" aria-label="ناقص">
-                    <img src="assets/figma/product-details/icon-minus.svg" alt="" />
+                    <i class="fa-solid fa-minus" aria-hidden="true"></i>
                   </button>
                   <span>1</span>
                   <button type="button" aria-label="زائد">

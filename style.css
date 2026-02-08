@@ -40,7 +40,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 16px;
+  padding: 12px 44px;
   min-height: var(--announcement-bar-height);
   background-color: #e6ed14;
   color: var(--primitives-colors-primary-primary-950);
@@ -58,6 +58,28 @@ button:focus-visible {
 .announcement-icon {
   font-size: 18px;
   line-height: 1;
+}
+
+.announcement-close {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.announcement-close:hover {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .header {
@@ -481,6 +503,8 @@ button:focus-visible {
   border: 1px solid;
   border-color: var(--primitives-colors-secondary-secondary-500-s);
   background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .hero-s .btn-primary-btn-lg {
@@ -530,6 +554,22 @@ button:focus-visible {
   background-color: var(--primitives-colors-primary-primary-500-p);
   border-radius: 8px;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .hero-s .button:hover {
+    background-color: rgba(230, 237, 20, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(41, 78, 62, 0.2);
+  }
+
+  .hero-s .btn-primary-btn-lg-wrapper:hover {
+    background-color: var(--primitives-colors-primary-primary-400);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(41, 78, 62, 0.25);
+  }
 }
 
 .hero-s .masked-icon {
@@ -881,6 +921,24 @@ button:focus-visible {
   height: 16px;
 }
 
+@media (max-width: 420px) {
+  .best-header {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .best-label {
+    order: 1;
+  }
+
+  .see-all {
+    position: static;
+    order: 2;
+    align-self: flex-start;
+  }
+}
+
 .best-carousel {
   width: 100%;
   display: flex;
@@ -908,18 +966,26 @@ button:focus-visible {
   flex-direction: column;
   scroll-snap-align: center;
   scroll-snap-stop: always;
+  cursor: pointer;
 }
 
 .product-image {
   position: relative;
-  height: 180px;
-  background-size: cover;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-size: 100% 100%, 88% 88%;
   background-position: center;
+  background-repeat: no-repeat;
   padding: 12px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   direction: rtl;
+  transition: background-size 0.2s ease;
+}
+
+.product-card:hover .product-image {
+  background-size: 100% 100%, 94% 94%;
 }
 
 .badge-row {
@@ -1113,6 +1179,7 @@ button:focus-visible {
   padding: 8px 0 8px 4px;
   scrollbar-width: none;
   direction: rtl;
+  flex: 1;
 }
 
 .goal-carousel::-webkit-scrollbar {
@@ -1134,6 +1201,33 @@ button:focus-visible {
   scroll-snap-stop: always;
   box-shadow: none;
   direction: rtl;
+}
+
+.goal-carousel-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.goal-nav-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(9, 17, 13, 0.5);
+  color: #fff;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.goal-nav-btn:hover {
+  background: rgba(9, 17, 13, 0.7);
+  transform: translateY(-1px);
 }
 
 .goal-visual {
@@ -1226,6 +1320,14 @@ button:focus-visible {
 @media (min-width: 1024px) {
   .shop-goal-inner {
     gap: 20px;
+  }
+
+  .goal-carousel-wrap {
+    gap: 16px;
+  }
+
+  .goal-nav-btn {
+    display: inline-flex;
   }
 
   .goal-carousel {
@@ -2675,6 +2777,45 @@ button:focus-visible {
     "Cairo", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: var(--primitives-colors-primary-primary-950);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-title::before {
+  content: "+";
+  font-size: 18px;
+  line-height: 1;
+  color: var(--primitives-colors-primary-primary-500-p);
+  transition: transform 220ms ease;
+}
+
+.filter-group:not(.is-collapsed) .filter-title::before {
+  content: "-";
+}
+
+.filter-title:focus-visible {
+  outline: 2px solid rgba(41, 78, 62, 0.35);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  max-height: 640px;
+  opacity: 1;
+  transition: max-height 280ms ease, opacity 200ms ease;
+}
+
+.filter-group.is-collapsed .filter-options {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .filters-sidebar label {
