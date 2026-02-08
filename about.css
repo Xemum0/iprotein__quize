@@ -190,6 +190,8 @@
 
 .about-values .about-section-header {
   margin: 0;
+  width: 100%;
+  justify-content: flex-end;
   gap: 32px;
 }
 
@@ -197,6 +199,7 @@
   font-size: 40px;
   font-weight: 700;
   line-height: 1;
+  text-align: right;
 }
 
 .about-values .about-section-bracket {
@@ -300,20 +303,21 @@
 }
 
 .about-values-product-left {
-  left: 84px;
+  left: 70px;
   bottom: 104px;
   width: 116px;
 }
 
 .about-values-product-middle {
-  left: 228px;
-  bottom: 54px;
-  width: 162px;
+  left: 217px;
+  bottom: 70px;
+  width: 156px;
+  z-index: 6;
 }
 
 .about-values-product-right {
   right: 80px;
-  bottom: 124px;
+  bottom: 142px;
   width: 74px;
 }
 
@@ -342,7 +346,7 @@
 .about-values-line-left,
 .about-values-line-right {
   top: 41px;
-  width: 126px;
+  width: 142px;
   height: 2px;
 }
 
@@ -489,20 +493,20 @@
   }
 
   .about-values-product-left {
-    left: 14.2%;
+    left: 12.8%;
     bottom: 29.2%;
     width: 19.7%;
   }
 
   .about-values-product-middle {
-    left: 38.6%;
-    bottom: 15.2%;
-    width: 27.5%;
+    left: 36.8%;
+    bottom: 18.5%;
+    width: 26.4%;
   }
 
   .about-values-product-right {
     right: 13.6%;
-    bottom: 34.9%;
+    bottom: 38.2%;
     width: 12.5%;
   }
 
@@ -512,8 +516,8 @@
 
   .about-values-line-left,
   .about-values-line-right {
-    width: 21.4vw;
-    max-width: 126px;
+    width: 24vw;
+    max-width: 142px;
   }
 
   .about-values-line-down {

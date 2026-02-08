@@ -771,8 +771,19 @@ function initProductsPage() {
   const priceRange = filtersBody?.querySelector('input[type="range"]');
   const priceOutput = filtersBody?.querySelector("[data-price-output]");
   const list = section.querySelector(".products-list");
+  const pagination = section.querySelector(".products-pagination");
   const cards = list ? Array.from(list.querySelectorAll(".product-card")) : [];
   if (!sortBtn || !sortMenu || !list || cards.length === 0) return;
+
+  const PAGE_SIZE = 6;
+  let currentPage = 1;
+  let totalPages = 1;
+  const prevIconMarkup =
+    pagination?.querySelector('[aria-label="السابق"]')?.innerHTML ||
+    '<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>';
+  const nextIconMarkup =
+    pagination?.querySelector('[aria-label="التالي"]')?.innerHTML ||
+    '<i class="fa-solid fa-chevron-left" aria-hidden="true"></i>';
 
   const initFilterSubsections = () => {
     filterGroups.forEach((group, index) => {
@@ -856,7 +867,52 @@ function initProductsPage() {
     priceOutput.textContent = `حتى ${priceRange.value}.000 د.ع`;
   };
 
-  const applyFilter = () => {
+  const renderPagination = (visibleCount) => {
+    if (!pagination) return;
+
+    if (visibleCount <= PAGE_SIZE) {
+      pagination.hidden = true;
+      return;
+    }
+
+    pagination.hidden = false;
+    const fragment = document.createDocumentFragment();
+
+    const buildNavButton = (label, iconHtml, nav, disabled) => {
+      const button = document.createElement("button");
+      button.className = "page-btn";
+      button.type = "button";
+      button.setAttribute("aria-label", label);
+      button.dataset.pageNav = nav;
+      button.disabled = !!disabled;
+      button.innerHTML = iconHtml;
+      return button;
+    };
+
+    fragment.appendChild(
+      buildNavButton("السابق", prevIconMarkup, "prev", currentPage <= 1)
+    );
+
+    for (let page = totalPages; page >= 1; page -= 1) {
+      const button = document.createElement("button");
+      button.className = `page-btn${page === currentPage ? " active" : ""}`;
+      button.type = "button";
+      button.dataset.page = String(page);
+      button.setAttribute("aria-label", `الصفحة ${page}`);
+      if (page === currentPage) button.setAttribute("aria-current", "page");
+      button.innerHTML = `<span>${page}</span>`;
+      fragment.appendChild(button);
+    }
+
+    fragment.appendChild(
+      buildNavButton("التالي", nextIconMarkup, "next", currentPage >= totalPages)
+    );
+
+    pagination.replaceChildren(fragment);
+  };
+
+  const applyFilter = ({ resetPage = false } = {}) => {
+    if (resetPage) currentPage = 1;
     const activeFilters = getActiveFilters();
     const maxPrice = priceRange ? parseFloat(priceRange.value || "0") : null;
     const priceMaxValue = priceRange
@@ -869,8 +925,10 @@ function initProductsPage() {
       typeof maxPrice === "number" &&
       typeof priceMaxValue === "number" &&
       maxPrice < priceMaxValue;
-    let visibleCount = 0;
-    cards.forEach((card) => {
+    const orderedCards = Array.from(list.querySelectorAll(".product-card"));
+    const matchedCards = [];
+
+    orderedCards.forEach((card) => {
       const tags = (card.dataset.tags || "").split(/\s+/);
       const name = card.querySelector(".product-name")?.textContent || "";
       const dataText = `${name} ${card.dataset.tags || ""} ${
@@ -894,9 +952,23 @@ function initProductsPage() {
       );
       const show =
         matchesSearch && matchesCategory && matchesPrice && matchesFilters;
-      card.style.display = show ? "flex" : "none";
-      if (show) visibleCount += 1;
+      if (show) matchedCards.push(card);
     });
+
+    totalPages = Math.max(1, Math.ceil(matchedCards.length / PAGE_SIZE));
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const pageStart = (currentPage - 1) * PAGE_SIZE;
+    const pageEnd = pageStart + PAGE_SIZE;
+    const currentPageCards = new Set(matchedCards.slice(pageStart, pageEnd));
+    const visibleCount = matchedCards.length;
+
+    orderedCards.forEach((card) => {
+      card.style.display = currentPageCards.has(card) ? "flex" : "none";
+    });
+
+    renderPagination(visibleCount);
+
     const shouldShowEmpty =
       searchKey ||
       currentFilter !== "all" ||
@@ -917,7 +989,7 @@ function initProductsPage() {
       sorted = originalOrder;
     }
     sorted.forEach((card) => list.appendChild(card));
-    applyFilter();
+    applyFilter({ resetPage: true });
   };
 
   sortBtn.addEventListener("click", (event) => {
@@ -966,13 +1038,13 @@ function initProductsPage() {
   }
 
   filterInputs.forEach((input) => {
-    input.addEventListener("change", applyFilter);
+    input.addEventListener("change", () => applyFilter({ resetPage: true }));
   });
 
   if (priceRange) {
     priceRange.addEventListener("input", () => {
       updatePriceOutput();
-      applyFilter();
+      applyFilter({ resetPage: true });
     });
     updatePriceOutput();
   }
@@ -992,7 +1064,7 @@ function initProductsPage() {
       categoryPills.forEach((btn) =>
         btn.classList.toggle("active", btn.dataset.filter === currentFilter)
       );
-      applyFilter();
+      applyFilter({ resetPage: true });
     });
   });
 
@@ -1005,7 +1077,7 @@ function initProductsPage() {
       filterPills.forEach((btn) =>
         btn.classList.toggle("active", btn.dataset.filter === currentFilter)
       );
-      applyFilter();
+      applyFilter({ resetPage: true });
     });
   });
 
@@ -1021,9 +1093,31 @@ function initProductsPage() {
       } else {
         window.history.replaceState(null, "", "products.html");
       }
-      applyFilter();
+      applyFilter({ resetPage: true });
     });
   });
+
+  if (pagination && pagination.dataset.bound !== "true") {
+    pagination.dataset.bound = "true";
+    pagination.addEventListener("click", (event) => {
+      const button = event.target.closest(".page-btn");
+      if (!button || button.disabled) return;
+
+      if (button.dataset.pageNav === "prev") {
+        currentPage = Math.max(1, currentPage - 1);
+      } else if (button.dataset.pageNav === "next") {
+        currentPage = Math.min(totalPages, currentPage + 1);
+      } else {
+        const nextPage = parseInt(button.dataset.page || "", 10);
+        if (Number.isFinite(nextPage)) currentPage = nextPage;
+      }
+
+      applyFilter();
+      if (typeof window !== "undefined") {
+        window.scrollTo({ top: list.offsetTop - 120, behavior: "smooth" });
+      }
+    });
+  }
 
   document.addEventListener("click", (event) => {
     if (!sortMenu.contains(event.target) && !sortBtn.contains(event.target)) {
@@ -1463,11 +1557,40 @@ document.addEventListener("DOMContentLoaded", initSectionReveal);
 function initAnnouncementClose() {
   const bar = document.querySelector(".announcement-bar");
   if (!bar) return;
-  const closeBtn = bar.querySelector("[data-announcement-close]");
-  if (!closeBtn) return;
-  closeBtn.addEventListener("click", () => {
+
+  const storageKey = "iprotein_announcement_closed";
+  const closeBar = () => {
     bar.remove();
     document.documentElement.style.setProperty("--announcement-bar-height", "0px");
+  };
+
+  try {
+    if (window.localStorage.getItem(storageKey) === "1") {
+      closeBar();
+      return;
+    }
+  } catch (_error) {
+    // Ignore storage access issues (private mode/restrictions).
+  }
+
+  let closeBtn = bar.querySelector("[data-announcement-close]");
+  if (!closeBtn) {
+    closeBtn = document.createElement("button");
+    closeBtn.className = "announcement-close";
+    closeBtn.type = "button";
+    closeBtn.setAttribute("aria-label", "إغلاق التنبيه");
+    closeBtn.setAttribute("data-announcement-close", "");
+    closeBtn.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+    bar.appendChild(closeBtn);
+  }
+
+  closeBtn.addEventListener("click", () => {
+    try {
+      window.localStorage.setItem(storageKey, "1");
+    } catch (_error) {
+      // Ignore storage access issues.
+    }
+    closeBar();
   });
 }
 

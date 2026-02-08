@@ -62,7 +62,8 @@ button:focus-visible {
 
 .announcement-close {
   position: absolute;
-  right: 12px;
+  left: 12px;
+  right: auto;
   top: 50%;
   transform: translateY(-50%);
   border: none;
@@ -3314,6 +3315,13 @@ button:focus-visible {
 
 .page-btn.active img {
   filter: brightness(0) invert(1);
+}
+
+.page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  border-color: var(--primitives-colors-natural-natural-100);
+  color: var(--primitives-colors-natural-natural-500);
 }
 
 .products-page .product-name {
